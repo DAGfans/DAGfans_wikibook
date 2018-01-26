@@ -1,0 +1,2536 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+        <!-- MathJax -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li><a href="./Intro.html"><strong>1.</strong> Intro</a></li><li><a href="./DagHistory.html"><strong>2.</strong> History</a></li><li><a href="./Wallet.html"><strong>3.</strong> Wallet</a></li><li><ul class="section"><li><a href="./Deterministic_wallet.html"><strong>3.1.</strong> Deterministic Wallet</a></li><li><a href="./Mnemonic.html"><strong>3.2.</strong> Mnemonic</a></li></ul></li><li><a href="./Testnet.html"><strong>4.</strong> Testnet &amp; faucet</a></li><li><ul class="section"><li><a href="./BTC_testnet.html"><strong>4.1.</strong> Bitcoin Testnet</a></li><li><a href="./ETH_testnet.html"><strong>4.2.</strong> Ethereum Testnet</a></li><li><a href="./GByte_testnet.html"><strong>4.3.</strong> Byteball Testnet</a></li></ul></li><li><a href="./Address.html"><strong>5.</strong> Address</a></li><li><ul class="section"><li><a href="./btc_addr.html"><strong>5.1.</strong> Bitcoin Address</a></li></ul></li><li><a href="./Data_Structure.html"><strong>6.</strong> Data Structure</a></li><li><ul class="section"><li><a href="./Transcation.html"><strong>6.1.</strong> Transcation</a></li><li><a href="./btc_tx.html"><strong>6.2.</strong> Bitcoin Transaction</a></li><li><a href="./MerkleTree.html"><strong>6.3.</strong> MerkleTree</a></li><li><a href="./PatriciaTree.html"><strong>6.4.</strong> PatriciaTree</a></li><li><a href="./IAVL_Tree.html"><strong>6.5.</strong> Merkleized IAVL+ Tree</a></li><li><a href="./MerkleDAG.html"><strong>6.6.</strong> MerkleDAG</a></li></ul></li><li><a href="./Data_Storage.html"><strong>7.</strong> Data Storage</a></li><li><ul class="section"><li><a href="./btc_datastore.html"><strong>7.1.</strong> Bitcoin</a></li></ul></li><li><a href="./Consensus.html"><strong>8.</strong> Consensus algorithm</a></li><li><ul class="section"><li><a href="./Consensus_POS_Ouroboros.html"><strong>8.1.</strong> IOHK/Ouroboros</a></li><li><a href="./DFINITY.html"><strong>8.2.</strong> DFINITY</a></li><li><a href="./Stellar.html"><strong>8.3.</strong> Stellar(SCP)</a></li><li><a href="./Matrix.html"><strong>8.4.</strong> Matrix</a></li><li><a href="./Ripple.html"><strong>8.5.</strong> Ripple</a></li><li><a href="./Casper.html"><strong>8.6.</strong> Casper</a></li><li><a href="./PoA.html"><strong>8.7.</strong> POA(Parity)</a></li><li><a href="./Terndermint.html"><strong>8.8.</strong> Tendermint</a></li><li><a href="./Delegated_Consensus.html"><strong>8.9.</strong> dBFT(NEO/Antshare)/dPOS(BTS/Steem/EOS/Lisk)</a></li><li><a href="./Algorand.html"><strong>8.10.</strong> Algorand</a></li></ul></li><li><a href="./Scalability.html"><strong>9.</strong> Scalability</a></li><li><ul class="section"><li><a href="./Ouroboros_Praos.html"><strong>9.1.</strong> Ouroboros Praos</a></li><li><a href="./EOS.html"><strong>9.2.</strong> EOS</a></li><li><a href="./eth_parallelizability.html"><strong>9.3.</strong> Ethereum Parallelizability</a></li></ul></li><li><a href="./Validation.html"><strong>10.</strong> Validation</a></li><li><ul class="section"><li><a href="./Segwit.html"><strong>10.1.</strong> Segwit</a></li><li><a href="./Multisignature.html"><strong>10.2.</strong> Multisignature</a></li><li><a href="./Tx_Malleability.html"><strong>10.3.</strong> Transaction Malleability</a></li><li><a href="./Double_Spend.html"><strong>10.4.</strong> Double Spend</a></li><li><a href="./Peplay_Protect.html"><strong>10.5.</strong> Replay Protection</a></li><li><a href="./TrueBit.html"><strong>10.6.</strong> Truebit</a></li></ul></li><li><a href="./Money_Denomiation_Token.html"><strong>11.</strong> Money &amp; Token</a></li><li><ul class="section"><li><a href="./TxFee_BTC.html"><strong>11.1.</strong> Bitcoin TxFee</a></li><li><a href="./RBF.html"><strong>11.2.</strong> Bitcoin Replace by fee</a></li><li><a href="./TxFee_ETH.html"><strong>11.3.</strong> Ethereum TxFee</a></li><li><a href="./ERC20.html"><strong>11.4.</strong> ERC20/ERC223/ERC721</a></li></ul></li><li><a href="./Crypto.html"><strong>12.</strong> Crypto Algorithm</a></li><li><ul class="section"><li><a href="./secp256k1.html"><strong>12.1.</strong> secp256k1</a></li><li><a href="./ZK-SNARKs.html"><strong>12.2.</strong> ZKP/ZK-SNARKs</a></li><li><a href="./CoinJoin.html"><strong>12.3.</strong> CoinJoin</a></li><li><a href="./RingSig.html"><strong>12.4.</strong> RingSig</a></li><li><a href="./Crypto_SM.html"><strong>12.5.</strong> SMx</a></li><li><a href="./PQC.html"><strong>12.6.</strong> Post-Quantum Cryptography</a></li></ul></li><li><a href="./Messaging.html"><strong>13.</strong> Messaging</a></li><li><a href="./Node_Discovery.html"><strong>14.</strong> Node discovery</a></li><li><ul class="section"><li><a href="./Gossip_Protocol.html"><strong>14.1.</strong> Gossip Protocol</a></li><li><a href="./DHT_Protocol.html"><strong>14.2.</strong> DHT Protocol</a></li></ul></li><li><a href="./Sync.html"><strong>15.</strong> Synchronization</a></li><li><ul class="section"><li><a href="./btc_sync.html"><strong>15.1.</strong> Bitcoin Header frist</a></li></ul></li><li><a href="./Interconnecting.html"><strong>16.</strong> Interconnect &amp; Cross-chain</a></li><li><ul class="section"><li><a href="./ILP.html"><strong>16.1.</strong> Interledger Protocol (ILP)</a></li><li><a href="./DID.html"><strong>16.2.</strong> Decentralized Identifiers (DIDs)</a></li><li><a href="./0xProtocol.html"><strong>16.3.</strong> 0x Protocol</a></li><li><a href="./Polkadot.html"><strong>16.4.</strong> Polkadot</a></li><li><a href="./Cosmos.html"><strong>16.5.</strong> Cosmos</a></li><li><a href="./OmiseGO.html"><strong>16.6.</strong> OmiseGO</a></li></ul></li><li><a href="./Oracle.html"><strong>17.</strong> Oracle</a></li><li><ul class="section"><li><a href="./Gnosis.html"><strong>17.1.</strong> Gnosis</a></li><li><a href="./Augur.html"><strong>17.2.</strong> Augur</a></li><li><a href="./Amoveo.html"><strong>17.3.</strong> Amoveo</a></li><li><a href="./ZenProtocol.html"><strong>17.4.</strong> Zen Protocal</a></li></ul></li><li><a href="./SmartContract.html"><strong>18.</strong> SmartContract</a></li><li><ul class="section"><li><a href="./Asset_Contract.html"><strong>18.1.</strong> Asset</a></li><li><a href="./Loan_Contract.html"><strong>18.2.</strong> Loan</a></li></ul></li><li><a href="./VM.html"><strong>19.</strong> VM</a></li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="print.html#dag简介" id="dag简介"><h3>DAG简介</h3></a>
+<p>基于DAG技术的分布式账本(distributed ledger)系统与比特币（bitcion），以太坊（ethereum）等主流数字货币系统和传统区块链（blockchain）系统不同。其特色是使用DAG（Directed Acyclic Graph，有向无环图）来组织交易（transaction）。</p>
+<p>传统的区块链技术，以比特币为例，使用的基本方式是矿工通过POW（工作量证明）共识，(即网络认为最⻓的链为真实链，因为最⻓的链拥有最大的工作量证明)，将交易打包到区块（block）中，而每一个区块通过在区块头记录前一个区块的hash值来链接到前一个区块上。通过这种方式，后一个区块直接或者间接的确认了前面所有区块的交易，这样通过POW共识解决了双花问题。</p>
+<p>与基于区块链的传统分布式账本技术（基于POW和单链式数据结构）不同，基于DAG技术的分布式账本技术，去掉了区块的限制，通过有向无环图的数据结构，允许后一交易同时连接到多个父亲交易，将交易通过有向图的方式直接连接在一起。
+在DAG中，交易构成了图中所有的节点。而带有方向的图的边(edge)表达了交易之间的先后确认关系。箭头由子节点指向父节点，表示了子交易直接或间接地确认了父交易的这种关系，同时也说明了子交易和父交易确认的先后顺序，即子交易一定被确认在父交易之后。这种父子关系是DAG确认机制和抵抗双花的核心。当一个交易产生时，该新产生的交易需要选取某些当前待确实交易来作为该交易的父交易(一个子交易可以有多个父交易)。子交易总是希望连接到包含更多的先辈节点的父交易上。对于一个新交易，在可选有限个父交易的情况下，为了直接或者间接的确认更多的祖先节点，子交易总是试图连接无孩交易(即tips)做为他的父交易，这样使得DAG的方向性得以建立。</p>
+<a class="header" href="print.html#dag技术的优势" id="dag技术的优势"><h3>DAG技术的优势</h3></a>
+<ul>
+<li>DAG技术对于高并发具有先天的优势。</li>
+<li>DAG技术交易确认快，网络可实现即时确认的。不需要向比特币那样需要等待10分钟左右的出块时间，或者像以太坊那样等待15到16秒。</li>
+<li>DAG技术不受区块大小的限制，不存在区块扩容问题。所以其可伸缩性只取决于网络带宽，CPU处理速度(例 如数字签名加密算法的处理速度)和存储容量的限制。</li>
+</ul>
+<a class="header" href="print.html#dag技术的难点" id="dag技术的难点"><h3>DAG技术的难点</h3></a>
+<ul>
+<li>由于DAG技术这种允许先连接，再判断的方式，对于双花处理则需要更加复杂的设计，从而解决基于DAG的双花问题，这就给如何实现基于DAG技术的区块链系统带来了很多复杂性，这也是目前基于DAG系统的区块链系统还极为少⻅的原因。</li>
+<li>目前还没有完美的基于DAG技术的分布式共识算法。</li>
+<li>技术还不够成熟，市场接受程度低。</li>
+</ul>
+<a class="header" href="print.html#dag技术的未来" id="dag技术的未来"><h3>DAG技术的未来</h3></a>
+<ul>
+<li>DAG技术将是未来区块链和分布式账本技术发展的一种核心趋势。（如Spectre协议和以太的Casper协议）</li>
+<li>基于DAG技术的分布式账本技术有可能广泛的应用于金融交易系统和企业资产管理系统中。（如Ripple，Corda，hyperledger等系统的有力竞争者）</li>
+<li>基于DAG技术的智能合约能有效解决智能合约的可扩展性（scalability），并且降低合约执行成本。</li>
+</ul>
+<a class="header" href="print.html#注释" id="注释"><h3>注释</h3></a>
+<ul>
+<li>目前比特币的区块容量是1M，实际情况约能容纳2000多个交易。而以太坊区块大约能容纳200多个交易。比特币社区因为扩容问题带来的争议而严重影响了客戶体验，使得比特币的发展陷入一个瓶颈。同时以太坊试图以分片(sharding)的方式解决扩容的问题，但分片的方式将增加跨区智能合约的事务复杂度，对如何实现分片和分片环境下智能合约的开发都带来很多新的挑战，是否可以解决问题还有待时间去验证。</li>
+<li>目前世界上主要有两个有名项目使用DAG技术：IOTA 项目和字节雪球(byteball)项目。相信未来有更多的项目使用DAG技术。</li>
+</ul>
+<a class="header" href="print.html#dag技术发展历史" id="dag技术发展历史"><h1>DAG技术发展历史</h1></a>
+<ul>
+<li>DAG数据结构 (?)
+<ul>
+<li>https://en.wikipedia.org/wiki/Directed_acyclic_graph</li>
+</ul>
+</li>
+<li>lamport lock and partital order (1978)
+<ul>
+<li>https://lamport.azurewebsites.net/pubs/pubs.html#time-clocks</li>
+</ul>
+</li>
+<li>Git (2005, Linus Torvalds)</li>
+<li>Ghost (2013) (Yonatan Sompolinsky and Aviv Zohar -&gt; see Spectre&amp;Daglab)
+<ul>
+<li>https://eprint.iacr.org/2013/881.pdf</li>
+<li>Ethereum (2014)</li>
+</ul>
+</li>
+<li>NXT (2014,mthcl,Come-from-Beyond)
+<ul>
+<li>https://nxtforum.org/proof-of-stake-algorithm/dag-a-generalized-blockchain/?all</li>
+<li>mtchl -&gt; Serguei Popov (founder of IOTA)</li>
+<li>cfb -&gt; Sergey Ivancheglo (founder of IOTA)</li>
+</ul>
+</li>
+<li>IPFS (2014,Juan Bennet)
+<ul>
+<li>Git+Merkle -&gt; Merkle DAG</li>
+<li>https://ipfs.io/ipfs/QmR7GSQM93Cx5eAg6a6yRzNde1FQv7uL6X1o4k7zrJa3LX/ipfs.draft3.pdf</li>
+<li>https://github.com/ipfs/ipfs/issues/1</li>
+</ul>
+</li>
+<li>dagcoin (2015, Sergio Demian Lerner, chief scientist of RSK)
+<ul>
+<li>https://bitslog.files.wordpress.com/2015/09/dagcoin-v41.pdf</li>
+</ul>
+</li>
+<li>Triangle/JINN -&gt; IOTA (2015)
+<ul>
+<li>https://nxtforum.org/news-and-announcements/iota-jinn/?all</li>
+</ul>
+</li>
+<li>Bytball (2016, Anton Churyumov)
+<ul>
+<li>https://byteball.org/Byteball.pdf</li>
+</ul>
+</li>
+<li>HashGraph (2016, Leemon Baird, co-founder and CTO of Swirlds)
+<ul>
+<li>The algorithm is protected by patents in the USA.)</li>
+<li>http://www.swirlds.com/downloads/SWIRLDS-TR-2016-01.pdf</li>
+</ul>
+</li>
+<li>Spectre/daglab (2016~2017, Yonatan Sompolinsky, Yoad Lewenberg, and Aviv Zohar)
+<ul>
+<li>Yonatan Sompolinsky -&gt; (PhD student at the Hebrew University, -&gt; Computer Scientist at daglib)</li>
+<li>Yoad Lewenberg -&gt;  PhD student at the Hebrew University -&gt; Research Engineer at daglab</li>
+<li>Aviv Zohar -&gt; (Senior Lecturer (Assistant. Prof.) at The School of Engineering and Computer Science at The Hebrew University )</li>
+<li>https://eprint.iacr.org/2016/1159.pdf</li>
+<li>https://www.daglabs.com/</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#wallet" id="wallet"><h1>Wallet</h1></a>
+<a class="header" href="print.html#intro" id="intro"><h3>Intro</h3></a>
+<p>A deterministic wallet is a system of deriving keys from a single starting point known as a seed. The seed allows a user to easily back up and restore a wallet without needing any other information and can in some cases allow the creation of public addresses without the knowledge of the private key. Seeds are typically serialized into human-readable words in a Mnemonic phrase.</p>
+<a class="header" href="print.html#how-mew-works-with-ledger" id="how-mew-works-with-ledger"><h3>How MEW works with Ledger</h3></a>
+<ul>
+<li>https://github.com/kvhnuke/etherwallet/blob/f8fdab1ea92d436015119e3c2ba865308289e88d/app/scripts/controllers/decryptWalletCtrl.js#L21</li>
+<li>https://github.com/kvhnuke/etherwallet/blob/f8fdab1ea92d436015119e3c2ba865308289e88d/app/scripts/controllers/decryptWalletCtrl.js#L43</li>
+<li>https://github.com/kvhnuke/etherwallet/blob/f54c093c1b1e230b60e238582f2765afd61b2a05/app/scripts/staticJS/ledger-eth.js#L76</li>
+<li>https://github.com/kvhnuke/etherwallet/blob/f54c093c1b1e230b60e238582f2765afd61b2a05/app/scripts/staticJS/ledger-eth.js#L45</li>
+<li>https://github.com/LedgerHQ/blue-app-eth/blob/cdc8c7436c76d7600d855f1411b5bc00e55980b7/src_genericwallet/main.c#L63
+<code>0x02 -&gt; INS_GET_PUBLIC_KEY</code></li>
+<li>https://github.com/LedgerHQ/blue-app-eth/blob/cdc8c7436c76d7600d855f1411b5bc00e55980b7/src_genericwallet/main.c#L2153</li>
+<li>https://github.com/LedgerHQ/blue-app-eth/blob/dca33eab262730e94353c9c6ea57027389bb03da/src_common/ethUtils.c#L177</li>
+</ul>
+<a class="header" href="print.html#how-mew-show-addresses" id="how-mew-show-addresses"><h4>How MEW show addresses</h4></a>
+<p>以ledger为例，MEW了获取&quot;m/44'/60'/0'&quot;这个路径下的公钥，然后使用<code>hdkey</code>，得到5个derivedKey(m/0 ~m/4), 再使用<code>ethereumjs-util</code>生成了前五个地址。</p>
+<ul>
+<li>https://github.com/kvhnuke/etherwallet/blob/f8fdab1ea92d436015119e3c2ba865308289e88d/app/scripts/controllers/decryptWalletCtrl.js#L272
+<code>result['publicKey'], result['chainCode']</code></li>
+<li>https://github.com/kvhnuke/etherwallet/blob/f8fdab1ea92d436015119e3c2ba865308289e88d/app/scripts/controllers/decryptWalletCtrl.js#L267
+注：hdk来自于<code>var HDKey = require('hdkey');</code>     
+<ul>
+<li>https://github.com/cryptocoinjs/hdkey/blob/0.7.1/lib/hdkey.js#L13</li>
+</ul>
+</li>
+<li>https://github.com/kvhnuke/etherwallet/blob/f8fdab1ea92d436015119e3c2ba865308289e88d/app/scripts/controllers/decryptWalletCtrl.js#L183</li>
+<li>https://github.com/kvhnuke/etherwallet/blob/mercury/app/scripts/myetherwallet.js#L171
+<ul>
+<li>https://github.com/ethereumjs/ethereumjs-util/blob/v5.1.2/index.js#L287</li>
+<li>https://github.com/ethereumjs/ethereumjs-util/blob/v5.1.2/index.js#L440</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#lets-see-electrum" id="lets-see-electrum"><h3>Let's see electrum</h3></a>
+<ul>
+<li>https://github.com/spesmilo/electrum/blob/3.0.1/lib/wallet.py#L1746</li>
+<li>https://github.com/spesmilo/electrum/blob/3.0.1/lib/wallet.py#L93</li>
+<li>https://github.com/spesmilo/electrum/blob/3.0.1/lib/wallet.py#L1645,L1655</li>
+<li>https://github.com/spesmilo/electrum/blob/3.0.1/lib/wallet.py#L1638</li>
+<li>https://github.com/spesmilo/electrum/blob/3.0.1/lib/keystore.py#L232</li>
+<li>https://github.com/spesmilo/electrum/blob/3.0.1/lib/bitcoin.py#L1013</li>
+<li>https://github.com/spesmilo/electrum/blob/3.0.1/lib/bitcoin.py#L878-L891</li>
+<li>https://github.com/spesmilo/electrum/blob/3.0.1/lib/synchronizer.py</li>
+</ul>
+<a class="header" href="print.html#server-side" id="server-side"><h4>Server side</h4></a>
+<ul>
+<li>client side request address history
+<ul>
+<li>https://github.com/spesmilo/electrum/blob/3.0.1/lib/network.py#L640</li>
+</ul>
+</li>
+<li>https://github.com/spesmilo/electrum-server/blob/master/src/blockchain_processor.py#L310</li>
+<li>https://github.com/spesmilo/electrum-server/blob/master/src/storage.py#L309</li>
+<li>https://github.com/spesmilo/electrum-server/blob/master/src/storage.py#L205</li>
+</ul>
+<p>注意electrum混合使用了自己的levelDB库和bitcoind，某些调用走bitcoind，而某些调用走自己的库，例如utxo，address等。electurm会在后台同步（catch_up）bitcoind的数据，从bitcoind中读取block，然后存放在自己的数据库里面。这是为了优化查询。</p>
+<ul>
+<li>https://github.com/spesmilo/electrum-server/blob/master/src/blockchain_processor.py#L608</li>
+<li>https://github.com/spesmilo/electrum-server/blob/master/src/blockchain_processor.py#L407</li>
+</ul>
+<a class="header" href="print.html#account-discovery" id="account-discovery"><h4>Account discovery</h4></a>
+<p>When the master seed is imported from an external source the software should
+start to discover the accounts in the following manner:</p>
+<ol>
+<li>derive the first account's node (index = 0)</li>
+<li>derive the external chain node of this account</li>
+<li>scan addresses of the external chain; respect the gap limit described below</li>
+<li>if no transactions are found on the external chain, stop discovery</li>
+<li>if there are some transactions, increase the account index and go to step 1</li>
+</ol>
+<a class="header" href="print.html#references" id="references"><h3>References</h3></a>
+<ul>
+<li>BIPs
+<ul>
+<li>BIP39 : Mnemonic code for generating deterministic keys
+<ul>
+<li>https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki</li>
+</ul>
+</li>
+<li>BIP32 : Hierarchical Deterministic Wallets
+<ul>
+<li>https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki</li>
+</ul>
+</li>
+<li>BIP43/BIP44 : Multi-Account Hierarchy for Deterministic Wallets
+<ul>
+<li>https://github.com/bitcoin/bips/blob/master/bip-0043.mediawiki</li>
+<li>https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki</li>
+<li>https://github.com/satoshilabs/slips/blob/master/slip-0044.md</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>https://en.bitcoin.it/wiki/Deterministic_wallet</li>
+<li>https://en.bitcoin.it/wiki/Deterministic_wallet_tools</li>
+</ul>
+<a class="header" href="print.html#bip39" id="bip39"><h3>BIP39</h3></a>
+<ul>
+<li>https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki</li>
+<li>https://github.com/trezor/python-mnemonic/blob/master/mnemonic/wordlist/english.txt (2048)</li>
+</ul>
+<a class="header" href="print.html#pgp-worldlist" id="pgp-worldlist"><h3>PGP Worldlist</h3></a>
+<ul>
+<li>https://en.wikipedia.org/wiki/PGP_word_list</li>
+<li>The Decred wallet seed is initialised with a 33 word selection from a 512 word dictionary, the PGP Word List.
+BIP39 in comparison for 256 bits of entropy with 8 bits of checksum uses 24 words from a standardised 2048 word dictionary.</li>
+<li>http://docs.electrum.org/en/latest/seedphrase.html</li>
+<li>https://github.com/decred/dcrwallet/issues/956</li>
+<li>https://github.com/decred/dcrwallet/blob/master/walletseed/seed.go</li>
+<li>https://github.com/decred/dcrwallet/blob/master/pgpwordlist/pgpwordlist.go</li>
+</ul>
+<a class="header" href="print.html#testnet--faucet" id="testnet--faucet"><h1>Testnet &amp; faucet</h1></a>
+<a class="header" href="print.html#testnet5" id="testnet5"><h3>Testnet5</h3></a>
+<ul>
+<li>Testnet5 block explorer
+<ul>
+<li>https://testnet5.blockchain.info/</li>
+</ul>
+</li>
+<li>Testnet5 faucet
+<ul>
+<li>http://li1164-223.members.linode.com/request</li>
+<li>https://faucet.haskoin.com/</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#ropsten" id="ropsten"><h3>Ropsten</h3></a>
+<ul>
+<li>https://ropsten.etherscan.io</li>
+<li>http://faucet.ropsten.be:3001</li>
+<li>https://faucet.metamask.io/</li>
+<li>https://www.rinkeby.io/#faucet</li>
+</ul>
+<a class="header" href="print.html#kovan" id="kovan"><h3>Kovan</h3></a>
+<ul>
+<li>https://github.com/kovan-testnet/proposal</li>
+<li>http://kovan-stats.parity.io/</li>
+<li>https://kovan.etherscan.io/</li>
+<li>https://github.com/kovan-testnet/faucet
+<ul>
+<li>https://gitter.im/kovan-testnet/faucet</li>
+<li>https://kovan.etherscan.io/tx/0x935f7e405c5f8f747c0f7cea71bb2f5102bb57c419377e6b2f80e85974307190</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#oraclesorg" id="oraclesorg"><h3>Oracles.org</h3></a>
+<ul>
+<li>http://testnet.oracles.org:4000/</li>
+<li>http://oraclesfaucet.herokuapp.com/
+<ul>
+<li>http://testnet.oracles.org:4000/tx/0x52126c5841c86d055a2c24d0455653dfa786b531307ed9fc03f2ebe432787d96</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#byteball-testnet" id="byteball-testnet"><h1>Byteball Testnet</h1></a>
+<a class="header" href="print.html#address" id="address"><h1>Address</h1></a>
+<a class="header" href="print.html#base58-encoding" id="base58-encoding"><h3>Base58 encoding</h3></a>
+<a class="header" href="print.html#reference" id="reference"><h3>Reference</h3></a>
+<ul>
+<li><a href="https://github.com/bitcoin/bips/blob/master/bip-0013.mediawiki">BIP13 : Address Format for pay-to-script-hash</a>
+<ul>
+<li><a href="https://en.bitcoin.it/wiki/Base58Check_encoding">Base58Check encoding</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/bitcoin/bips/blob/master/bip-0142.mediawiki">BIP142: Address Format for Segregated Witness</a></li>
+<li><a href="https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki">BIP173: Base32 address format for native v0-16 witness outputs</a>
+<ul>
+<li><a href="https://rusty.ozlabs.org/?p=578">Bitcoin Generic Address Format Proposal</a></li>
+<li><a href="https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2014-February/004402.html">Base-32 error correction coding</a></li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#dag数据结构与算法" id="dag数据结构与算法"><h3>DAG数据结构与算法</h3></a>
+<a class="header" href="print.html#深度优先广度优先-breadth-first-vs-depth-first-search" id="深度优先广度优先-breadth-first-vs-depth-first-search"><h4>深度优先&amp;广度优先 （Breadth-First Vs. Depth-first Search）</h4></a>
+<p><img src="https://user-images.githubusercontent.com/1134993/32087906-dfda6218-baa4-11e7-8411-b31baef1808e.png" alt="screen shot 2017-10-27 at 12 24 10 pm" /></p>
+<a class="header" href="print.html#dags-and-topological-ordering" id="dags-and-topological-ordering"><h4>DAGs and Topological Ordering</h4></a>
+<p><img src="https://user-images.githubusercontent.com/1134993/32088033-e2b5d46c-baa5-11e7-9cc4-36b017161e5e.png" alt="screen shot 2017-10-27 at 12 30 38 pm" /></p>
+<ul>
+<li>
+<p>The reachability relation in a DAG forms a partial order, and any finite partial order may be represented by a DAG using reachability.</p>
+</li>
+<li>
+<p>The reachability relationship in any directed acyclic graph can be formalized as a partial order ≤ on the vertices of the DAG. In this partial order, two vertices u and v are ordered as u ≤ v exactly when there exists a directed path from u to v in the DAG; that is, when v is reachable from u.[5] However, different DAGs may give rise to the same reachability relation and the same partial order.[6] For example, the DAG with two edges a → b and b → c has the same reachability relation as the graph with three edges a → b, b → c, and a → c. Both of these DAGS produce the same partial order, in which the vertices are ordered as a ≤ b ≤ c.</p>
+</li>
+<li>
+<p>Every directed acyclic graph has a topological ordering, an ordering of the vertices such that the starting endpoint of every edge occurs earlier in the ordering than the ending endpoint of the edge. The existence of such an ordering can be used to characterize DAGs: a directed graph is a DAG if and only if it has a topological ordering. In general, this ordering is not unique; a DAG has a unique topological ordering if and only if it has a directed path containing all the vertices, in which case the ordering is the same as the order in which the vertices appear in the path.[9]</p>
+</li>
+<li>
+<p>The family of topological orderings of a DAG is the same as the family of linear extensions of the reachability relation for the DAG,[10] so any two graphs representing the same partial order have the same set of topological orders.</p>
+</li>
+</ul>
+<blockquote>
+<p>Steven S Skiena. <em>The Algorithm Design Manual</em></p>
+<p>Three important facts about topological sorting are</p>
+<ol>
+<li>Only DAGs can be topologically sorted, since any directed cycle provides an inherent contradiction to a linear order of tasks.</li>
+<li>Every DAG can be topologically sorted, so there must always be at least one schedule for any reasonable precedence constraints among jobs.</li>
+<li>DAGs can often be topologically sorted in many different ways, especially when there are few constraints. Consider n unconstrained jobs. Any of the n! permutations of the jobs constitutes a valid topological ordering.</li>
+</ol>
+</blockquote>
+<a class="header" href="print.html#references-1" id="references-1"><h3>References</h3></a>
+<ul>
+<li>https://en.wikipedia.org/wiki/Directed_acyclic_graph</li>
+<li>http://www3.cs.stonybrook.edu/~algorith/files/topological-sorting.shtml</li>
+<li>https://github.com/jgrapht/jgrapht/blob/master/jgrapht-core/src/main/java/org/jgrapht/traverse/TopologicalOrderIterator.java
+<ul>
+<li>https://github.com/jgrapht/jgrapht/wiki/DependencyDemo</li>
+</ul>
+</li>
+<li><a href="https://www.cs.auckland.ac.nz/courses/compsci220s1c/lectures/2016S1C/CS220-Lectures21-23.pdf">Graphs and Digraphs BFS Priority search DAG Connectivity</a></li>
+<li>https://homes.cs.washington.edu/~jrl/421slides/lec5.pdf</li>
+</ul>
+<a class="header" href="print.html#intro-1" id="intro-1"><h3>Intro</h3></a>
+<ul>
+<li>Ripple</li>
+<li>Corda</li>
+<li>Cosmos</li>
+<li>Hyperledger</li>
+</ul>
+<a class="header" href="print.html#references-2" id="references-2"><h3>References</h3></a>
+<ul>
+<li>https://ripple.com/build/transactions/</li>
+<li>https://cosmos.network/whitepaper#transaction-types</li>
+<li>https://docs.corda.net/tutorial-building-transactions.html</li>
+</ul>
+<a class="header" href="print.html#reference-1" id="reference-1"><h3>Reference</h3></a>
+<ul>
+<li>http://learnmeabitcoin.com/glossary/transaction-data</li>
+<li>http://royalforkblog.github.io/2014/11/20/txn-demo/</li>
+<li>https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch06.asciidoc</li>
+</ul>
+<a class="header" href="print.html#index-stored-in-leveldb" id="index-stored-in-leveldb"><h3>Index stored in LevelDB</h3></a>
+<a class="header" href="print.html#block-index" id="block-index"><h4>Block Index</h4></a>
+<pre><code>'b' + 32-byte block hash -&gt; block index record. :
+The block header.
+The height.
+The number of transactions.
+To what extent this block is validated.
+In which file, and where in that file, the block data is stored.
+In which file, and where in that file, the undo data is stored.
+'f' + 4-byte file number -&gt; file information record. 
+The number of blocks stored in the block file with that number.
+The size of the block file with that number ($DATADIR/blocks/blkNNNNN.dat).
+The size of the undo file with that number ($DATADIR/blocks/revNNNNN.dat).
+The lowest and highest height of blocks stored in the block file with that number.
+The lowest and highest timestamp of blocks stored in the block file with that number.
+'l' -&gt; 4-byte file number: the last block file number used.
+'R' -&gt; 1-byte boolean ('1' if true): whether we're in the process of reindexing.
+'F' + 1-byte flag name length + flag name string -&gt; 1 byte boolean ('1' if true, '0' if false): various flags that can be on or off. Currently defined flags include:
+'txindex': Whether the transaction index is enabled.
+'t' + 32-byte transaction hash -&gt; transaction index record. These are optional and only exist if 'txindex' is enabled (see above). :
+Which block file number the transaction is stored in.
+Which offset into that file the block the transaction is part of is stored at.
+The offset from the start of that block to the position where that transaction itself is stored.
+</code></pre>
+<a class="header" href="print.html#chain-state" id="chain-state"><h4>chain state</h4></a>
+<p>https://github.com/bitcoin/bitcoin/blob/d4a42334d447cad48fb3996cad0fd5c945b75571/src/coins.h#L21L69</p>
+<pre><code>'c' + 32-byte transaction hash -&gt; unspent transaction output record for that transaction. 
+These records are only present for transactions that have at least one unspent output left.:
+The version of the transaction.
+Whether the transaction was a coinbase or not.
+Which height block contains the transaction.
+Which outputs of that transaction are unspent.
+The scriptPubKey and amount for those unspent outputs.
+'B' -&gt; 32-byte block hash: the block hash up to which the database represents the unspent transaction outputs.
+</code></pre>
+<a class="header" href="print.html#rfc" id="rfc"><h3>RFC</h3></a>
+<ul>
+<li>rfc6962
+<ul>
+<li>https://tools.ietf.org/html/rfc6962#page-4</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#mtree-in-bitcion" id="mtree-in-bitcion"><h3>MTree in Bitcion</h3></a>
+<a class="header" href="print.html#mtree-in-ethereum" id="mtree-in-ethereum"><h3>MTree in Ethereum</h3></a>
+<a class="header" href="print.html#mtree-in-corda" id="mtree-in-corda"><h3>MTree in Corda</h3></a>
+<ul>
+<li>https://github.com/corda/corda/blob/master/core/src/main/kotlin/net/corda/core/crypto/PartialMerkleTree.kt
+<ul>
+<li>https://github.com/corda/corda/blob/master/core/src/main/kotlin/net/corda/core/crypto/MerkleTree.kt</li>
+</ul>
+</li>
+<li>https://github.com/corda/corda/blob/master/core/src/test/kotlin/net/corda/core/crypto/PartialMerkleTreeTest.kt
+<ul>
+<li>https://docs.corda.net/releases/release-M10.1/merkle-trees.html</li>
+<li>https://docs.corda.net/releases/release-M10.1/oracles.html</li>
+</ul>
+</li>
+<li>https://github.com/corda/corda/blob/master/core/src/main/kotlin/net/corda/core/transactions/MerkleTransaction.kt
+<ul>
+<li>https://github.com/corda/corda/blob/master/core/src/main/kotlin/net/corda/core/transactions/WireTransaction.kt</li>
+</ul>
+</li>
+<li>https://github.com/corda/corda/blob/master/core/src/test/kotlin/net/corda/core/transactions/CompatibleTransactionTests.kt
+<ul>
+<li>https://docs.corda.net/head/tutorial-tear-offs.html</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#reference-2" id="reference-2"><h3>Reference</h3></a>
+<a class="header" href="print.html#intro-2" id="intro-2"><h3>Intro</h3></a>
+<blockquote>
+<p>by G.W at <a href="https://www.youtube.com/watch?v=o6D8Up411dI&amp;t=1016s">The future of Ethereum: &quot;DΞV and Beyond&quot;, London ethereum meetup</a></p>
+</blockquote>
+<ul>
+<li>Ethereum state is just the state of a number of accounts</li>
+<li>Tx is the way to alter the state</li>
+</ul>
+<a class="header" href="print.html#references-3" id="references-3"><h3>References</h3></a>
+<ul>
+<li>https://github.com/ethereum/wiki/wiki/Patricia-Tree</li>
+<li>https://crypto.stanford.edu/cs251/hw/hw3.pdf</li>
+<li>https://github.com/ethereum/wiki/wiki/RLP</li>
+<li>https://easythereentropy.wordpress.com/2014/06/04/understanding-the-ethereum-trie/</li>
+<li>http://hidskes.com/blog/2014/04/02/ethereum-building-blocks-part-1-rlp/</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/1134993/32094154-7002a21e-bac4-11e7-9f33-e605b6ab6112.png" alt="screen shot 2017-10-27 at 4 10 24 pm" /></p>
+<a class="header" href="print.html#intro-3" id="intro-3"><h3>Intro</h3></a>
+<p>The purpose of the IAVL+ data structure is to provide persistent storage for key-value pairs in the application state such that a deterministic Merkle root hash can be computed efficiently. The tree is balanced using a variant of the AVL algorithm, and all operations are O(log(n)).</p>
+<p>In an AVL tree, the heights of the two child subtrees of any node differ by at most one. Whenever this condition is violated upon an update, the tree is rebalanced by creating O(log(n)) new nodes that point to unmodified nodes of the old tree. In the original AVL algorithm, inner nodes can also hold key-value pairs. The AVL+ algorithm (note the plus) modifies the AVL algorithm to keep all values on leaf nodes, while only using branch-nodes to store keys. This simplifies the algorithm while keeping the merkle hash trail short.</p>
+<p>The AVL+ Tree is analogous to Ethereum’s Patricia tries. There are tradeoffs. Keys do not need to be hashed prior to insertion in IAVL+ trees, so this provides faster ordered iteration in the key space which may benefit some applications. The logic is simpler to implement, requiring only two types of nodes – inner nodes and leaf nodes. The Merkle proof is on average shorter, being a balanced binary tree. On the other hand, the Merkle root of an IAVL+ tree depends on the order of updates.</p>
+<a class="header" href="print.html#references-4" id="references-4"><h3>References</h3></a>
+<ul>
+<li>https://github.com/tendermint/merkleeyes</li>
+<li>https://cosmos.network/whitepaper#iavl-tree</li>
+</ul>
+<a class="header" href="print.html#ipfs的数据结构" id="ipfs的数据结构"><h2>IPFS的数据结构</h2></a>
+<ul>
+<li>merkleDAG
+<ul>
+<li>https://github.com/ipfs/go-ipfs/tree/master/merkledag</li>
+<li>https://github.com/ipfs/go-ipfs/blob/master/core/commands/dag/dag.go</li>
+<li>https://github.com/ipfs/go-ipfs/blob/master/core/coredag/dagtransl.go</li>
+</ul>
+</li>
+<li>merkleDAG Doc
+<ul>
+<li>https://github.com/ipfs/specs/tree/master/merkledag</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#ipfs白皮书" id="ipfs白皮书"><h3>IPFS白皮书</h3></a>
+<ul>
+<li>http://decentralized.blog/understanding-the-ipfs-white-paper-part-1.html</li>
+<li>http://decentralized.blog/understanding-the-ipfs-white-paper-part-2.html</li>
+</ul>
+<a class="header" href="print.html#data-storage" id="data-storage"><h1>Data Storage</h1></a>
+<a class="header" href="print.html#intro-4" id="intro-4"><h3>Intro</h3></a>
+<p>There are basically four pieces of data that are maintained:</p>
+<ul>
+<li><strong>blocks/blk*.dat:</strong> the actual Bitcoin blocks, in network format, dumped in raw on disk. They are only needed for rescanning missing transactions in a wallet, reorganizing to a different part of the chain, and serving the block data to other nodes that are synchronizing.</li>
+<li><em><em>blocks/index/</em>:</em>* this is a LevelDB database that contains metadata about all known blocks, and where to find them on disk. Without this, finding a block would be very slow.</li>
+<li><strong>chainstate/*:</strong> this is a LevelDB database with a compact representation of all currently unspent transaction outputs and some metadata about the transactions they are from. The data here is necessary for validating new incoming blocks and transactions. It can theoretically be rebuilt from the block data (see the -reindex command line option), but this takes a rather long time. Without it, you could still theoretically do validation indeed, but it would mean a full scan through the blocks (140 GB as of july 2017) for every output being spent.</li>
+<li><strong>blocks/rev*.dat:</strong> these contain &quot;undo&quot; data. You can see blocks as 'patches' to the chain state (they consume some unspent outputs, and produce new ones), and see the undo data as reverse patches. They are necessary for rolling back the chainstate, which is necessary in case of reorganisations.
+So yes, everything but the block data itself is indeed redundant, as it can be rebuilt from it. But validation and other operations would become intolerably slow without them.</li>
+</ul>
+<p><em>NOTE: <em><em>database/</em>:</em>* BDB database environment; only used for wallet since 0.8.0</em></p>
+<a class="header" href="print.html#references-5" id="references-5"><h3>References</h3></a>
+<ul>
+<li>https://bitcoin.stackexchange.com/a/11108</li>
+<li>https://en.bitcoin.it/wiki/Bitcoin_Core_0.11_(ch_2):_Data_Storage</li>
+<li>https://github.com/bitcoin/bitcoin/blob/v0.15.0.1/doc/files.md</li>
+</ul>
+<pre><code>2017-11-04 05:15:09 Cache configuration:
+2017-11-04 05:15:09 * Using 2.0MiB for block index database
+2017-11-04 05:15:09 * Using 8.0MiB for chain state database
+2017-11-04 05:15:09 * Using 440.0MiB for in-memory UTXO set (plus up to 286.1MiB of unused mempool space)
+2017-11-04 05:15:09 init message: Loading block index...
+2017-11-04 05:15:09 Opening LevelDB in /work/_DATA/Bitcoin_test/1/blocks/index
+2017-11-04 05:15:09 Opened LevelDB successfully
+2017-11-04 05:15:09 Using obfuscation key for /work/_DATA/Bitcoin_test/1/blocks/index: 0000000000000000
+2017-11-04 05:15:10 LoadBlockIndexDB: last block file = 0
+2017-11-04 05:15:10 LoadBlockIndexDB: last block file info: CBlockFileInfo(blocks=119836, size=133991641, heights=0...119835, time=2009-01-03...2011-04-23)
+2017-11-04 05:15:10 Checking all blk files are present...
+2017-11-04 05:15:10 LoadBlockIndexDB: transaction index disabled
+2017-11-04 05:15:10 Opening LevelDB in /work/_DATA/Bitcoin_test/1/chainstate
+2017-11-04 05:15:10 Opened LevelDB successfully
+2017-11-04 05:15:10 Wrote new obfuscate key for /work/_DATA/Bitcoin_test/1/chainstate: cb7b45d88624f992
+2017-11-04 05:15:10 Using obfuscation key for /work/_DATA/Bitcoin_test/1/chainstate: cb7b45d88624f992
+</code></pre>
+<p><code>heights=0...119835, time=2009-01-03...2011-04-23</code></p>
+<a class="header" href="print.html#共识" id="共识"><h2>共识</h2></a>
+<p>https://en.wikipedia.org/wiki/Consensus_(computer_science)</p>
+<ul>
+<li>对多件事件进行排序，并且得到大家认可。</li>
+</ul>
+<a class="header" href="print.html#lamport-clock-1978" id="lamport-clock-1978"><h3>Lamport Clock (1978)</h3></a>
+<ul>
+<li>问题
+<ul>
+<li>一致性不是简单的让两个节点最终对一个值的结果一致, 很多时候还需要对这个值的变化历史在不同节点上的观点也要一致</li>
+<li>不能简单的以接受到消息的时间作为事件的顺序判断的依据。</li>
+<li>物理时间的不可依赖，导致事件的先后关系在分布式系统中退化为事件先后顺序的偏序关系(partital order), 问题的核心演变成如何找出因果关系来取消对物理时钟的依赖。（如果一致性继续弱化的情况下，最终一致（弱一致性）连因果关系都不需要）</li>
+</ul>
+</li>
+<li>论文：Time, Clock and Ordering of Events in a Distributed System
+<ul>
+<li>https://lamport.azurewebsites.net/pubs/pubs.html#time-clocks</li>
+</ul>
+</li>
+<li>Lamport Clock
+<ul>
+<li>是针对事件发生历史的逻辑时钟, 它让我们能够把所有的历史事件找到偏序关系, 而且不仅在各自节点的逻辑时间参考系内顺序一致, 全局上的顺序也是一致的。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/1134993/31995139-d625ea56-b948-11e7-9b81-468651250f7f.png" alt="screen shot 2017-10-25 at 6 53 06 pm" /></p>
+<p>P/Q/R是三个节点, 从下往上代表物理时间的流逝, p1, p2, q1, q2, r1, r2 …. 表示事件，波浪线表示事件的发送, 比如p1-&gt;q2表示 P把p1事件发送给了Q, Q接受此消息作为q2事件。</p>
+<p><img src="https://user-images.githubusercontent.com/1134993/31995186-01abe57c-b949-11e7-91c5-f3e3d159e965.png" alt="screen shot 2017-10-25 at 6 54 20 pm" /></p>
+<p><img src="https://user-images.githubusercontent.com/1134993/31995072-998fbe28-b948-11e7-8d43-510a3e766b9a.png" alt="screen shot 2017-10-25 at 6 51 11 pm" /></p>
+<ul>
+<li>两种一致性模型（Seq，linear）
+<ul>
+<li>Sequential Consistency (1979)
+<ul>
+<li>How to Make a Multiprocessor Computer That Correctly Executes Multiprocess Programs</li>
+<li>https://lamport.azurewebsites.net/pubs/pubs.html#new-approach</li>
+<li>https://lamport.azurewebsites.net/pubs/pubs.html#multi</li>
+</ul>
+</li>
+<li>linearizability Consistency (1990, M.P. Herlihy &amp; J.M Wing)
+<ul>
+<li>线性一致性：Seq的前提下，加强进程间的操作排序</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#2pc" id="2pc"><h3>2PC</h3></a>
+<ul>
+<li>1978</li>
+<li>Jim Gary</li>
+<li>Tuxedo （XA/Open规范）</li>
+</ul>
+<a class="header" href="print.html#3pc" id="3pc"><h3>3PC</h3></a>
+<ul>
+<li>1981</li>
+<li>Dale Skeen - Nonblocking Commit Protocols</li>
+<li></li>
+</ul>
+<a class="header" href="print.html#拜占庭将军问题" id="拜占庭将军问题"><h3>拜占庭将军问题</h3></a>
+<ul>
+<li>1982</li>
+<li>Lamport - The Byzantine Generals Problem</li>
+<li>https://en.wikipedia.org/wiki/Byzantine_Generals_problem</li>
+</ul>
+<a class="header" href="print.html#flp不可能原理" id="flp不可能原理"><h3>FLP不可能原理</h3></a>
+<ul>
+<li>
+<p>1985</p>
+</li>
+<li>
+<p>FLP是论文作者（Fischer, Lynch and Patterson）名的缩写。</p>
+</li>
+<li>
+<p>No completely asynchronous consensus protocol can tolerate even a single unannounced process death. [ Impossibility of Distributed Consensus with One Faulty Process,Journal of the Association for Computing Machinery, Vol. 32, No. 2, April 1985] <strong>在异步网络环境中只要有一个故障节点, 不存在一个共识算法能解决一致性问题。</strong></p>
+</li>
+<li>
+<p>在允许节点失效的情况下，纯粹异步系统无法确保一致性在有限的时间内完成。</p>
+</li>
+<li>
+<p><strong>同步</strong>：网络中节点间的时钟误差存在上限，消息传递必须在一定时间内完成，否则为失败；同时节点完成处理消息的时间是一定的。</p>
+<ul>
+<li>对于同步系统，可以很容易判断消息是否丢失</li>
+</ul>
+</li>
+<li>
+<p><strong>异步</strong>：网络中节点时钟差异可以很大，消息传输时间可以任意长，节点处理消息的时间也可以任意长。</p>
+<ul>
+<li>那么消息无法响应无法知道是传输故障还是节点故障。</li>
+</ul>
+</li>
+<li>
+<p>工程上通过付出代价的方式来达到共识。</p>
+</li>
+<li>
+<p>http://the-paper-trail.org/blog/a-brief-tour-of-flp-impossibility/ (A Brief Tour of FLP Impossibility)</p>
+</li>
+</ul>
+<a class="header" href="print.html#cap原理" id="cap原理"><h3>CAP原理</h3></a>
+<ul>
+<li>2000</li>
+<li>一致性consistency、可用性availability、分区容忍性partition <strong>无法同时保证</strong></li>
+<li><strong>一致性</strong> ：这里之强一致性，任何操作都是原子的，发生在后面的事件能够看到前面事件发生所导致的结果。（换句话，即保证结果一致，也保证过程／顺序一致）
+** 弱化一致性 ： Gossip，CouchDB，Cassandra</li>
+<li><strong>可用性</strong> ：在有限时间内，任何非失败节点都能应答请求。
+** 弱化可用性 ：MongoDB、Redis、MapReduce。Paxos、Raft。</li>
+<li><strong>分区容忍</strong> ： 允许网络分区（脑裂），即节点直接通信无法保障。
+** 弱化分区容忍 ：2PC，Zookeeper</li>
+</ul>
+<a class="header" href="print.html#paxos" id="paxos"><h3>Paxos</h3></a>
+<ul>
+<li>1990 ～ 2001</li>
+<li>Paxos Made Simple (2001)</li>
+</ul>
+<a class="header" href="print.html#zookeeper" id="zookeeper"><h3>Zookeeper</h3></a>
+<a class="header" href="print.html#raft" id="raft"><h3>Raft</h3></a>
+<a class="header" href="print.html#pbft" id="pbft"><h3>PBFT</h3></a>
+<a class="header" href="print.html#pow-bitcoin" id="pow-bitcoin"><h3>POW (bitcoin)</h3></a>
+<ul>
+<li>The Bitcoin Backbone Protocol: Analysis and Applications
+<ul>
+<li>https://eprint.iacr.org/2014/765.pdf</li>
+<li>http://crypto.2014.rump.cr.yp.to/59182e301d011c3b5b6146b8cdf91815.pdf</li>
+</ul>
+</li>
+<li>The Bitcoin Backbone Protocol with Chains of Variable Difficulty
+<ul>
+<li>https://eprint.iacr.org/2016/1048.pdf</li>
+</ul>
+</li>
+<li>Bitcoin as a Transaction Ledger: A Composable Treatment
+<ul>
+<li>https://eprint.iacr.org/2017/149.pdf</li>
+</ul>
+</li>
+<li>Analysis of the Blockchain Protocol in Asynchronous Networks
+<ul>
+<li>https://eprint.iacr.org/2016/454.pdf</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#table-of-contents" id="table-of-contents"><h1>Table of Contents</h1></a>
+<ul>
+<li><a href="print.html#iohkada">IOHK/ada</a>
+<ul>
+<li><a href="print.html#%E7%99%BD%E7%9A%AE%E4%B9%A6%E7%A0%94%E7%A9%B6">白皮书研究</a>
+<ul>
+<li><a href="print.html#%E8%A7%A3%E5%86%B3pos%E7%9A%84%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98--the-leader-election-process">解决PoS的核心问题 : the <strong>leader election</strong> process.</a></li>
+<li><a href="print.html#%E6%8A%97%E6%94%BB%E5%87%BB%E6%80%A7%E7%9A%84%E8%80%83%E8%99%91">抗攻击性的考虑</a></li>
+<li><a href="print.html#%E6%80%A7%E8%83%BD">性能</a></li>
+</ul>
+</li>
+<li><a href="print.html#%E5%85%B6%E4%BB%96%E7%9A%84%E4%B8%80%E4%BA%9Bpos%E5%8D%8F%E8%AE%AE">其他的一些POS协议</a>
+<ul>
+<li><a href="print.html#sleepy-consensus">Sleepy consensus</a></li>
+<li><a href="print.html#snow-white">Snow White</a></li>
+<li><a href="print.html#algorand">Algorand</a></li>
+<li><a href="print.html#fruitchain">Fruitchain</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="print.html#cardano-sl">Cardano SL</a></li>
+<li><a href="print.html#ouroboros-pos%E7%AE%97%E6%B3%95">Ouroboros POS算法</a>
+<ul>
+<li><a href="print.html#slot-leader-%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95">Slot-leader 选择算法</a></li>
+<li><a href="print.html#%E4%BB%A3%E7%A0%81">代码</a>
+<ul>
+<li><a href="print.html#fts-follow-the-satoshi">FTS (Follow the Satoshi)</a></li>
+<li><a href="print.html#blockchain">Blockchain</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="print.html#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3">参考文档</a>
+<ul>
+<li><a href="print.html#video">Video</a></li>
+<li><a href="print.html#%E9%97%AE%E9%A2%98">问题</a></li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#iohkada" id="iohkada"><h2>IOHK/ada</h2></a>
+<ul>
+<li>Ouroboros: A Provably Secure Proof-of-Stake Blockchain Protocol
+<ul>
+<li>https://eprint.iacr.org/2016/889.pdf</li>
+</ul>
+</li>
+<li>Ouroboros Praos: An adaptively-secure, semi-synchronous proof-of-stake blockchain
+<ul>
+<li>https://eprint.iacr.org/2017/573.pdf</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#白皮书研究" id="白皮书研究"><h3>白皮书研究</h3></a>
+<a class="header" href="print.html#解决pos的核心问题--the-leader-election-process" id="解决pos的核心问题--the-leader-election-process"><h4>解决PoS的核心问题 : the <strong>leader election</strong> process.</h4></a>
+<ul>
+<li>问题：entropy  -&gt; randomized election among stakeholders  &lt;- an adversary controlling a set of stakeholders, “grinding” vulnerability, use computational resources to bias the leader election.</li>
+<li>方法：
+<ul>
+<li>第一：模型
+<ul>
+<li>persistence 和 liveness</li>
+<li>P是机制保证Tx变成stable，就会全网finality （常见的思路是more than k blocks deep）</li>
+<li>L是机制保证合法Tx在某个时间段后一定能stable（也就是说合法交易一定能活下去）</li>
+</ul>
+</li>
+<li>第二：选主协议
+<ul>
+<li>a coin-flipping protocol -&gt;randomness -&gt; leader election</li>
+<li>a snapshot of the current set of stakeholders is taken in regular intervals called <strong>epochs</strong></li>
+<li>a secure multiparty computation takes place utilizing the blockchain itself as the <strong>broadcast</strong> channel</li>
+<li>in each epoch a set of randomly selected stakeholders form <strong>a committee</strong> which is then responsible for executing the coin-flipping protocol</li>
+<li>The outcome of the protocol determines the set of next stakeholders to execute the protocol in the next epoch as well as the outcomes of all leader elections for the epoch.</li>
+</ul>
+</li>
+<li>第三：一组规则
+<ul>
+<li>protect persistence and liveness.</li>
+<li>(1) any honest stakeholder is able to communicate with any other stakeholder,</li>
+<li>(2) a number of stakeholders drawn from the honest majority is available as needed to participate in each epoch,</li>
+<li>(3) the stakeholders do not remain offline for long periods of time</li>
+<li>(4) &quot;forkable strings” (???)</li>
+</ul>
+</li>
+<li>第四：经济激励
+<ul>
+<li>基于博弈论／纳什均衡设计对抗 block withholding 和 selfish-mining</li>
+<li>positive payoff  --&gt; cannot be stifled by a coalition of parties --&gt; an equilibrium when all players are rational. (问题是玩家理性吗？）</li>
+</ul>
+</li>
+<li>第五：代理机制
+<ul>
+<li>stake delegation mechanism -&gt; delegate “voting rights”</li>
+<li>可以revoke delegation</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#抗攻击性的考虑" id="抗攻击性的考虑"><h4>抗攻击性的考虑</h4></a>
+<ul>
+<li>double spending attacks</li>
+<li>transaction denial attacks</li>
+<li>51% attacks</li>
+<li>nothing-at-stake</li>
+<li>desynchronization attacks</li>
+</ul>
+<a class="header" href="print.html#性能" id="性能"><h4>性能</h4></a>
+<ul>
+<li>transaction confirmation time is from 10 to 16 times faster than that of bitcoin</li>
+<li>analysis of double-spending attacks relies on our combinatorial analysis of <strong>forkable and covertly forkable strings</strong> and applies to a much broader class of adversarial behavior than Nakamoto’s more simplified analysis. (???)</li>
+<li>prototype implementation and report on <strong>benchmark experiments run in the Amazon cloud</strong> that showcase the power of our proof of stake blockchain protocol in terms of performance.</li>
+</ul>
+<a class="header" href="print.html#其他的一些pos协议" id="其他的一些pos协议"><h3>其他的一些POS协议</h3></a>
+<a class="header" href="print.html#sleepy-consensus" id="sleepy-consensus"><h4>Sleepy consensus</h4></a>
+<ul>
+<li>https://eprint.iacr.org/2016/918.pdf
+<ul>
+<li>considers a fixed stakeholder distribution (i.e., stake does not evolve over time) and targets a “mixed” corruption setting, where the adversary is allowed to be adaptive as well as perform fail-stop and recover corruptions in addition to Byzantine faults.</li>
+<li>It is actually straightforward to extend our analysis in this mixed corruption setting, resulting security can be argued only in the “corruptions with delay” setting, and thus is not fully adaptive.</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#snow-white" id="snow-white"><h4>Snow White</h4></a>
+<ul>
+<li>https://eprint.iacr.org/2016/919.pdf
+<ul>
+<li>addresses an evolving stakeholder distribution and uses a corruption delay mechanism similar to ours for arguing security.</li>
+<li>susceptible to a “grinding” type of attack that can bias high probability events in favor of the adversary. While this does not hurt security asymptotically, it prevents a concrete parameterisation that does not take into account adversarial computing power.</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#algorand" id="algorand"><h4>Algorand</h4></a>
+<ul>
+<li>https://arxiv.org/pdf/1607.01341.pdf
+<ul>
+<li>distributed ledger following a Byzantine agreement per block approach that can withstand adaptive corruptions.</li>
+<li>Given that agreement needs to be reached for each block, such protocols will produce blocks at a rate substantially slower than a PoS blockchain (where the slow down matches the expected length of the execution of the Byzantine agreement protocol) but they are free of forks.</li>
+<li>In this respect, despite the existence of forks, blockchain protocols exhibit the flexibility of permitting the clients to set the level of risk that they are willing to undertake, allowing low risk profile clients to enjoy faster processing times in the optimistic sense.</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#fruitchain" id="fruitchain"><h4>Fruitchain</h4></a>
+<ul>
+<li>https://eprint.iacr.org/2016/916.pdf
+<ul>
+<li>reward mechanism and an approximate Nash equilibrium proof for a PoW-based blockchain.</li>
+<li>We use a similar reward mechanism at the blockchain level, nevertheless our underlying mechanics are different since we have to operate in a PoS setting.</li>
+<li>The core of the idea is to provide a PoS analogue of “endorsing” inputs in a fair proportion using the same logic as the PoW-based byzantine agreement protocol for honest majority</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#cardano-sl" id="cardano-sl"><h2>Cardano SL</h2></a>
+<ul>
+<li>The core idea of proof of stake is that instead of wasting electricity on cracking computationally heavy problems, <strong>a node is selected to mint a new block, with a probability proportional to the amount of coins this node has</strong>. If a node has positive (&gt; 0) stake, it is called a stakeholder. If a node eventually becomes chosen to mint a block, it is called a <strong><em>slot leader</em></strong>.</li>
+<li>Cardano SL is called <strong>“Layer”</strong> for a reason. It is the first component of the Cardano Platform. Eventually, it will be expanded with a Control Layer, serving as a trusted computation framework to evaluate a special kind of proofs to ensure that a certain computation was carried out correctly. In <strong>gaming and gambling</strong>, such systems are used for <strong>verifying honesty of random number generation and game outcomes</strong>. Accompanied with side chains, it will make possible to accomplish such tasks as <strong>provably fair distribution of winnings in games</strong>. But the application of Control Layer lies well beyond gaming and gambling. Identity management, credit system and more will be a part of Cardano Platform. We are also aiming to evolve Daedalus, the Cardano SL wallet application, into a universal cryptocurrency wallet featuring automated cryptocurrency trading and cryptocurrency-to-fiat transactions.</li>
+</ul>
+<a class="header" href="print.html#ouroboros-pos算法" id="ouroboros-pos算法"><h2>Ouroboros POS算法</h2></a>
+<ul>
+<li><strong>proof</strong> : having evidence that blocks of transactions are legitimate.</li>
+<li><strong>Stake</strong> : the relative value held by addresses on the node.  “relative value” we mean “all value held by wallets on a particular node divided by total value in the system”.</li>
+<li><strong>Slot</strong> : A small period of time that is significantly larger than the expected difference in clocks on different nodes.</li>
+<li><strong>slot leaders</strong>: generate blocks for the blockchain. Anyone can become a slot leader if the coin selection algorithm would <strong>select a coin they own</strong>. Nothing except for the <strong>network state</strong> and network participants <strong>being online</strong> matters for the sake of proof of stake.</li>
+<li><strong>Follow the Satoshi (FTS)</strong> is an <strong>algorithm</strong>,  that verifiably picks a coin, providing <strong>randomness</strong>. When your coin gets selected, you become a slot leader and can listen to transactions announced by others, make a block of those transactions, sign it with your secret key and publish it to the network. （随机选择算法）</li>
+<li><strong>Multi Party Computation approach</strong>: select nodes provide the so-called “commitments”, and then those get “revealed”, <strong>producing a random value</strong> generated independently by participants of the network. (提供算力）</li>
+</ul>
+<a class="header" href="print.html#slot-leader-选择算法" id="slot-leader-选择算法"><h3>Slot-leader 选择算法</h3></a>
+<ul>
+<li>Leaders for each slot of the current epoch are computed by FTS in the beginning of the current epoch.</li>
+<li>So genesis block contains a list of selected slot leaders.</li>
+<li>The number of selected slot-leaders corresponds to a number of slots in epoch, and this number depends on fundamental security parameter k defined in configuration file.</li>
+<li>Theoretical aspects of the slot leader selection process is described in paper, page 11.</li>
+<li>The node sorts all unspent outputs (utxo) in a deterministic way (lexicographically), so result is an ordered sequence of pairs (StakeholderId, Coin), where StakeholderId is an id of stakeholder (its public key hash) and Coin is an amount of coins this stakeholder has. It’s assumed that utxo isn’t empty.</li>
+<li>Then the node chooses several random is between 1 and amount of Lovelaces in the system. To find owner of i-th coin node finds the lowest x such that sum of all coins in this list up to ‘i’-th is not less than ‘i’ (and then ‘x’-th address is the owner of i-th coin).</li>
+<li>The result is a non-empty sequence of StakeholderId, ids of selected stakeholders. This sequense of SlotLeaders is storing in the node’s runtime context.</li>
+<li>With P2SH addresses, node doesn’t know who is going to end up with funds sent to them. Therefore, P2SH addresses can contain destination address which specifies which addresses should count as “owning” funds for the purposes of FTS.</li>
+</ul>
+<a class="header" href="print.html#代码" id="代码"><h3>代码</h3></a>
+<ul>
+<li>https://github.com/input-output-hk/cardano-sl</li>
+<li>版本历史</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/1134993/31715016-d373d312-b3c7-11e7-80c6-f535e32f6010.png" alt="screen shot 2017-10-18 at 3 32 29 pm" /></p>
+<a class="header" href="print.html#fts-follow-the-satoshi" id="fts-follow-the-satoshi"><h4>FTS (Follow the Satoshi)</h4></a>
+<ul>
+<li>https://github.com/input-output-hk/cardano-sl/blob/master/lrc/Pos/Lrc/Fts.hs</li>
+</ul>
+<a class="header" href="print.html#blockchain" id="blockchain"><h4>Blockchain</h4></a>
+<ul>
+<li>https://github.com/input-output-hk/cardano-sl/blob/master/lib/src/Pos/Block/Core/Genesis/Chain.hs</li>
+<li>https://github.com/input-output-hk/cardano-sl/tree/master/lib/src/Pos/Block/Logic</li>
+</ul>
+<a class="header" href="print.html#参考文档" id="参考文档"><h2>参考文档</h2></a>
+<ul>
+<li>https://cardanodocs.com/introduction/#what-makes-cardano-sl-special</li>
+<li>https://cardanodocs.com/cardano/proof-of-stake/</li>
+<li>https://cardanodocs.com/technical/leader-selection/</li>
+<li>https://cardanodocs.com/cardano/explorer/</li>
+<li>https://cardanoexplorer.com/</li>
+<li>https://cardanodocs.com/glossary/</li>
+<li>https://cardanodocs.com/technical/blocks/</li>
+</ul>
+<a class="header" href="print.html#video" id="video"><h3>Video</h3></a>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=JwxVySVF-U4">Ouroboros presentation | IACR Crypto-2017 </a></li>
+<li><a href="https://www.youtube.com/watch?v=hMgxZOsTlQc">Bernardo David, IOHK Research, Proof-of-Stake Protocol</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLnPTB0CuBOBw9H7dynFu9U25vqFWRw1UX">Ouroboros: A Provably Secure Proof-of-Stake Blockchain Protocol</a></li>
+</ul>
+<a class="header" href="print.html#问题" id="问题"><h3>问题</h3></a>
+<ul>
+<li>Proof of stake with rigorous security guarantees. 严格安全保证在哪里？</li>
+<li>Proof of Stake protocols and we prove that, given this mechanism, honest behavior
+is an approximate Nash equilibrium  如果是基于博弈论和纳什均衡的话，那么以太的casper也是这样。区别是什么？</li>
+</ul>
+<a class="header" href="print.html#bw怼cardano事件" id="bw怼cardano事件"><h3>BW怼cardano事件</h3></a>
+<ul>
+<li>https://steemit.com/cardamon/@dan/peer-review-of-cardano-s-ouroboros</li>
+<li>BW认为ada抄袭（copy）了他的工作，但是没有提他（ Ouroboros is a copy of Delegated Proof of Stake (DPoS) with a few counter-productive modifications. In fact their paper refers to the term “πDPoS” 17 times without mentioning or recognizing any of my prior work.）</li>
+<li>结果上，BW认为ada的性能和效率完败
+<ul>
+<li>出块 EOS: 0.5 seconds  vs. Ouroboros: 20 seconds</li>
+<li>稳定 EOS: &lt;= 2 seconds vs. Ouroboros: &gt; 5 hours</li>
+</ul>
+</li>
+<li>ada的安全在工程上不可行：400公斤的防弹衣没法穿。（为啥BW没说明）</li>
+<li>对dPOS的分析
+<ul>
+<li>选人 （Selecting a set of block producers）</li>
+<li>排队 （Scheduling the producers into time slots）</li>
+</ul>
+</li>
+<li>选人
+<ul>
+<li>时间轮： BTS 1h vs Ouroboros：5 days</li>
+<li>参与要求：Steem 没有下限 vs. Ouroboros at least 1% stake</li>
+</ul>
+</li>
+<li>排队
+<ul>
+<li>随机性：
+<ul>
+<li>Steem 从确定一组里面随机抽（uses deterministic scheduling with pseudorandom shuffling）</li>
+<li>Ouroboros 随机性由随机选定的权益人生成（sampling from a source of provable randomness created by a committee of randomly selected stakeholders）</li>
+</ul>
+</li>
+<li>安全性：
+<ul>
+<li>Steem / BitShares / EOS 靠投票（人为）select a set of unlikely to collude entities by approval voting then schedule them in a pseudorandom order。 同时EOS要取消shuffle （ EOS will be removing the random shuffle all together.）</li>
+<li>Ouroboros 随机选择导致时间和延时无法预期 Ouroboros the length of time until 2/3+ of the stake is “randomly selected” is not known. unpredictable latency like bitcoin</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>分布式安全（Distribution Security Issues）
+<ul>
+<li>Steem 14 people confirm a block each round.</li>
+<li>只有投票才能对抗基于stake权重的中心化 stake-weighted voting creates a very high centralization that can only be countered with approval voting</li>
+<li>Corruption takes place at the individual level, not the stake level. it is wrong to assume that large stake holders will behave like a group of smaller stakeholders of similar size</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#bls" id="bls"><h3>BLS</h3></a>
+<ul>
+<li>https://en.wikipedia.org/wiki/Boneh%E2%80%93Lynn%E2%80%93Shacham</li>
+<li>https://crypto.stanford.edu/pbc/</li>
+<li>https://github.com/dfinity/bn/blob/master/bls/src/bls_c.cpp</li>
+<li>https://github.com/dfinity/go-dfinity-crypto/blob/master/bls/bls.go</li>
+</ul>
+<a class="header" href="print.html#threshold-relay" id="threshold-relay"><h3><strong>Threshold Relay</strong></h3></a>
+<p>which applies cryptography to create randomness on demand of sufficient network participants</p>
+<ul>
+<li>
+<p>https://dfinity.org/faq.html</p>
+</li>
+<li>
+<p>The composition of each group is entirely random such that they can intersect and clients can be presented in multiple groups. In DFINITY, each group is comprised of 400 members. When a group is defined, the members attempt to set up a BLS threshold signature system using a distributed key generation protocol. If they are successful within some fixed number of blocks, they then register the public key (&quot;identity&quot;) created for their group on the global blockchain using a special transaction, such that it will become part of the set of active groups in a following mining &quot;epoch&quot;. The network begins at &quot;genesis&quot; with some number of predefined groups, one of which is nominated to create a signature on some default value. Such signatures are random values - if they were not then the group's signatures on messages would be predictable and the threshold signature system insecure - and each random value produced thus is used to select a random successor group. This next group then signs the previous random value to produce a new random value and select another group, relaying between groups ad infinitum and producing a sequence of random values.</p>
+</li>
+<li>
+<p><a href="https://dfinity.org/pdf-viewer/pdfs/viewer.html?file=../library/threshold-relay-blockchain-stanford.pdf">How to Achieve Near-Instant Finality in Public Blockchains using a VRF</a></p>
+</li>
+<li>
+<p><a href="https://dfinity.org/pdf-viewer/pdfs/viewer.html?file=../library/intro-dfinity-crypto.pdf">DFINITY Crypto Techniques</a></p>
+</li>
+</ul>
+<a class="header" href="print.html#quorum--quorum-slices" id="quorum--quorum-slices"><h3>Quorum &amp; Quorum slices</h3></a>
+<p><img src="https://user-images.githubusercontent.com/1134993/32044473-452bc6cc-ba03-11e7-928c-ae4b83645332.png" alt="screen shot 2017-10-26 at 5 03 21 pm" /> <strong>=&gt;</strong> <img src="https://user-images.githubusercontent.com/1134993/32044475-455c0a44-ba03-11e7-99db-2c3a68f23b2e.png" alt="screen shot 2017-10-26 at 5 03 40 pm" /></p>
+<ul>
+<li>Quoram 决定全局共识</li>
+<li>Quoram slices 决定区域共识</li>
+<li>这就是所谓FBFT的Federated的来由，所谓结盟的含义。</li>
+<li>Quoram slices就是从我自己视角里面我信任的成员，所谓我的帮派，我的同盟。</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/1134993/32045077-f4e8af48-ba04-11e7-996f-4cffa5416886.png" alt="screen shot 2017-10-26 at 5 19 41 pm" /></p>
+<a class="header" href="print.html#reference-3" id="reference-3"><h3>Reference</h3></a>
+<ul>
+<li>https://www.stellar.org/developers/guides/concepts/scp.html</li>
+<li>https://www.stellar.org/papers/stellar-consensus-protocol.pdf</li>
+<li>https://medium.com/a-stellar-journey/on-worldwide-consensus-359e9eb3e949</li>
+<li>https://github.com/stellar/stellar-core/blob/master/docs/readme.md</li>
+<li>https://github.com/stellar/stellar-core/tree/master/src/scp</li>
+<li>https://github.com/stellar/stellar-core/blob/master/src/xdr/Stellar-SCP.x</li>
+<li>https://github.com/stellar/stellar-core/blob/master/src/scp/SCP.h</li>
+</ul>
+<a class="header" href="print.html#介绍" id="介绍"><h3>介绍</h3></a>
+<ul>
+<li>https://matrix.org</li>
+</ul>
+<a class="header" href="print.html#协议" id="协议"><h3>协议</h3></a>
+<ul>
+<li>https://matrix.org/docs/spec/</li>
+<li>https://matrix.org/docs/spec/intro.html</li>
+</ul>
+<blockquote>
+<a class="header" href="print.html#24---event-graphs" id="24---event-graphs"><h4>2.4   Event Graphs</h4></a>
+<p>Events exchanged in the context of a room are stored in a <strong>directed acyclic graph (DAG)</strong> called an &quot;event graph&quot;. The partial ordering of this graph gives the chronological ordering of events within the room. Each event in the graph has a list of zero or more &quot;parent&quot; events, which refer to any preceding events which have no chronological successor from the perspective of the homeserver which created the event.
+Typically an event has a single parent: the most recent message in the room at the point it was sent. However, homeservers may legitimately race with each other when sending messages, resulting in a single event having multiple successors. The next event added to the graph thus will have multiple parents. Every event graph has a single root event with no parent.
+To order and ease chronological comparison between the events within the graph, homeservers maintain a depth metadata field on each event. An event's depth is a positive integer that is strictly greater than the depths of any of its parents. The root event should have a depth of 1. Thus if one event is before another, then it must have a strictly smaller depth.
+......</p>
+<a class="header" href="print.html#25---room-structure" id="25---room-structure"><h4>2.5   Room structure</h4></a>
+<p>......
+Federation maintains shared data structures per-room between multiple home servers. The data is split into message events and state events.
+<strong>Message events:</strong> These describe transient 'once-off' activity in a room such as an instant messages, VoIP call setups, file transfers, etc. They generally describe communication activity.
+<strong>State events:</strong> These describe updates to a given piece of persistent information ('state') related to a room, such as the room's name, topic, membership, participating servers, etc. State is modelled as a lookup table of key/value pairs per room, with each key being a tuple of state_key and event type. Each state event updates the value of a given key.</p>
+<p>The state of the room at a given point is calculated by considering <strong>all events preceding and including a given event in the graph</strong>. Where events describe the same state, a merge conflict algorithm is applied. The state resolution algorithm is transitive and does not depend on server state, as it must consistently select the same event irrespective of the server or the order the events were received in. Events are signed by the originating server (the signature includes the parent relations, type, depth and payload hash) and are pushed over federation to the participating servers in a room, currently using full mesh topology. Servers may also request backfill of events over federation from the other servers participating in a room.
+......</p>
+</blockquote>
+<a class="header" href="print.html#dendrite" id="dendrite"><h3>Dendrite</h3></a>
+<ul>
+<li>基于Go的参考实现
+<ul>
+<li>https://github.com/matrix-org/dendrite</li>
+<li>https://github.com/matrix-org/dendrite/blob/master/DESIGN.md</li>
+<li>https://github.com/matrix-org/dendrite/blob/master/WIRING.md</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#ripple" id="ripple"><h2>Ripple</h2></a>
+<p>基于拜占庭，注意Proposer的使用</p>
+<a class="header" href="print.html#component" id="component"><h3>Component</h3></a>
+<ul>
+<li><strong>Server</strong>: A server is any entity running the Ripple Server software (as opposed to the Ripple Client
+software which only lets a user send and receive funds), which participates in the consensus process.</li>
+<li><strong>Ledger</strong>: The ledger is a record of the amount of currency in each user’s account and represents the “ground truth” of the network. The ledger is repeatedly updated with transactions that successfully pass through the consensus process.</li>
+<li><strong>Last-Closed Ledger</strong>: The last-closed ledger is the most recent ledger that has been ratified by the consensus process and thus represents the current state of the network.</li>
+<li><strong>Open Ledger</strong>: The open ledger is the current operating status of a node (each node maintains its own open ledger). Transactions initiated by end users of a given server are applied to the open. ledger of that server, but transactions are not considered final until they have passed through the consensus process, at which point the open ledger becomes the last-closed ledger.</li>
+<li><strong>Unique Node List (UNL)</strong> : Each server, s, maintains a unique node list, which is a set of other
+servers that s queries when determining consensus. Only the votes of the other members of the UNL of s are considered when determining consensus (as opposed to every node on the network). Thus the UNL represents a subset of the network which when taken collectively, is “trusted” by s to not collude in an attempt to defraud the network. Note that this definition of “trust” does not require that each individual member of the UNL be trusted (see section 3.2).</li>
+<li><strong>Proposer</strong> : Any server can broadcast transactions to be included in the consensus process, and every server attempts to include every valid transaction when a new consensus round starts. During the consensus process, however, only proposals from servers on the UNL of a server s are considered by s.</li>
+</ul>
+<a class="header" href="print.html#共识算法" id="共识算法"><h3>共识算法</h3></a>
+<p><img src="https://user-images.githubusercontent.com/1134993/32130914-44d48992-bb67-11e7-9a76-d23712beaa65.png" alt="screen shot 2017-10-28 at 11 34 34 am" /></p>
+<ol>
+<li>Initially, each server takes all valid transactions it has seen prior to the beginning of the consensus round that have not already been applied (these may include new transactions initiated by endusers of the server, transactions held over from a previous consensus process, etc.), and makes them public in the form of a list known as the “<strong>candidate set</strong>”.</li>
+<li>Each server then amalgamates the candidate sets of all servers on its <strong>UN</strong>L, and votes on the veracity of all transactions.</li>
+<li>Transactions that receive more than a minimum percentage of “yes” <strong>votes</strong> are passed on to the next round, if there is one, while transactions that do not receive enough votes will either be discarded, or included in the candidate set for the beginning of the consensus process on the next ledger.</li>
+<li>The final round of consensus requires a minimum percentage of <strong>80%</strong> of a server’s UNL agreeing</li>
+</ol>
+<p>注意Propose和Validate的区分</p>
+<p><img src="https://user-images.githubusercontent.com/1134993/32131115-8ec51b3a-bb6b-11e7-9b12-870d1223431c.png" alt="screen shot 2017-10-28 at 12 04 25 pm" />
+<img src="https://user-images.githubusercontent.com/1134993/32131116-8f3561e2-bb6b-11e7-96b8-0f079e6902fb.png" alt="screen shot 2017-10-28 at 12 04 51 pm" />
+<img src="https://user-images.githubusercontent.com/1134993/32131118-8fab26fc-bb6b-11e7-92db-e186716a75d7.png" alt="screen shot 2017-10-28 at 12 05 18 pm" />
+<img src="https://user-images.githubusercontent.com/1134993/32131119-90057e4a-bb6b-11e7-8610-5291f735a174.png" alt="screen shot 2017-10-28 at 12 05 54 pm" /></p>
+<a class="header" href="print.html#reference-4" id="reference-4"><h3>Reference</h3></a>
+<ul>
+<li>https://ripple.com/files/ripple_consensus_whitepaper.pdf</li>
+<li><a href="https://www.youtube.com/watch?v=pj1QVb1vlC0">How Ripple Works - The Consensus Process</a></li>
+<li><a href="https://www.youtube.com/watch?v=GyNXedeCyNg">Ripple Explained with David Schwartz, Chief Cryptographer of Ripple Labs</a></li>
+<li><a href="https://www.youtube.com/watch?v=7abKUs9tYZg">Ripple Tech Talk: Understanding Consensus (Mar 2015) by David Schwartz</a></li>
+<li>https://ripple.com/build/xrp-test-net/</li>
+</ul>
+<a class="header" href="print.html#code" id="code"><h3>Code</h3></a>
+<ul>
+<li>https://github.com/ripple/rippled.git</li>
+</ul>
+<a class="header" href="print.html#casper" id="casper"><h3>Casper</h3></a>
+<a class="header" href="print.html#casper-cbc" id="casper-cbc"><h4>Casper CBC</h4></a>
+<ul>
+<li>https://github.com/ethereum/cbc-casper</li>
+<li>https://github.com/ethereum/research/blob/master/papers/CasperTFG/CasperTFG.pdf</li>
+<li>https://youtu.be/Yo9o5nDTAAQ?t=22530</li>
+<li>https://github.com/ethereum/sharding/blob/develop/sharding/contracts/validator_manager.v.py</li>
+</ul>
+<a class="header" href="print.html#pos--bft" id="pos--bft"><h4>POS + BFT</h4></a>
+<ul>
+<li>chain-based POS (mimics POW  &amp;  build a chain of blocks  &amp; simulates mining)</li>
+<li>BFT based POS (Tendermint, Algorand)</li>
+</ul>
+<a class="header" href="print.html#casper解决的问题" id="casper解决的问题"><h4>Casper解决的问题</h4></a>
+<ul>
+<li>如何惩罚坏人 -&gt; solve &quot;nothing at stake” problem  -&gt; validator’s entire deposit</li>
+<li>validators如何更新 -&gt; validator set to change over time</li>
+<li>如何应对攻击
+<ul>
+<li>long range revision attacks,</li>
+<li>1/3 validators drop offline</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#介绍-1" id="介绍-1"><h4>介绍</h4></a>
+<ul>
+<li>first version of Casper a hybrid PoW/PoS system</li>
+<li>future versions converting the block proposal into a some kind of PoS round-robin block signing scheme.</li>
+<li>simple version ： a fixed set of validators and a proposal mechanism which produces child blocks of existing blocks, forming an ever-growing block tree. the root of the tree is the “genesis block”.</li>
+<li>Casper’s job is to choose a single child from each parent, thus <strong>choosing one canonical chain from the block tree</strong>. （canonical chain！）</li>
+</ul>
+<a class="header" href="print.html#references-6" id="references-6"><h3>References</h3></a>
+<ul>
+<li>http://vitalik.ca/files/casper_note.html</li>
+<li>https://github.com/ethereum/research/tree/master/papers/casper-basics</li>
+<li>https://medium.com/@jonchoi/ethereum-casper-101-7a851a4f1eb0
+<ul>
+<li>(CN）https://github.com/BlockchainTranslator/General/blob/master/TechDoc/Ethereum%20Casper%20101.md</li>
+</ul>
+</li>
+<li>https://medium.com/@Vlad_Zamfir/the-history-of-casper-part-1-59233819c9a9</li>
+<li><a href="https://www.youtube.com/watch?v=9nQPcNY32JQ">EB105 – Vlad Zamfir: Bringing Ethereum Towards Proof-Of-Stake With Casper</a></li>
+<li><a href="https://www.youtube.com/watch?v=4LhC-jDaI00">Devcon2: A Correct by Construction Asynchronous Casper Protocol</a>
+<ul>
+<li>https://ethereumfoundation.org/devcon2/wp-content/uploads/2016/10/A-Correct-by-Construction-Asynchronous-Casper-Protocol.pdf</li>
+</ul>
+</li>
+<li><a href="https://www.youtube.com/watch?v=-oIYqV8q87s">Ethereum Meetup with Vlad Zamfir</a></li>
+<li><a href="https://www.youtube.com/watch?v=uIVnhiZKZi8">NYC Ethereum Meetup: Proof of Stake w/ Vlad Zamfir and Karl Floersch</a></li>
+<li><a href="https://www.youtube.com/watch?v=6boQSQ7IuNY">February 17th, 2017 EDCON, Vlad Zamfir Casper </a>
+<ul>
+<li>https://edcon.io/2017/ppt/one/Vlad%20Zamfir_Casper_EDCON.pdf</li>
+</ul>
+</li>
+<li><a href="https://youtu.be/Yo9o5nDTAAQ?t=21367">Casper the Friendly GHOST: A correct-by-construction blockchain , devcon3, nov, 2017</a></li>
+</ul>
+<a class="header" href="print.html#people" id="people"><h4>People</h4></a>
+<blockquote>
+<p>Vlad Zamfir at Ethereum ÐΞVcon-0 with Gavin Wood, Berlin, Nov. 2014</p>
+</blockquote>
+<p><img src="https://user-images.githubusercontent.com/1134993/32373710-9e52ef30-c068-11e7-880f-68e4f9d8a2b7.png" alt="screen shot 2017-11-03 at 8 24 26 pm" /></p>
+<a class="header" href="print.html#poa" id="poa"><h3>POA</h3></a>
+<ul>
+<li>https://github.com/paritytech/parity/wiki/Proof-of-Authority-Chains</li>
+<li>https://github.com/paritytech/parity/wiki/Demo-PoA-tutorial</li>
+<li>https://github.com/paritytech/parity/wiki/Aura</li>
+<li>https://github.com/paritytech/parity/wiki/Chain-specification</li>
+<li>https://github.com/paritytech/parity/wiki/Pluggable-Consensus</li>
+<li>https://github.com/paritytech/parity-bridge</li>
+</ul>
+<a class="header" href="print.html#oracles-network" id="oracles-network"><h3>Oracles Network</h3></a>
+<ul>
+<li>https://hackmd.io/s/HkV8Vw7_-#introduction</li>
+<li>https://medium.com/oracles-network/cross-chain-bridges-paving-the-way-to-internet-of-blockchains-422ac94bc2e5</li>
+<li>https://github.com/paritytech/parity-bridge/compare/master...oraclesorg:master</li>
+<li>https://github.com/oraclesorg/oracles-contract/blob/master/src/ValidatorsManager.sol</li>
+</ul>
+<a class="header" href="print.html#tendermint" id="tendermint"><h3>Tendermint</h3></a>
+<ul>
+<li>Tendermint
+<ul>
+<li>https://github.com/tendermint/tendermint/tree/master/consensus</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#pbft-1" id="pbft-1"><h3>PBFT</h3></a>
+<ul>
+<li>Fabric 0.6
+<ul>
+<li>https://github.com/hyperledger/fabric/blob/v0.6/consensus/pbft/pbft-core.go</li>
+</ul>
+</li>
+<li>HoneyBadgerBFT
+<ul>
+<li>https://github.com/amiller/HoneyBadgerBFT</li>
+</ul>
+</li>
+<li>小蚁
+<ul>
+<li>https://github.com/neo-project/neo/blob/master/src/AntShares/Consensus/ConsensusService.cs</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#references-7" id="references-7"><h2>References</h2></a>
+<ul>
+<li>https://blog.cosmos.network/consensus-compare-tendermint-bft-vs-eos-dpos-46c5bca7204b</li>
+<li>https://steemit.com/blockchain/@anonymint/consortium-blockchains-e-g-dpos-and-tendermint-can-t-internet-scale</li>
+</ul>
+<a class="header" href="print.html#dbft-neo" id="dbft-neo"><h3>DBFT (NEO)</h3></a>
+<p>DBFT 全称为 Delegated Byzantine Fault Tolerant，是一种通过代理投票来实现大规模节点参与共识的拜占庭容错型共识机制。NEO 管理代币的持有者通过投票，可以选出其所支持的记账人。随后由被选出的记账人团体通过 BFT 算法，来达成共识并生成新的区块。投票在 NEO 网络持续实时进行，而非按照固定任期。</p>
+<p>DBFT 对由 n 个共识节点组成的共识系统，提供 f=⌊(n-1)/3⌋ 的容错能力，这种容错能力同时包含安全性和可用性，可以抵抗一般性故障和拜占庭故障，并适用于任何网络环境。DBFT 具有良好的最终性，一个确认即最终确认，区块无法被分叉，交易也不会发生撤销或回滚。</p>
+<p>在 NEO 的 DBFT 共识机制下，每 15~20 秒生成一个区块，交易吞吐量实测可达到约 1000tps，在公有链中性能优秀。通过适当优化，有能力到达 10000TPS，可以支持大规模的商业化应用。</p>
+<p>DBFT 结合数字身份技术，使得记账人可以是实名的个人或机构。从而使得冻结、撤销、继承、找回、司法判决过户等非常规操作成为可能。这有利于合规性金融资产在 NEO 网络中的登记发行。NEO 网络计划在必要的时候支持此类操作。</p>
+<a class="header" href="print.html#dpos" id="dpos"><h3>dPOS</h3></a>
+<a class="header" href="print.html#bts" id="bts"><h4>BTS</h4></a>
+<ul>
+<li>https://bitshares.org/technology/delegated-proof-of-stake-consensus/</li>
+</ul>
+<a class="header" href="print.html#steem" id="steem"><h4>Steem</h4></a>
+<a class="header" href="print.html#eos" id="eos"><h4>EOS</h4></a>
+<a class="header" href="print.html#lisk" id="lisk"><h4>Lisk</h4></a>
+<ul>
+<li>https://github.com/LiskHQ/lisk/blob/development/logic/vote.js</li>
+<li>https://docs.lisk.io/docs/the-lisk-protocol-transactions#section-vote-transaction</li>
+<li>https://docs.lisk.io/docs/the-lisk-protocol-consensus</li>
+</ul>
+<a class="header" href="print.html#references-8" id="references-8"><h3>References</h3></a>
+<ul>
+<li>https://github.com/neo-project/neo/blob/master/neo/Consensus/ConsensusService.cs</li>
+</ul>
+<a class="header" href="print.html#algorand-ideally-proceeds-as-follows" id="algorand-ideally-proceeds-as-follows"><h2>Algorand ideally proceeds as follows</h2></a>
+<ul>
+<li>First, a randomly selected user, the leader, proposes and circulates a new block.
+<ul>
+<li>(This process includes initially selecting a few potential leaders and then ensuring that, at least a good fraction of the time, a single common leader emerges.)</li>
+</ul>
+</li>
+<li>Second, a randomly selected committee of users is selected, and reaches Byzantine agreement on the block proposed by the leader.
+<ul>
+<li>(This process includes that each step of the BA protocol is run by a separately selected committee.)</li>
+</ul>
+</li>
+<li>The agreed upon block is then digitally signed by a given threshold of committee members.</li>
+<li>These digital signatures are circulated so that everyone is assured of which is the new block.
+<ul>
+<li>(This includes circulating the credential of the signers, and authenticating just the hash of the new block,<br />
+ensuring that everyone is guaranteed to learn the block, once its hash is made clear.)</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#references-9" id="references-9"><h3>References</h3></a>
+<ul>
+<li>https://arxiv.org/pdf/1607.01341.pdf</li>
+<li>https://people.csail.mit.edu/nickolai/papers/gilad-algorand-eprint.pdf</li>
+<li>https://github.com/fractalide/fractalchains</li>
+<li>https://zhuanlan.zhihu.com/p/29429006</li>
+<li>https://www.youtube.com/watch?v=QNQHbfI3IAQ</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/1134993/32544762-1c818874-c43f-11e7-94eb-5cceb6fb9199.png" alt="screen shot 2017-11-08 at 6 41 14 pm" /></p>
+<p>借truebit的图：</p>
+<ul>
+<li>TPS
+<ul>
+<li>OnChain
+<ul>
+<li>Structure change</li>
+<li>Sharding</li>
+<li>Paralleling</li>
+</ul>
+</li>
+<li>OffChain
+<ul>
+<li>State channel</li>
+<li>SideChain</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Network</li>
+<li>Storage</li>
+</ul>
+<a class="header" href="print.html#intro-5" id="intro-5"><h3>Intro</h3></a>
+<p>“Ouroboros Praos”, a proof-of-stake blockchain protocol that, for the first time, provides security against fully-adaptive corruption in the semi-synchronous setting: Specifically, the adversary can corrupt any participant of a dynamically evolving population of stakeholders at any moment as long the stakeholder distribution maintains
+an honest majority of stake; furthermore, the protocol tolerates an <strong>adversarially-controlled message delivery delay</strong> unknown to protocol participants.</p>
+<p>To achieve these guarantees we formalize and realize in the universal composition setting a suitable form of <strong>forward secure digital signatures</strong> and a new type of verifiable random function that maintains unpredictability under malicious key generation. Our security proof develops a general combinatorial framework for the analysis of semi-synchronous blockchains that may be of independent interest. We prove our protocol secure under standard cryptographic assumptions in the <strong>random oracle model</strong>.</p>
+<a class="header" href="print.html#references-10" id="references-10"><h3>References</h3></a>
+<ul>
+<li>https://eprint.iacr.org/2017/573.pdf</li>
+</ul>
+<a class="header" href="print.html#eos-parallel" id="eos-parallel"><h3>EOS parallel</h3></a>
+<p>Latency is the time it takes for one account to send a message to another account and then receive a response. The goal is to enable two accounts to <strong>exchange messages back and forth within a single block without having to wait 3 seconds</strong> between each message. To enable this, the EOS.IO software divides each block into cycles. Each <strong>cycle is divided into threads and each thread contains a list of transactions</strong>. Each transaction contains a set of messages to be delivered. This structure can be visualized as a tree where alternating layers are processed sequentially and in parallel.</p>
+<pre><code>  Block
+
+    Cycles (sequential)
+
+      Threads (parallel)
+
+        Transactions (sequential)
+
+          Messages (sequential)
+
+            Receiver and Notified Accounts (parallel)
+</code></pre>
+<a class="header" href="print.html#how-eos-dpos-work" id="how-eos-dpos-work"><h3>How EOS dPOS work</h3></a>
+<ul>
+<li>https://github.com/EOSIO/eos/blob/master/libraries/chain/include/eos/chain/types.hpp#L120</li>
+<li>https://github.com/EOSIO/eos/blob/master/libraries/chain/include/eos/chain/config.hpp#L51</li>
+<li>https://github.com/EOSIO/eos/blob/master/libraries/chain/include/eos/chain/global_property_object.hpp#L32</li>
+<li>https://github.com/EOSIO/eos/blob/master/libraries/chain/chain_controller.cpp#L269</li>
+<li>https://github.com/EOSIO/eos/blob/master/libraries/chain/chain_controller.cpp#L1430</li>
+<li>https://github.com/EOSIO/eos/blob/master/libraries/chain/chain_controller.cpp#L1290</li>
+<li>https://github.com/EOSIO/eos/blob/master/libraries/native_contract/native_contract_chain_administrator.cpp#L18</li>
+<li>https://github.com/EOSIO/eos/blob/master/plugins/producer_plugin/producer_plugin.cpp#L282</li>
+<li>https://github.com/EOSIO/eos/blob/master/plugins/producer_plugin/producer_plugin.cpp#L265</li>
+<li>https://github.com/EOSIO/eos/blob/master/libraries/native_contract/producer_objects.cpp#L60</li>
+</ul>
+<p>Using the EOS.IO software blocks are produced in rounds of 21. At the start of each round 21 unique block producers are chosen. The top 20 by total approval are automatically chosen every round and the last producer is chosen proportional to their number of votes relative to other producers. The selected producers are shuffled using a pseudorandom number derived from the block time. This shuffling is done to ensure that all producers maintain balanced connectivity to all other producers</p>
+<a class="header" href="print.html#references-11" id="references-11"><h3>References</h3></a>
+<ul>
+<li>https://github.com/EOSIO/Documentation/blob/master/TechnicalWhitePaper.md#deterministic-parallel-execution-of-applications</li>
+<li>https://github.com/EOSIO/Documentation/blob/master/zh-CN/TechnicalWhitePaper.md#应用程序的确定性并行执行
+<ul>
+<li>https://github.com/BlockchainTranslator/EOS/blob/master/TechDoc/EOS.IO%20Technical%20White%20Paper.md</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#reference-5" id="reference-5"><h3>Reference</h3></a>
+<ul>
+<li><a href="https://github.com/ethereum/EIPs/issues/648">EIP-648 : Easy parallelizability</a></li>
+<li><a href="https://github.com/ethereum/EIPs/issues/232">EIP-232 : New transaction formats </a></li>
+<li><a href="https://github.com/ethereum/EIPs/pull/208">EIP-208 : Abstraction of transaction origin and signature</a></li>
+<li><a href="https://github.com/ethereum/EIPs/issues/86">EIP-86 : Proposed initial abstraction changes for Metropolis</a></li>
+</ul>
+<a class="header" href="print.html#validation" id="validation"><h1>Validation</h1></a>
+<a class="header" href="print.html#intro-6" id="intro-6"><h3>Intro</h3></a>
+<ul>
+<li>https://bitcoincore.org/en/2016/01/26/segwit-benefits/
+<ul>
+<li>CN https://bitcoincore.org/zh_CN/2016/01/26/segwit-benefits/</li>
+</ul>
+</li>
+<li>http://learnmeabitcoin.com/faq/segregated-witness</li>
+<li>http://learnmeabitcoin.com/workshops/files/segwit.pdf</li>
+<li>http://blog.oleganza.com/post/163955782228/how-segwit-makes-security-better</li>
+</ul>
+<a class="header" href="print.html#segwit-with-ln" id="segwit-with-ln"><h3>Segwit with LN</h3></a>
+<p>https://www.reddit.com/r/Bitcoin/comments/5dt8tz/confused_is_segwit_needed_for_lightning_network/</p>
+<p>Lightning Network uses payment channels with Hashed TimeLock Contracts. Both of those things are currently usable on Bitcoin mainnet without segwit, so LN is possible without segwit.</p>
+<p>However, without segwit or another malleability fix, LN channels have to deal with situations where transactions get mutated (&quot;malleated&quot;), which makes them get stuck at various steps. Preventing them from getting stuck permanently requires either introducing trust (which we don't want to do) or setting some annoying timeouts that limit the efficiency of channels.</p>
+<p>LN can also take advantage of many of segwits other benefits such as:</p>
+<ul>
+<li>Increased security for multisig: every segwit transaction uses multisig, and because it's a new protocol, it can trivially make use of the new segwit output format that allows using this feature.</li>
+<li>Script versioning: can be used to add new features to Bitcoin more easily than they can be added without segwit (some features being made more easy to add than others). Two features currently being researched are MAST and signature aggretation---both of which can provide modest increases to the capacity of the network and which can help improve transaction privacy.</li>
+<li>More block space: meaning more channels can be opened or closed in any particular block.</li>
+<li>Better cost accounting for transactions: related to the above, this provides benefits to people who produce transactions that reduce the short-term and long-term load on full nodes. Lightning-style transactions are effective at doing this, so they benefit from this segwit feature.</li>
+</ul>
+<p>Also, fixing malleability for upgraded software makes designing LN-compatible (and any Bitcoin-compatible) wallets much easier in general, so that's a huge plus too.</p>
+<a class="header" href="print.html#segwit-with-rsk" id="segwit-with-rsk"><h3>Segwit with RSK</h3></a>
+<a class="header" href="print.html#spec" id="spec"><h3>Spec</h3></a>
+<ul>
+<li>https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki</li>
+</ul>
+<a class="header" href="print.html#references-12" id="references-12"><h3>References</h3></a>
+<ul>
+<li>https://en.bitcoin.it/wiki/Multisignature</li>
+<li><a href="https://gist.github.com/gavinandresen/3966071">Example of using multisig with bitcoin-qt Raw Transactions</a></li>
+<li>https://ledger.zendesk.com/hc/en-us/articles/115005173049-How-to-use-the-Ledger-Nano-with-GreenAddress</li>
+</ul>
+<a class="header" href="print.html#intro-7" id="intro-7"><h3>Intro</h3></a>
+<p>Several sources of malleability are known:</p>
+<ul>
+<li>
+<p><strong>Non-DER encoded ECDSA signatures</strong> Right now, the Bitcoin reference client uses OpenSSL to validate signatures. As OpenSSL accepts more than serializations that strictly adhere to the DER standard, this is a source of malleability. Since v0.8.0, non-DER signatures are no longer relayed already.</p>
+</li>
+<li>
+<p>Non-push operations in scriptSig Any sequence of script operations in scriptSig that results in the intended data pushes, but is not just a push of that data, results in an alternative transaction with the same validity.</p>
+</li>
+<li>
+<p>Push operations in scriptSig of non-standard size type The Bitcoin scripting language has several push operators (OP_0, single-byte pushes, data pushes of up to 75 bytes, OP_PUSHDATA1, OP_PUSHDATA2, OP_PUSHDATA4). As the later ones have the same result as the former ones, they result in additional possibilities.</p>
+</li>
+<li>
+<p>Zero-padded number pushes In cases where scriptPubKey opcodes use inputs that are interpreted as numbers, they can be zero padded.</p>
+</li>
+<li>
+<p>Inherent ECDSA signature malleability ECDSA signatures themselves are already malleable: taking the negative of the number S inside (modulo the curve order) does not invalidate it.</p>
+</li>
+<li>
+<p>Superfluous scriptSig operations Adding extra data pushes at the start of scripts, which are not consumed by the corresponding scriptPubKey, is also a source of malleability.</p>
+</li>
+<li>
+<p>Inputs ignored by scripts If a scriptPubKey starts with an OP_DROP, for example, the last data push of the corresponding scriptSig will always be ignored.</p>
+</li>
+<li>
+<p>Sighash flags based masking Sighash flags can be used to ignore certain parts of a script when signing.
+New signatures by the sender The sender (or anyone with access to the relevant private keys) is always able to create new signatures that spend the same inputs to the same outputs.</p>
+</li>
+</ul>
+<a class="header" href="print.html#references-13" id="references-13"><h3>References</h3></a>
+<ul>
+<li>https://en.bitcoin.it/wiki/Transaction_Malleability</li>
+<li>https://github.com/bitcoin/bips/blob/master/bip-0062.mediawiki</li>
+<li>https://bitcoin.org/en/developer-guide#standard-transactions</li>
+<li>https://eklitzke.org/bitcoin-transaction-malleability</li>
+<li>https://bitcointechtalk.com/transaction-malleability-explained-b7e240236fc7</li>
+<li>https://www.blackhat.com/docs/us-14/materials/us-14-Chechik-Bitcoin-Transaction-Malleability-Theory-In-Practice.pdf</li>
+<li>http://www.righto.com/2014/02/bitcoins-hard-way-using-raw-bitcoin.html</li>
+<li>https://github.com/shirriff/bitcoin-code</li>
+<li>http://www.righto.com/2014/02/bitcoin-mining-hard-way-algorithms.html</li>
+<li>http://www.righto.com/2014/02/bitcoin-transaction-malleability.html</li>
+<li>http://www.righto.com/2014/02/the-bitcoin-malleability-attack-hour-by.html</li>
+<li>http://www.righto.com/2014/03/the-programming-error-that-cost-mt-gox.html</li>
+<li>https://github.com/sipa/bitcoin/commit/87fe71e1fc810ee120a10063fdd26c3245686d54</li>
+<li>https://github.com/bitcoinbook/bitcoinbook/blob/second_edition/ch03.asciidoc</li>
+</ul>
+<blockquote>
+<p>A transaction ID is not authoritative until a transaction has been confirmed. Absence of a transaction hash in the blockchain does not mean the transaction was not processed. This is known as &quot;transaction malleability,&quot; because transaction hashes can be modified prior to confirmation in a block. After confirmation, the txid is immutable and authoritative.</p>
+</blockquote>
+<a class="header" href="print.html#双花检查研究" id="双花检查研究"><h1>双花检查研究</h1></a>
+<a class="header" href="print.html#bitcoin" id="bitcoin"><h2>Bitcoin</h2></a>
+<a class="header" href="print.html#代码-1" id="代码-1"><h3>代码</h3></a>
+<ul>
+<li>https://github.com/dindinw/bitcoin/blob/alex_tx_test/src/test/txvalidationcache_tests.cpp</li>
+</ul>
+<pre><code>$ ./test_bitcoin --log_level=unit_scope --run_test=tx_validationcache_tests/tx_mempool_block_doublespend
+</code></pre>
+<a class="header" href="print.html#using-web-service-to-check-unspent-btc" id="using-web-service-to-check-unspent-btc"><h3>Using Web service to check unspent BTC</h3></a>
+<ul>
+<li>BCI
+<ul>
+<li>https://blockchain.info/unspent?active=&lt;your_addr&gt;</li>
+</ul>
+</li>
+<li>Chain.So
+<ul>
+<li>https://chain.so/api/v2/get_tx_unspent/BTC/&lt;your_addr&gt;</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#ethereum" id="ethereum"><h2>Ethereum</h2></a>
+<a class="header" href="print.html#byteball" id="byteball"><h2>Byteball</h2></a>
+<p>代码</p>
+<ul>
+<li>https://github.com/byteball/byteballcore/blob/master/validation.js#L1443</li>
+<li>https://github.com/byteball/byteballcore/blob/master/validation.js#L1570,L1675</li>
+<li>https://github.com/byteball/byteballcore/blob/master/graph.js#L116,L167</li>
+</ul>
+<a class="header" href="print.html#ethereum-simple-replay-attack-protection" id="ethereum-simple-replay-attack-protection"><h2>Ethereum Simple replay attack protection</h2></a>
+<ul>
+<li>https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md</li>
+</ul>
+<a class="header" href="print.html#segwit2x-replay-protection" id="segwit2x-replay-protection"><h2>Segwit2x Replay Protection</h2></a>
+<a class="header" href="print.html#references-14" id="references-14"><h3>References</h3></a>
+<ul>
+<li>https://bitcointechtalk.com/how-segwit2x-replay-protection-works-1a5e41767103</li>
+<li>https://bitcoinmagazine.com/articles/segwit2x-and-case-strong-replay-protection-and-why-its-controversial/</li>
+<li><a href="https://github.com/btc1/bitcoin/commit/a3c41256984bf11d95a560ae89c0fcbadfbe73dc">commit add at Oct 3, 2017</a></li>
+<li><a href="https://github.com/btc1/bitcoin/commit/98c0af58c29efbecba25818adb5531fa8c3d0506">commit revert at Oct 8, 2017</a></li>
+<li><a href="https://gist.github.com/gavinandresen/2a7474a3dd5b834ed3a7d10c74ec84c5">ReplayProtection.patch by gavinandresen</a></li>
+<li>https://github.com/btc1/bitcoin/issues/34</li>
+<li>https://github.com/btc1/bitcoin/pull/117
+<ul>
+<li>https://github.com/btc1/bitcoin/pull/134</li>
+<li>https://github.com/jgarzik/bitcoin/blob/2017_optin_replay/src/primitives/transaction.cpp#L117,L130</li>
+</ul>
+</li>
+<li>https://github.com/btc1/bitcoin/pull/127
+<ul>
+<li>https://github.com/BitcoinUnlimited/BitcoinUnlimited/pull/790</li>
+</ul>
+</li>
+<li>https://github.com/btc1/bitcoin/pull/131</li>
+</ul>
+<a class="header" href="print.html#intro-8" id="intro-8"><h3>Intro</h3></a>
+<p>Bitcoin and Ethereum, whose miners arguably collectively comprise the most powerful computational resource in the history of mankind, offer no more power for processing and verifying transactions than a typical smart phone. The system described herein bypasses this bottleneck and brings scalable computation to Ethereum.</p>
+<p>Our new system consists of a financial incentive layer atop a dispute resolution layer
+where the latter takes form of a versatile “verification game.”</p>
+<p>In addition to secure outsourced computation, immediate applications include decentralized mining pools whose operator is an Ethereum smart contract, a cryptocurrency with scalable transaction throughput, and a trustless means for transferring currency between disjoint cryptocurrency systems.</p>
+<p>TrueBit’s primary purpose is to realize correct, trustless computations despite miners’ limited computation bandwidth. Intuitively, we wish to reward participants who correctly perform computational tasks, but who decides
+whether these tasks were done correctly? In absence of a dispute, the party who performs a computational task on behalf of a TrueBit contract simply receives a reward. On the other hand, if a dispute does occur, we must
+rely on the only trusted resource, the limited network of miners, to resolve it.</p>
+<a class="header" href="print.html#video-1" id="video-1"><h3>Video</h3></a>
+<ul>
+<li><a href="https://youtu.be/Yo9o5nDTAAQ?t=25319">Introducing the TrueBit Virtual Machine, Devcon3, Nov,2017</a></li>
+</ul>
+<a class="header" href="print.html#references-15" id="references-15"><h3>References</h3></a>
+<ul>
+<li>https://truebit.io/</li>
+<li>https://github.com/TrueBitFoundation</li>
+<li>https://people.cs.uchicago.edu/~teutsch/papers/truebit.pdf</li>
+<li>https://medium.com/@simondlr/an-intro-to-truebit-a-scalable-decentralized-computational-court-1475531400c3</li>
+</ul>
+<a class="header" href="print.html#money--token" id="money--token"><h1>Money &amp; Token</h1></a>
+<a class="header" href="print.html#dust" id="dust"><h3>Dust</h3></a>
+<p>&quot;Dust&quot; is defined in terms of <code>CTransaction::minRelayTxFee</code>, which has units <strong>satoshis-per-kilobyte</strong>.
+If you'd pay more than 1/3 in fees to spend something, then we consider it dust.</p>
+<ul>
+<li>A typical spendable <strong>non-segwit txout</strong> is 34 bytes big, and will need a CTxIn of at least 148 bytes to spend:
+so dust is a spendable txout less than <code>546*minRelayTxFee/1000</code> (in satoshis).</li>
+<li>A typical spendable <strong>segwit txout</strong> is 31 bytes big, and will need a CTxIn of at least 67 bytes to spend:
+so dust is a spendable txout less than <code>294*minRelayTxFee/1000</code> (in satoshis).</li>
+</ul>
+<p>By default, with a minimum relay fee of 0.00005BTC/KB, the dust is defined as <strong>2730 satoshi</strong>. If a transaction pays a decent fee but has an output that has less than 2730 satoshi, it won't be relayed by the nodes with this kind of configuration.</p>
+<pre><code>546*5000/1000=2730
+294*5000/1000=1740
+</code></pre>
+<p><strong>UPDATE for (0.15.x)</strong></p>
+<pre><code>DUST_RELAY_TX_FEE = 3000
+</code></pre>
+<p>Min feerate for defining dust, Historically this has been based on the <code>minRelayTxFee</code>, however changing the dust limit changes which transactions are standard and should be done with care and ideally rarely. It makes sense to only increase the dust limit after prior releases were already not creating outputs below the new threshold.</p>
+<a class="header" href="print.html#references-16" id="references-16"><h3>References</h3></a>
+<ul>
+<li>https://bitcointalk.org/index.php?topic=1728802.msg17300880#msg17300880</li>
+<li></li>
+<li>https://github.com/bitcoin/bitcoin/blob/v0.15.0.1/src/policy/policy.h#L48</li>
+</ul>
+<a class="header" href="print.html#rbf" id="rbf"><h3>RBF</h3></a>
+<p>replace-by-fee, allow users to &quot;undo&quot; transactions after they have been sent (&quot;undo&quot; the unconfirmed transactions)</p>
+<a class="header" href="print.html#references-17" id="references-17"><h3>References</h3></a>
+<ul>
+<li>https://github.com/petertodd/bips/blob/bip-full-rbf-deadline/bip-full-rbf-deadline.mediawiki</li>
+<li>https://www.mail-archive.com/bitcoin-development@lists.sourceforge.net/msg07829.html</li>
+<li>https://github.com/bitcoin/bitcoin/pull/6176</li>
+<li>https://github.com/bitcoin/bitcoin/pull/6352</li>
+<li>https://medium.com/@octskyward/replace-by-fee-43edd9a1dd6d</li>
+<li>https://medium.com/@octskyward/double-spending-in-bitcoin-be0f1d1e8008</li>
+<li>https://medium.com/@bramcohen/the-inevitable-demise-of-unconfirmed-bitcoin-transactions-8b5f66a44a35</li>
+</ul>
+<a class="header" href="print.html#ethereum-txfee" id="ethereum-txfee"><h1>Ethereum TxFee</h1></a>
+<a class="header" href="print.html#erc20" id="erc20"><h3>ERC20</h3></a>
+<ul>
+<li>https://theethereum.wiki/w/index.php/ERC20_Token_Standard
+<ul>
+<li>https://theethereum.wiki/w/index.php/Golem_Network_Token</li>
+</ul>
+</li>
+<li>https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md
+<ul>
+<li>https://github.com/ethereum/EIPs/issues/20</li>
+</ul>
+</li>
+<li>Zeppelin Token
+<ul>
+<li>https://github.com/OpenZeppelin/zeppelin-solidity/tree/master/contracts/token</li>
+</ul>
+</li>
+<li>DS-Token
+<ul>
+<li>https://dapp.tools/dappsys/ds-token.html</li>
+<li>https://github.com/dapphub/ds-token/blob/master/src/token.sol</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#erc223" id="erc223"><h3>ERC223</h3></a>
+<ul>
+<li>https://www.youtube.com/watch?v=GS62VNyPVHs</li>
+<li>https://github.com/Dexaran/ERC223-token-standard/tree/Recommended</li>
+</ul>
+<a class="header" href="print.html#parity-multi-sig" id="parity-multi-sig"><h3>Parity multi-sig</h3></a>
+<ul>
+<li>Nov-6, 2017 kill bug
+<ul>
+<li>instead of invoking initWallet on any wallet contract, the attacker called initWallet in the library contract itself.</li>
+<li>Parity did not anticipate the scenario of this library contract being suicided.</li>
+<li>https://blog.ethcore.io/security-alert/</li>
+<li>https://blog.comae.io/the-280m-ethereums-bug-f28e5de43513</li>
+<li>https://blog.zeppelinos.org/parity-wallet-hack-reloaded/</li>
+<li>https://ethereum.stackexchange.com/a/30130</li>
+<li>tx1 : https://etherscan.io/tx/0x05f71e1b2cb4f03e547739db15d080fd30c989eda04d37ce6264c5686e0722c9</li>
+<li>tx2 : https://etherscan.io/tx/0x47f7cff7a5e671884629c93b368cb18f58a993f4b19c2a53a8662e3f1482f690</li>
+</ul>
+</li>
+<li>July-19, 2017 initWallet bug
+<ul>
+<li>https://blog.zeppelin.solutions/on-the-parity-wallet-multisig-hack-405a8c12e8f7</li>
+<li>https://github.com/paritytech/parity/commit/e06a1e8dd9cfd8bf5d87d24b11aee0e8f6ff9aeb</li>
+<li>https://blog.ethcore.io/the-multi-sig-hack-a-postmortem/</li>
+<li>https://www.youtube.com/watch?v=VUH4gRDQYsA (迄今为止见过的最为详尽的视频介绍，甚至包括如何一步一步重现攻击）</li>
+</ul>
+</li>
+<li>Fix
+<ul>
+<li>danger of delegatecall
+<ul>
+<li>https://ethereum.stackexchange.com/questions/3667/difference-between-call-callcode-and-delegatecall</li>
+</ul>
+</li>
+<li>using Aragon/zeppelin way
+<ul>
+<li>https://blog.aragon.one/library-driven-development-in-solidity-2bebcaf88736</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#erc721" id="erc721"><h3>ERC721</h3></a>
+<ul>
+<li>
+<p>ERC721代币的核心是“Non-Fungible Tokens” NFT，不可互换的代币。怎么理解“不可互换”？ 比如你有2只猫（猫A和猫B），你的代币数量就是2，但是猫A和猫B是不同的，当你卖出你的猫时，你必须指定是卖哪只猫，因为猫A和猫B是不可以互换的。类比ERC20，就好比你有2块钱，这两块钱，你花其中任意一块钱，都不影响结果，只要账户里扣一块钱就可以了。 ERC721每个代币都有一个独立唯一的tokenid，这个id在这个cryptokitties里就是猫的id.</p>
+</li>
+<li>
+<p>In economics, fungibility is the property of a good or a commodity whose individual units are essentially interchangeable. For example, since one kilogram of pure gold is equivalent to any other kilogram of pure gold, whether in the form of coins, ingots, or in other states, gold is fungible.</p>
+</li>
+<li>
+<p>fungibility， 可互换，可互换物品，可替代性</p>
+</li>
+<li>
+<p>https://github.com/ethereum/EIPs/issues/721</p>
+<ul>
+<li>http://ethfans.org/posts/eip-721-non-fungible-token-standard</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#以太猫" id="以太猫"><h4>以太猫</h4></a>
+<ul>
+<li>https://etherscan.io/address/0x06012c8cf97bead5deae237070f9587f8e7a266d#readContract</li>
+</ul>
+<a class="header" href="print.html#references-18" id="references-18"><h3>References</h3></a>
+<ul>
+<li>https://consensys.github.io/smart-contract-best-practices/
+<ul>
+<li>(CN) https://github.com/ConsenSys/smart-contract-best-practices/blob/master/README-zh.md</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#什么是pre-image" id="什么是pre-image"><h3>什么是Pre-image</h3></a>
+<p>Pre-image是密码学哈希函数的一个安全级别。有的翻译为原像。哈希函数的安全级别包括：</p>
+<ul>
+<li>Pre-image resistance （抗原像）
+给定一个哈希值<code>h</code>，难以找到输入<code>m</code>，使得<code>h = hash(m)</code>。pre-image安全，或者抗per-image，也就意味着这个哈希函数的单向性得以保证。</li>
+<li>Second pre-image resistance （抗第二原像）
+给定一个输入<code>m1</code>，难以找到输入<code>m2</code>，使得<code>hash(m1) = hash(m2)</code>。第二原像，也称为弱抗碰撞性。</li>
+<li>Collision resistance 抗碰撞性
+难以找到两条不同的消息<code>m1</code>和<code>m2</code>，使得<code>hash(m1) = hash(m2)</code>。也称为强抗碰撞性。抗碰撞包含了抗第二原像，但并不能保证抗原像。</li>
+</ul>
+<p>参考：
+https://en.wikipedia.org/wiki/Cryptographic_hash_function</p>
+<a class="header" href="print.html#note-on-rsa-and-dual_ec_drbg" id="note-on-rsa-and-dual_ec_drbg"><h3>Note on RSA and Dual_EC_DRBG</h3></a>
+<ul>
+<li>https://en.wikipedia.org/wiki/Dual_EC_DRBG</li>
+<li>http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf</li>
+<li>http://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-90a.pdf</li>
+<li>https://blog.0xbadc0de.be/archives/155</li>
+</ul>
+<a class="header" href="print.html#prime-test" id="prime-test"><h4>Prime Test</h4></a>
+<ul>
+<li>https://en.wikipedia.org/wiki/Primality_test</li>
+<li>https://en.wikipedia.org/wiki/Fermat%27s_little_theorem （费马小定理）</li>
+<li>https://en.wikipedia.org/wiki/Fermat_primality_test</li>
+<li>https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test</li>
+<li>https://en.wikipedia.org/wiki/AKS_primality_test</li>
+</ul>
+<a class="header" href="print.html#signatures" id="signatures"><h2>signatures</h2></a>
+<p>https://bitcoin.stackexchange.com/a/12556</p>
+<p>There are two different encodings used. <strong>DER</strong> and <strong>compact</strong></p>
+<p>Everything in the Bitcoin protocol, including <strong>transaction signatures</strong> and <strong>alert signatures</strong>, uses DER encoding. This results in 71 bytes signatures (on average), as there are several header bytes, and the R and S valued are variable length.</p>
+<p>For <strong>message signatures</strong>, a custom encoding is used which is more compact (and more recent) and supports public key recovery (given a message and a signature, find which public key would have created it). The code you're referring to in the question is for creating such signatures.</p>
+<p>A correct DER-encoded signature has the following form:</p>
+<ul>
+<li>0x30: a header byte indicating a compound structure.
+A 1-byte length descriptor for all what follows.</li>
+<li>0x02: a header byte indicating an integer.
+A 1-byte length descriptor for the R value
+The R coordinate, as a big-endian integer.</li>
+<li>0x02: a header byte indicating an integer.
+A 1-byte length descriptor for the S value.
+The S coordinate, as a big-endian integer.</li>
+</ul>
+<p>Where initial 0x00 bytes for R and S are not allowed, except when their first byte would otherwise be above 0x7F (in which case a single 0x00 in front is required). Also note that inside transaction signatures, an extra hashtype byte follows the actual signature data.</p>
+<a class="header" href="print.html#ri" id="ri"><h2>RI</h2></a>
+<a class="header" href="print.html#cc" id="cc"><h3>C/C++</h3></a>
+<ul>
+<li>https://github.com/bitcoin-core/secp256k1</li>
+<li>by Peter Wuille</li>
+<li>又名 libsecp256k1</li>
+</ul>
+<a class="header" href="print.html#how-bitcoin-using-secp256k1" id="how-bitcoin-using-secp256k1"><h4>How bitcoin using secp256k1</h4></a>
+<ul>
+<li>https://github.com/bitcoin/bitcoin/blob/v0.15.1/src/wallet/rpcwallet.cpp#L163-L171
+<ul>
+<li>https://github.com/bitcoin/bitcoin/blob/v0.15.1/src/wallet/wallet.cpp#L3437 (pubkey from pool)
+<ul>
+<li>https://github.com/bitcoin/bitcoin/blob/v0.15.1/src/wallet/wallet.cpp#L125-L158 (how pubkey gen)
+<ul>
+<li>https://github.com/bitcoin/bitcoin/blob/v0.15.1/src/key.cpp#L152 (<strong>use secp256k1 to create pubkey</strong>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>https://github.com/bitcoin/bitcoin/blob/v0.15.1/src/pubkey.h#L144 (hash160)</li>
+<li>https://github.com/bitcoin/bitcoin/blob/v0.15.1/src/base58.cpp#L197 ( <code>CBitcoinAddress(keyID).ToString()</code> -&gt; base58check)</li>
+</ul>
+</li>
+</ul>
+<pre><code>$ src/bitcoin-cli getnewaddress
+1Fop9P6BvWX5PdYcnABur6vXYbRVK2zjXp
+$ src/bitcoin-cli dumpprivkey 1Fop9P6BvWX5PdYcnABur6vXYbRVK2zjXp
+L3o684tsf6E4ZKwHXWwLd3pzjRksG7e9eeknqQP8XBytjTv8utje
+$ echo L3o684tsf6E4ZKwHXWwLd3pzjRksG7e9eeknqQP8XBytjTv8utje|bx wif-to-public|bx ec-to-address
+1Fop9P6BvWX5PdYcnABur6vXYbRVK2zjXp
+</code></pre>
+<a class="header" href="print.html#how-ex-using-secp256k1" id="how-ex-using-secp256k1"><h4>How ex using secp256k1</h4></a>
+<ul>
+<li>https://github.com/libbitcoin/secp256k1 (is fork of bitcoin-core/secp256k1)
+<ul>
+<li>https://github.com/libbitcoin/libbitcoin/blob/v3.3.0/src/math/elliptic_curve.cpp</li>
+<li>https://github.com/libbitcoin/libbitcoin/blob/v3.3.0/src/math/elliptic_curve.cpp#L85</li>
+<li>https://github.com/libbitcoin/libbitcoin/blob/v3.3.0/src/wallet/ec_private.cpp#L201</li>
+<li>https://github.com/libbitcoin/libbitcoin-explorer/blob/v3.3.0/src/commands/ec-new.cpp#L53</li>
+</ul>
+</li>
+</ul>
+<pre><code>$ echo 000000000000000000000000000000000000000000000000 |bx ec-new
+f00ccc9dae46346963a579b2ffb3deb67a1cb0da158aef9c7b839ac05640d190
+$ echo 000000000000000000000000000000000000000000000000 |bx ec-new |bx ec-to-public
+03dc8335336fe1ea6936f2c13c5ac06b5ab585e5c72434f8bc74829349c9d14054
+$ echo 000000000000000000000000000000000000000000000000 |bx ec-new |bx ec-to-public |bx ec-to-address
+12KWaMA14HonuGKvEruKwe7rAFPbUzpwVM
+
+$ echo 000000000000000000000000000000000000000000000000 |bx ec-new |bx ec-to-wif
+L5GLUwKZA1VLu1u85n4ZqViWcDFrvh7nDzENesWwsk1Ed4wCHBXe
+$ echo 000000000000000000000000000000000000000000000000 |bx ec-new |bx ec-to-wif |bx wif-to-ec
+f00ccc9dae46346963a579b2ffb3deb67a1cb0da158aef9c7b839ac05640d190
+$ echo 000000000000000000000000000000000000000000000000 |bx ec-new |bx ec-to-wif |bx wif-to-ec|bx ec-to-public
+03dc8335336fe1ea6936f2c13c5ac06b5ab585e5c72434f8bc74829349c9d14054
+$ echo 000000000000000000000000000000000000000000000000 |bx ec-new |bx ec-to-wif |bx wif-to-ec|bx ec-to-public|bx ec-to-address
+12KWaMA14HonuGKvEruKwe7rAFPbUzpwVM
+</code></pre>
+<a class="header" href="print.html#how-picocoin-works-with-secp256k1" id="how-picocoin-works-with-secp256k1"><h4>How picocoin works with secp256k1</h4></a>
+<ul>
+<li>picocoin is C light lib by Jeff Garzik ( Gavin Andresen的朋友，<a href="https://github.com/btc1/bitcoin">segwit2x</a>的主要开发）</li>
+<li>https://github.com/jgarzik/picocoin/blob/v0.5/lib/key.c#L57-L73</li>
+</ul>
+<a class="header" href="print.html#how-rust-bitcoin-works-with-libsecp256k1" id="how-rust-bitcoin-works-with-libsecp256k1"><h4>how rust-bitcoin works with libsecp256k1</h4></a>
+<ul>
+<li>https://github.com/apoelstra/rust-bitcoin/blob/master/src/util/address.rs#L55-L64</li>
+<li>https://github.com/apoelstra/rust-secp256k1/blob/master/src/key.rs#L146-L160</li>
+<li>https://github.com/apoelstra/rust-secp256k1 is a wrapper around libsecp256k1,</li>
+</ul>
+<a class="header" href="print.html#how-bitcoinj-works-with-libsecp256k1" id="how-bitcoinj-works-with-libsecp256k1"><h4>how bitcoinj works with libsecp256k1</h4></a>
+<ul>
+<li>Using JNI (which provided by <code>libsecp256k1</code> officially)
+<ul>
+<li>https://github.com/bitcoin-core/secp256k1/tree/master/src/java/</li>
+</ul>
+</li>
+<li>https://github.com/bitcoinj/bitcoinj/blob/v0.14.5/core/src/main/java/org/bitcoin/NativeSecp256k1.java</li>
+<li>Note: <a href="https://github.com/bitcoinj">bitcoinj</a> looks maintained by <a href="https://github.com/greenaddress">greenaddress</a></li>
+</ul>
+<a class="header" href="print.html#python" id="python"><h3>Python</h3></a>
+<ul>
+<li>https://github.com/vbuterin/pybitcointools By VB</li>
+</ul>
+<pre><code>&gt;&gt;&gt; sha256('some big long brainwallet password')
+'57c617d9b4e1f7af6ec97ca2ff57e94a28279a7eedd4d12a99fa11170e94f5a4'
+&gt;&gt;&gt; decoded_private_key = bitcoin.decode_privkey(sha256('some big long brainwallet password'), 'hex')
+&gt;&gt;&gt; public_key = bitcoin.fast_multiply(bitcoin.G, decoded_private_key)
+&gt;&gt;&gt; hex_encoded_public_key = bitcoin.encode_pubkey(public_key, 'hex')
+&gt;&gt;&gt; bitcoin.pubkey_to_address(public_key)
+'1CQLd3bhw4EzaURHbKCwM5YZbUQfA4ReY6'
+&gt;&gt;&gt; (public_key_x, public_key_y) = public_key
+&gt;&gt;&gt; compressed_prefix = '02' if (public_key_y % 2) == 0 else '03'
+&gt;&gt;&gt; hex_compressed_public_key = compressed_prefix + bitcoin.encode(public_key_x, 16)
+&gt;&gt;&gt; bitcoin.pubkey_to_address(hex_compressed_public_key)
+'1EHw4jytKnzMSX8szNrXJ9FQiahKYnuuji'
+</code></pre>
+<pre><code>$ echo 57c617d9b4e1f7af6ec97ca2ff57e94a28279a7eedd4d12a99fa11170e94f5a4|bx ec-to-public|bx ec-to-address
+1EHw4jytKnzMSX8szNrXJ9FQiahKYnuuji
+</code></pre>
+<a class="header" href="print.html#javascript" id="javascript"><h3>Javascript</h3></a>
+<ul>
+<li>https://github.com/cryptocoinjs/secp256k1-node</li>
+</ul>
+<a class="header" href="print.html#go" id="go"><h3>Go</h3></a>
+<ul>
+<li>Package btcec implements elliptic curve cryptography needed for working with Bitcoin (secp256k1 only for now).</li>
+<li>https://github.com/btcsuite/btcd/tree/master/btcec
+<ul>
+<li>https://github.com/btcsuite/btcd/blob/master/btcec/pubkey.go#L69-L122</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#how-ethereum-works-with-secp256k1" id="how-ethereum-works-with-secp256k1"><h4>How Ethereum works with secp256k1</h4></a>
+<ul>
+<li>Ethereum use the hybrid solution
+<ul>
+<li>公钥生成使用标准go api (<code>crypto/ecdsa</code>)
+<ul>
+<li>https://github.com/ethereum/go-ethereum/blob/v1.7.2/accounts/keystore/key.go#L161-L167</li>
+</ul>
+</li>
+<li>签名使用cgo来调用libsecp256k1的c代码 （性能考虑）
+<ul>
+<li>https://github.com/ethereum/go-ethereum/blob/v1.7.2/crypto/secp256k1/secp256.go#L68-L97</li>
+</ul>
+</li>
+<li>同时集成了btcec包, 当使用non-cgo模式时候，则使用这种方式（https://github.com/ethereum/go-ethereum/pull/3680 non-cgo fallback implementation of secp256k1
+operations. The fallback implementation is not used when cgo is available. ）
+<ul>
+<li>https://github.com/ethereum/go-ethereum/blob/v1.7.2/crypto/signature_nocgo.go#L48-L72</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#c" id="c"><h3>C#</h3></a>
+<ul>
+<li>https://github.com/MetacoSA/NBitcoin/blob/v4.0.0.42/NBitcoin/Crypto/ECKey.cs#L98</li>
+<li>https://github.com/MetacoSA/NBitcoin/blob/v4.0.0.42/NBitcoin/BouncyCastle/math/ec/custom/sec/SecP256K1Curve.cs</li>
+</ul>
+<a class="header" href="print.html#object-c" id="object-c"><h3>Object-C</h3></a>
+<ul>
+<li>https://github.com/oleganza/CoreBitcoin/blob/0.6.8.1/openssl/include/openssl/obj_mac.h#L384-L386</li>
+<li>https://github.com/oleganza/CoreBitcoin/blob/0.6.8.1/CoreBitcoin/BTCKey.h</li>
+<li>https://github.com/oleganza/CoreBitcoin/blob/0.6.8.1/CoreBitcoin/BTCKey.m</li>
+<li>https://github.com/oleganza/CoreBitcoin/blob/0.6.8.1/CoreBitcoin/BTCCurvePoint.h</li>
+<li>https://github.com/oleganza/CoreBitcoin/blob/0.6.8.1/CoreBitcoin/BTCCurvePoint.m</li>
+</ul>
+<a class="header" href="print.html#reference-6" id="reference-6"><h2>Reference</h2></a>
+<ul>
+<li>https://en.bitcoin.it/wiki/Secp256k1</li>
+<li>https://bitcoin.stackexchange.com/a/21911</li>
+<li>https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch04.asciidoc</li>
+<li>https://github.com/bitcoinbook/bitcoinbook/blob/develop/code/key-to-address-ecc-example.py</li>
+</ul>
+<a class="header" href="print.html#prepare" id="prepare"><h3>Prepare</h3></a>
+<ul>
+<li>
+<p>https://blog.cloudflare.com/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/</p>
+</li>
+<li>
+<p>https://medium.com/@VitalikButerin/exploring-elliptic-curve-pairings-c73c1864e627</p>
+</li>
+<li>
+<p>https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649</p>
+</li>
+</ul>
+<a class="header" href="print.html#zk-snarks" id="zk-snarks"><h3>Zk-SNARKs</h3></a>
+<ul>
+<li>
+<p>https://blog.ethereum.org/2016/12/05/zksnarks-in-a-nutshell/</p>
+<ul>
+<li>http://chriseth.github.io/notes/articles/zksnarks/zksnarks.pdf</li>
+</ul>
+</li>
+<li>
+<p>https://medium.com/@VitalikButerin/zk-snarks-under-the-hood-b33151a013f6</p>
+</li>
+</ul>
+<a class="header" href="print.html#zk-starks" id="zk-starks"><h3>ZK-STARKs</h3></a>
+<ul>
+<li>http://vitalik.ca/general/2017/11/09/starks_part_1.html
+<ul>
+<li><a href="http://www.jianshu.com/p/ffb6b475312a">STARKs, Part I: 多项式证明</a></li>
+</ul>
+</li>
+<li>https://www.youtube.com/watch?v=HJ9K_o-RRSY
+<ul>
+<li>Transparent scalable computational integrity - Eli Ben Sasson, Silicon Valley ethereum meetup</li>
+<li>Eli is one of the main minds behind zk-SNARKs; he presented on STARKS, which have many properties similar to SNARKs, but do not require the trusted setup. </li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#intro-9" id="intro-9"><h3>Intro</h3></a>
+<a class="header" href="print.html#reference-7" id="reference-7"><h3>Reference</h3></a>
+<ul>
+<li>CoinJoin (by Gregory Maxwell)
+<ul>
+<li>https://en.wikipedia.org/wiki/CoinJoin</li>
+<li>https://bitcointalk.org/index.php?topic=279249.0</li>
+<li>https://en.bitcoin.it/wiki/CoinJoin</li>
+</ul>
+</li>
+<li>DarkCoin-&gt;Dash</li>
+<li>Tumblebit (by Ethan Heilman)
+<ul>
+<li>https://github.com/BUSEC/TumbleBit</li>
+<li>https://eprint.iacr.org/2016/575.pdf</li>
+<li>https://medium.com/@nopara73/tumblebit-vs-coinjoin-15e5a7d58e3</li>
+<li>https://hackernoon.com/understanding-tumblebit-part-1-making-the-case-823d786113f3</li>
+</ul>
+</li>
+<li>elements projects' confidential-transactions
+<ul>
+<li>https://www.elementsproject.org/elements/confidential-transactions/investigation.html</li>
+<li>https://www.elementsproject.org/elements/schnorr-signatures/</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#intro-10" id="intro-10"><h3>Intro</h3></a>
+<ul>
+<li>CryptoNote (Bytecoin (BCN) in July 2012)</li>
+<li>ShadowCash (dead)</li>
+<li>Monero(XMR)</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/1134993/32697983-ffa6a16c-c7d6-11e7-870a-9d94d6f0d47e.png" alt="screen shot 2017-11-12 at 6 24 28 pm" /></p>
+<p>Bob decides to spend an output, which was sent to the one-time public key. He needs Extra (1), TxOutNumber (2), and his Account private key (3) to recover his one-time private key (4).</p>
+<p><img src="https://user-images.githubusercontent.com/1134993/32697984-0009ab22-c7d7-11e7-9226-5a60a19ed94e.png" alt="screen shot 2017-11-12 at 6 24 42 pm" /></p>
+<p>When sending a transaction to Carol, Bob generates its Extra value by random (5). He uses Extra (6), TxOutNumber (7) and Carol's Account public key (8) to get her Output public key (9).
+In the input Bob hides the link to his output among the foreign keys (10). To prevent double-spending he also packs the Key image, derived from his One-time private key (11).
+Finally, Bob signs the transaction, using his One-time private key (12), all the public keys (13) and Key Image (14). He appends the resulting Ring Signature to the end of the transaction (15).</p>
+<a class="header" href="print.html#ringct" id="ringct"><h4>RingCT</h4></a>
+<ul>
+<li>Ring Confidential Transactions
+<ul>
+<li>https://lab.getmonero.org/pubs/MRL-0005.pdf</li>
+</ul>
+</li>
+<li>RingCT 2.0: A Compact Accumulator-Based (Linkable Ring Signature) Protocol for Blockchain Cryptocurrency Monero
+<ul>
+<li>https://eprint.iacr.org/2017/921.pdf</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#cryptonote-currencies" id="cryptonote-currencies"><h4>CryptoNote Currencies</h4></a>
+<ul>
+<li>https://cryptonote.org/coins/</li>
+<li>Create your own Cryptocurrency Easiest way to launch a Coin in 10 minutes!
+<ul>
+<li>https://cryptonotestarter.org/index.html</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#references-19" id="references-19"><h3>References</h3></a>
+<ul>
+<li>https://cryptonote.org/inside.php</li>
+<li>https://cryptonote.org/whitepaper.pdf</li>
+<li>https://en.wikipedia.org/wiki/Ring_signature</li>
+<li>https://bitcointalk.org/index.php?topic=583449.0%EF%BC%89%26%2365289%3B</li>
+<li>https://github.com/cryptonotefoundation/cryptonote</li>
+</ul>
+<a class="header" href="print.html#intro-11" id="intro-11"><h3>Intro</h3></a>
+<ul>
+<li>SM2 -&gt; ECC</li>
+<li>SM3 -&gt; Hash</li>
+<li>SM4 -&gt; EDS/AES</li>
+</ul>
+<a class="header" href="print.html#references-20" id="references-20"><h3>References</h3></a>
+<p>https://github.com/yeasy/fintech_talk/blob/master/20171206_SM2/content.md</p>
+<a class="header" href="print.html#intro-12" id="intro-12"><h3>Intro</h3></a>
+<ul>
+<li>主要武器
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Shor&#x27;s_algorithm">Shor’s algorithm</a>
+<ul>
+<li>1994，AT&amp;T的Peter shor，解决大因数分解。针对RSA，椭圆曲线</li>
+</ul>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Grover%27s_algorithm">Grover’s algorithm</a>
+<ul>
+<li>1996，基于量子的并行搜索算法，暴力破问题的解。适用更泛化，可以针对sha这些hash算法，以及对称密码AES,DES。Grover带来的是平方级的数据提升。也就是2^128位数的密码暴破，会退化为2^64次。所以人们建议翻倍位数以对抗量子攻击。</li>
+<li><a href="https://www.henrycg.com/files/academic/pres/quals17-slides.pdf">Grover Search and Its Cryptographic Applications by Henry Corrigan-Gibbs Qualifying Exam Talk 21 November 2016</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#lattice-based" id="lattice-based"><h3>lattice-based</h3></a>
+<a class="header" href="print.html#ntru-prime" id="ntru-prime"><h4>NTRU Prime</h4></a>
+<ul>
+<li>https://ntruprime.cr.yp.to/index.html</li>
+<li>https://github.com/companyzero/sntrup4591761 （go实现，by https://github.com/dajohi decred开发）</li>
+<li>https://github.com/companyzero/zkc/pull/54</li>
+<li>https://github.com/companyzero/zkc</li>
+</ul>
+<a class="header" href="print.html#reading" id="reading"><h3>Reading</h3></a>
+<ul>
+<li><a href="https://bitcoinmagazine.com/articles/bitcoin-is-not-quantum-safe-and-how-we-can-fix-1375242150/">Bitcoin Is Not Quantum-Safe, And How We Can Fix It When Needed - July 2013 by VB</a></li>
+<li></li>
+</ul>
+<a class="header" href="print.html#messaging" id="messaging"><h1>Messaging</h1></a>
+<a class="header" href="print.html#node-discovery" id="node-discovery"><h1>Node discovery</h1></a>
+<a class="header" href="print.html#gossip-协议" id="gossip-协议"><h2>Gossip 协议</h2></a>
+<a class="header" href="print.html#介绍-2" id="介绍-2"><h3>介绍</h3></a>
+<ul>
+<li>https://en.wikipedia.org/wiki/Gossip_protocol</li>
+</ul>
+<a class="header" href="print.html#规范" id="规范"><h3>规范</h3></a>
+<ul>
+<li>SWIM
+<ul>
+<li>https://www.cs.cornell.edu/~asdas/research/dsn02-swim.pdf</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#参考实现" id="参考实现"><h3>参考实现</h3></a>
+<a class="header" href="print.html#mesh" id="mesh"><h4>mesh</h4></a>
+<ul>
+<li>https://github.com/weaveworks/mesh/blob/master/gossip.go</li>
+</ul>
+<a class="header" href="print.html#hyperledger" id="hyperledger"><h4>hyperledger</h4></a>
+<ul>
+<li>https://github.com/hyperledger/fabric/blob/release/gossip/gossip/gossip.go</li>
+</ul>
+<a class="header" href="print.html#smudge" id="smudge"><h4>Smudge</h4></a>
+<ul>
+<li>https://github.com/clockworksoul/smudge</li>
+</ul>
+<a class="header" href="print.html#cassandra" id="cassandra"><h4>Cassandra</h4></a>
+<ul>
+<li>https://github.com/apache/cassandra/blob/trunk/src/java/org/apache/cassandra/gms/Gossiper.java</li>
+</ul>
+<a class="header" href="print.html#参考" id="参考"><h3>参考</h3></a>
+<ul>
+<li>https://en.wikipedia.org/wiki/Distributed_hash_table</li>
+<li>Profiling a million user dht
+<ul>
+<li>http://conferences.sigcomm.org/imc/2007/papers/imc150.pdf</li>
+</ul>
+</li>
+<li>https://bitcoin.stackexchange.com/questions/37366/why-doesnt-bitcoin-use-a-dht-for-choosing-peers
+<ul>
+<li>Bitcoin does not have any local data specific to a node, and every node needs to learn everything anyway. We have peer selection logic, but it optimizes for DoS protection robustness and propagation speed. What exactly would it use a DHT for? by Pieter Wuille</li>
+</ul>
+</li>
+<li>https://en.wikipedia.org/wiki/Kademlia</li>
+<li>https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf</li>
+</ul>
+<a class="header" href="print.html#code-1" id="code-1"><h3>Code</h3></a>
+<ul>
+<li>https://github.com/arvidn/libtorrent/tree/master/src/kademlia</li>
+</ul>
+<a class="header" href="print.html#synchronization" id="synchronization"><h1>Synchronization</h1></a>
+<a class="header" href="print.html#intro-13" id="intro-13"><h3>Intro</h3></a>
+<a class="header" href="print.html#netmsgtype" id="netmsgtype"><h4>NetMsgType</h4></a>
+<ul>
+<li>https://github.com/bitcoin/bitcoin/blob/v0.15.0.1/src/protocol.cpp#L47-L74</li>
+</ul>
+<a class="header" href="print.html#data-msg" id="data-msg"><h5>Data Msg</h5></a>
+<p><img src="https://user-images.githubusercontent.com/1134993/32413009-3920eb88-c1cd-11e7-921a-378680466224.png" alt="screen shot 2017-11-05 at 4 00 56 pm" /></p>
+<a class="header" href="print.html#control-msg" id="control-msg"><h5>Control Msg</h5></a>
+<p><img src="https://user-images.githubusercontent.com/1134993/32413020-c303f7dc-c1cd-11e7-92c7-052e15a96d9f.png" alt="screen shot 2017-11-05 at 4 04 41 pm" /></p>
+<a class="header" href="print.html#message-process" id="message-process"><h4>Message Process</h4></a>
+<ul>
+<li>https://github.com/bitcoin/bitcoin/blob/v0.15.0.1/src/net_processing.cpp#L1175</li>
+</ul>
+<a class="header" href="print.html#headers-first-sync" id="headers-first-sync"><h4>headers-first sync</h4></a>
+<ul>
+<li>https://bitcoin.org/en/glossary/headers-first-sync</li>
+<li>https://bitcoin.org/en/developer-reference#headers</li>
+<li>https://en.bitcoin.it/wiki/Protocol_documentation#Block_Headers</li>
+<li>https://en.bitcoin.it/wiki/Protocol_documentation#headers</li>
+<li><code>strCommand == NetMsgType::HEADERS</code> https://github.com/bitcoin/bitcoin/blob/v0.15.0.1/src/net_processing.cpp#L2238</li>
+<li>https://bitcoin.org/en/developer-reference#block</li>
+<li>https://en.bitcoin.it/wiki/Protocol_documentation#block</li>
+<li><code>strCommand == NetMsgType::BLOCK</code> https://github.com/bitcoin/bitcoin/blob/v0.15.0.1/src/net_processing.cpp#L2387</li>
+</ul>
+<a class="header" href="print.html#references-21" id="references-21"><h3>References</h3></a>
+<ul>
+<li>https://github.com/bitcoin/bitcoin/blob/v0.15.0.1/src/net_processing.cpp#L2883,L2906</li>
+<li>https://github.com/bitcoin/bitcoin/pull/4468/files</li>
+<li>https://bitcoin.org/en/developer-reference#p2p-network</li>
+<li>https://en.bitcoin.it/wiki/Protocol_documentation#Message_types
+<ul>
+<li>CN (https://zh-cn.bitcoin.it/wiki/%E5%8D%8F%E8%AE%AE%E8%AF%B4%E6%98%8E)</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#intro-14" id="intro-14"><h3>Intro</h3></a>
+<ul>
+<li>Atomic_cross-chain</li>
+<li>HTLC(Hashed Timelocked Contracts)</li>
+</ul>
+<a class="header" href="print.html#references-22" id="references-22"><h3>References</h3></a>
+<ul>
+<li>https://en.bitcoin.it/wiki/Atomic_cross-chain_trading</li>
+<li>https://z.cash/blog/htlc-bip.html</li>
+<li>https://github.com/bitcoin/bips/blob/master/bip-0199.mediawiki</li>
+</ul>
+<a class="header" href="print.html#interledger-protocol-ilp" id="interledger-protocol-ilp"><h2>Interledger Protocol (ILP)</h2></a>
+<a class="header" href="print.html#intro-15" id="intro-15"><h3>Intro</h3></a>
+<p>decentralized payment protocol
+<img src="https://user-images.githubusercontent.com/1134993/32131647-2ef08466-bb79-11e7-8588-8c57d48e520f.png" alt="screen shot 2017-10-28 at 1 44 12 pm" /></p>
+<a class="header" href="print.html#crypto-conditions" id="crypto-conditions"><h3>Crypto-Conditions</h3></a>
+<p>The crypto-conditions specification defines a set of encoding formats and data structures for <em>conditions</em> and <em>fulfillments</em>.  A condition uniquely identifies a logical &quot;boolean circuit&quot; constructed from one or more logic gates, evaluated by either validating a cryptographic signature or verifying the preimage of a hash digest.  A <strong>fulfillment</strong> is a data structure encoding one or more cryptographic signatures and hash digest preimages that define the structure of the circuit and  provide inputs to the logic gates allowing for the result of the circuit to be evaluated.</p>
+<p><img src="https://user-images.githubusercontent.com/1134993/32212404-9bd15624-bde4-11e7-8945-32bc7543b6be.png" alt="screen shot 2017-10-31 at 3 38 09 pm" /></p>
+<p><img src="https://user-images.githubusercontent.com/1134993/32211884-a27e1fcc-bde2-11e7-9cc3-41785ed48855.png" alt="screen shot 2017-10-31 at 3 23 15 pm" /></p>
+<ul>
+<li>https://tools.ietf.org/html/draft-thomas-crypto-conditions-02</li>
+<li>https://docs.bigchaindb.com/projects/server/en/latest/data-models/inputs-outputs.html</li>
+<li>https://github.com/go-interledger/cryptoconditions</li>
+<li>https://github.com/bigchaindb/cryptoconditions</li>
+<li>https://github.com/rfcs/crypto-conditions/</li>
+</ul>
+<a class="header" href="print.html#comments" id="comments"><h3>Comments</h3></a>
+<p>https://github.com/wanchain/crypto/blob/master/%E8%B7%A8%E9%93%BE%E6%8A%80%E6%9C%AF%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A.pdf</p>
+<blockquote>
+<p>Interledger 是 Ripple 于 2015 年ᨀ出的跨链交易协议，简称 ILP。它的目标是作为所有账本的仲裁器，无论是分布式账本还是中心化账本，目前代码开发已经基本完全。Interledger了两种交易的方式，atomic mode 和 universal mode。在 atomic  mode 下，节点先选定公证人（notaries），然后发送者将资金发送到可信第三方的账户（escrow），然后 connector 将资金发入接收者所在链的可信第三方账户，之后公证人获取到接收者的 commit 后，通过 PBFT 达成共识，通知两条链上的可信第三方，由两条链上的可信第三方再将资金分别转到connector 和接收者的账户；如果节点无法选定公证人，则进入 universal   mode，在这一模式下，不再由公证人决定交易进行状态，而是假设参与者均为理性的，由利益驱使整个交易的完成。Interledger 的设计上有如下的问题：</p>
+<ul>
+<li>需要选取公证人，且公证人无 membership change，无 weighting</li>
+<li>资金的接收者必须在线才能完成交易</li>
+<li>需要可信第三方 escrow</li>
+<li>无跨链交易历史明细纪录</li>
+</ul>
+</blockquote>
+<a class="header" href="print.html#references-23" id="references-23"><h3>References</h3></a>
+<ul>
+<li>https://interledger.org/rfcs/0003-interledger-protocol/</li>
+<li>https://www.youtube.com/watch?v=Dyi3RB50dDQ</li>
+<li>https://www.youtube.com/watch?v=UdCxrqP6w3I</li>
+</ul>
+<a class="header" href="print.html#video-2" id="video-2"><h4>Video</h4></a>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=6sg62TAng1U">Evan Schwartz &amp; Stefan Thomas @ ILP Workshop July 2016</a></li>
+</ul>
+<a class="header" href="print.html#intro-16" id="intro-16"><h3>Intro</h3></a>
+<p>Decentralized Identifiers (DIDs) are a new type of identifier intended for verifiable digital identity that is &quot;self-sovereign&quot;, fully under the control of an entity and not dependent on a centralized registry, identity provider, or certificate authority.</p>
+<p>DIDs resolve to DID Documents — simple documents that contain all the metadata needed to interact with the DID. Specifically, a DID Document typically contains at least three things.</p>
+<ul>
+<li>The first is a set of mechanisms that may be used to authenticate as as a particular DID (e.g. <strong>public keys</strong>, pseudonymous biometric templates, etc.).</li>
+<li>The second is a set of <strong>authorization information</strong> that outlines which entities may modify the DID Document.</li>
+<li>The third is a set of <strong>service endpoints</strong>, which may be used to initiate trusted interactions with the entity. This document specifies a common data model, format, and operations that all DIDs support.</li>
+</ul>
+<p>Decentralized Identifiers (DIDs) as personal trust anchors. Anyone can propose a DID method — ideally they leverage the power of blockchains, but a blockchain is not required. There are DID methods being proposed for public blockchains (Bitcoin, Blockstack, Ethereum), private blockchains (Sovrin/Indy), non-blockchain (IPFS), and even legacy web-of-trust identity systems (PGP).</p>
+<p>Decentralized identifier (DID) is simply a new type of globally unique identifier with special features designed for blockchains. But at a deeper level, DIDs are actually the tip of the iceberg or the tip of the spear of <strong>an entirely new layer of decentralized digital identity and public key infrastructure (PKI) for the Internet</strong>. This decentralized public key infrastructure (DPKI) could have as much impact on global cybersecurity and cyber-privacy as the development of the SSL/TLS protocol for encrypted Web traffic (now the largest PKI in the world).</p>
+<p>目标：cross-chain rooting, indexing, and resolution of decentralized identifiers and names.</p>
+<a class="header" href="print.html#references-24" id="references-24"><h3>References</h3></a>
+<ul>
+<li>https://w3c-ccg.github.io/did-spec/</li>
+<li>http://www.weboftrust.info/papers.html
+<ul>
+<li>https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2016/blob/master/final-documents/hubs.pdf</li>
+</ul>
+</li>
+<li>https://github.com/WebOfTrustInfo/
+<ul>
+<li>https://github.com/WebOfTrustInfo/btcr-hackathon</li>
+</ul>
+</li>
+<li>http://identity.foundation/</li>
+<li>https://github.com/decentralized-identity/
+<ul>
+<li>https://github.com/decentralized-identity/hubs</li>
+</ul>
+</li>
+<li>https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2017
+<ul>
+<li>https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2017/blob/master/topics-and-advance-readings/did-primer.md</li>
+<li>https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2017/blob/master/topics-and-advance-readings/verifiable-claims-primer.md</li>
+<li>https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2017/blob/master/topics-and-advance-readings/functional-identity-primer.md</li>
+<li>https://github.com/WebOfTrustInfo/rebooting-the-web-of-trust-fall2017/blob/master/topics-and-advance-readings/self-sovereign-identity-primer.md</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#0x-protocol" id="0x-protocol"><h2>0x Protocol</h2></a>
+<a class="header" href="print.html#intro-17" id="intro-17"><h3>Intro</h3></a>
+<p>a protocol that facilitates low friction peer-to-peer exchange of ERC20 tokens on the Ethereum .
+<img src="https://user-images.githubusercontent.com/1134993/32132098-c0008fec-bb82-11e7-88b9-c491c5fae4b0.png" alt="screen shot 2017-10-28 at 2 52 39 pm" /></p>
+<a class="header" href="print.html#references-25" id="references-25"><h3>References</h3></a>
+<ul>
+<li>https://github.com/0xProject/whitepaper/raw/master/0x_white_paper.pdf</li>
+<li>https://github.com/0xProject/wiki/blob/master/protocol/Message-Format.md</li>
+<li>https://github.com/0xProject/wiki/blob/master/smart-contracts/Contract-Interactions.md</li>
+<li>https://github.com/0xProject/wiki/blob/master/smart-contracts/Architecture.md</li>
+</ul>
+<a class="header" href="print.html#polkadot" id="polkadot"><h1>Polkadot</h1></a>
+<a class="header" href="print.html#cosmos" id="cosmos"><h3>Cosmos</h3></a>
+<ul>
+<li>https://cosmos.network/whitepaper</li>
+</ul>
+<a class="header" href="print.html#cosmos-ibc" id="cosmos-ibc"><h3>Cosmos IBC</h3></a>
+<ul>
+<li>https://github.com/cosmos/ibc/blob/master/CosmosIBCSpecification.pdf
+<ul>
+<li>https://steemit.com/cn/@legendx/cosmos-1</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#intro-18" id="intro-18"><h3>Intro</h3></a>
+<ul>
+<li>settlement</li>
+<li>clearinghouse</li>
+<li>exchange data</li>
+<li>Ethereum smart contracts</li>
+<li>protocol tokens</li>
+</ul>
+<a class="header" href="print.html#references-26" id="references-26"><h3>References</h3></a>
+<ul>
+<li>https://cdn.omise.co/omg/whitepaper.pdf
+<ul>
+<li>https://cdn.omise.co/omg/CNwhitepaper.pdf</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#intro-19" id="intro-19"><h3>Intro</h3></a>
+<ul>
+<li>Market type
+<ul>
+<li>off-chain markets with single-price batches</li>
+<li>off-chain brokers</li>
+<li>on-chain markets</li>
+</ul>
+</li>
+<li>Oracle type
+<ul>
+<li>subcurrency voting oracles</li>
+<li>betting oracles</li>
+<li>public feeds.</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#reference-8" id="reference-8"><h3>Reference</h3></a>
+<ul>
+<li>https://github.com/zack-bitcoin/amoveo/blob/master/docs/progress_reports/october_2017.md</li>
+<li>https://github.com/zack-bitcoin/amoveo/blob/master/docs/progress_reports/november_2017.md</li>
+<li>https://github.com/zack-bitcoin/amoveo/blob/master/docs/design/state_channel_without_off_chain_market.md</li>
+</ul>
+<a class="header" href="print.html#gnosis" id="gnosis"><h1>Gnosis</h1></a>
+<a class="header" href="print.html#augur" id="augur"><h1>Augur</h1></a>
+<a class="header" href="print.html#amoveo" id="amoveo"><h1>Amoveo</h1></a>
+<a class="header" href="print.html#intro-20" id="intro-20"><h3>Intro</h3></a>
+<ul>
+<li>Bitcoin integration</li>
+<li>Verified contracts (F*)</li>
+<li>Contract lifeCycle (Active Contract Set)</li>
+<li>Multihash mining</li>
+<li>Merklized Oracle</li>
+</ul>
+<a class="header" href="print.html#references-27" id="references-27"><h3>References</h3></a>
+<ul>
+<li>https://www.zenprotocol.com/files/multi_hash_mining.pdf</li>
+<li>https://www.zenprotocol.com/files/zen_protocol_bitcoin_integration.pdf</li>
+<li>https://www.zenprotocol.com/files/technical_paper.pdf</li>
+<li>https://www.zenprotocol.com/files/zen_protocol_white_paper.pdf</li>
+<li>https://github.com/zenprotocol</li>
+<li>http://alpha.zenprotocol.com/Contract/Index/DbOcE1MstU26MJvFCkgLk_6ghiq0NUpucPP_i9oUaA01</li>
+</ul>
+<a class="header" href="print.html#video-3" id="video-3"><h4>Video</h4></a>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=ypmQdTga1vM">Zen Protocol Tel Aviv Meetup Presentation - Adam Perlow - Jul,2017</a></li>
+<li><a href="https://www.youtube.com/watch?v=SD9dhtGfOMU">Zen Protocol Presentation - Adam Perlow - Jul 18, 2017</a></li>
+<li><a href="https://www.youtube.com/watch?v=FrTDSbPWd6g">Google Campus Presentation, Adam Perlow - Dec, 2016</a></li>
+</ul>
+<a class="header" href="print.html#smartcontract" id="smartcontract"><h1>SmartContract</h1></a>
+<a class="header" href="print.html#eth" id="eth"><h3>ETH</h3></a>
+<a class="header" href="print.html#baneex-smart-asset" id="baneex-smart-asset"><h4>BaneEx smart-asset</h4></a>
+<ul>
+<li>https://github.com/BankEx/whitepaper/blob/master/bankex-whitepaper.pdf</li>
+<li>https://github.com/BankEx/smart-asset-core/blob/dev/contracts/SmartAsset.sol
+<ul>
+<li>https://dev-web-prototype-bankex.azurewebsites.net/</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#trustlinesnetwork" id="trustlinesnetwork"><h2>trustlines.network</h2></a>
+<p>熟人借贷经济模式</p>
+<a class="header" href="print.html#iou" id="iou"><h3>IOU</h3></a>
+<p>‘I owe you’</p>
+<ul>
+<li>https://github.com/trustlines-network/TLPR/blob/master/Trustlines_White_Paper_v3.md#ious-on-the-blockchain</li>
+<li>https://github.com/trustlines-network/TLPR/blob/master/Trustlines_White_Paper_v3.md#credit-line</li>
+</ul>
+<a class="header" href="print.html#fee--loan" id="fee--loan"><h3>Fee &amp; Loan</h3></a>
+<ul>
+<li>https://github.com/trustlines-network/TLPR/blob/master/Trustlines_White_Paper_v3.md#fees-1</li>
+<li>https://github.com/trustlines-network/TLPR/blob/master/Trustlines_White_Paper_v3.md#loans</li>
+</ul>
+<a class="header" href="print.html#中文白皮书" id="中文白皮书"><h3>中文白皮书</h3></a>
+<p>https://mp.weixin.qq.com/s?__biz=MzI3OTYzOTU3NQ==&amp;mid=2247485250&amp;idx=2&amp;sn=93eefc5b64791e8b780731b00984ad1b&amp;chksm=eb45e43adc326d2ceec725154a4b1f77b21c0f11c9b3264736a693b768c42142de84612821ac&amp;mpshare=1&amp;scene=1&amp;srcid=12196z27RQalxHRUwrU8nOXu&amp;pass_ticket=pkSrVZFPaIM%2Fwwg%2Fbd9qRkyHRpBOYHgRepR0dsTnmSo%3D#rd</p>
+<a class="header" href="print.html#reference-9" id="reference-9"><h3>Reference</h3></a>
+<ul>
+<li>https://github.com/trustlines-network/relay/blob/master/relay/graph.py (dijkstra_path)</li>
+<li>https://github.com/trustlines-network/contracts/blob/master/contracts/lib/Resolver.sol</li>
+</ul>
+<a class="header" href="print.html#参考文档-1" id="参考文档-1"><h3>参考文档</h3></a>
+<ul>
+<li>https://forum.qtum.org/topic/193/qtum%E6%98%9F%E7%81%AB%E7%BD%91%E7%BB%9C-sparknet-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E5%8F%8A%E8%AF%B4%E6%98%8E</li>
+<li>https://github.com/qtumproject/qtum/blob/testnet-1/doc/sparknet-guide.md</li>
+<li>https://github.com/qtumproject/qtum/wiki/Qtum-Blockchain-Instruction</li>
+<li>https://bodhiproject.github.io/wiki/deployment/</li>
+<li>https://github.com/hayeah/qtum-dapp-counter#developing-the-dapp-ui</li>
+</ul>
+<a class="header" href="print.html#evm对比-qtum-vs-ethereum" id="evm对比-qtum-vs-ethereum"><h2>EVM对比 Qtum vs. Ethereum</h2></a>
+<ul>
+<li>Qtum的EVM来自Cpp Ethereum代码</li>
+<li>Qtum基于UTXO模型，加入了账户抽象层（Account Abstraction Layer），用于将UTXO模型转换成可供EVM执行的账户模型。</li>
+<li>Qtum对Bitcoin的Opcode进行扩展，添加了3个新的Opcode
+<ul>
+<li>OP_CREATE – 用于执行EVM智能合约的创建，把通过交易传输的字节代码存放到合约RLP数据库，并生成一个合约账户</li>
+<li>OP_CALL – 用于传递调用智能合约所需要的相关数据（即EVM中的CALLERDATA）和地址信息，并执行合约中的代码内容。该操作符还可为智能合约发送资金。</li>
+<li>OP_SPEND – 将当前合约的ID哈希值作为输入的交易HASH，或发送到合约的UTXO的交易HASH，然后使用OP_SPEND作为花费指令构建交易脚本。</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#qtum-contract命令包括" id="qtum-contract命令包括"><h2>Qtum Contract命令包括：</h2></a>
+<ul>
+<li>createcontract</li>
+<li>callcontract （&quot;query&quot; mode, 所有的计算都是在链下(本地，local blockchain）进行，不需要消耗gas）</li>
+<li>sendtocontract （“commit” mode, 所有的计算都是在链上进行的，并且所有的状态改变都会同步到链上。这个命令可以向合约发送代币，会消耗gas)</li>
+<li>listcontracts</li>
+</ul>
+<a class="header" href="print.html#createcontract" id="createcontract"><h3>createcontract</h3></a>
+<pre><code>$ ./src/qtum-cli -testnet help createcontract
+createcontract &quot;bytecode&quot; (gaslimit gasprice &quot;senderaddress&quot; broadcast)
+Create a contract with bytcode.
+
+Arguments:
+1. &quot;bytecode&quot;  (string, required) contract bytcode.
+2. gasLimit  (numeric or string, optional) gasLimit, default: 2500000, max: 40000000
+3. gasPrice  (numeric or string, optional) gasPrice QTUM price per gas unit, default: 0.0000004, min:0.0000004
+4. &quot;senderaddress&quot; (string, optional) The quantum address that will be used to create the contract.
+5. &quot;broadcast&quot; (bool, optional, default=true) Whether to broadcast the transaction or not.
+6. &quot;changeToSender&quot; (bool, optional, default=true) Return the change to the sender.
+
+Result:
+[
+  {
+    &quot;txid&quot; : (string) The transaction id.
+    &quot;sender&quot; : (string) QTUM address of the sender.
+    &quot;hash160&quot; : (string) ripemd-160 hash of the sender.
+    &quot;address&quot; : (string) expected contract address.
+  }
+]
+
+Examples:
+&gt; qtum-cli createcontract &quot;60606040525b33600060006101000a81548173ffffffffffffffffffffffffffffffffffffffff02191690836c010000000000000000000000009081020402179055506103786001600050819055505b600c80605b6000396
+000f360606040526008565b600256&quot;
+&gt; qtum-cli createcontract &quot;60606040525b33600060006101000a81548173ffffffffffffffffffffffffffffffffffffffff02191690836c010000000000000000000000009081020402179055506103786001600050819055505b600c80605b6000396
+000f360606040526008565b600256&quot; 6000000 0.0000004 &quot;QM72Sfpbz1BPpXFHz9m3CdqATR44Jvaydd&quot; true
+</code></pre>
+<a class="header" href="print.html#实现" id="实现"><h4>实现</h4></a>
+<p>https://github.com/qtumproject/qtum/blob/master/src/wallet/rpcwallet.cpp</p>
+<pre><code class="language-cpp">    if(fBroadcast){
+        CValidationState state;
+        if (!pwalletMain-&gt;CommitTransaction(wtx, reservekey, g_connman.get(), state))
+            throw JSONRPCError(RPC_WALLET_ERROR, &quot;Error: The transaction was rejected! This might happen if some of the coins in your wallet were already spent, such as if you used a copy of the wallet and coins were spent in the copy but not marked as spent here.&quot;);
+
+        std::string txId=wtx.GetHash().GetHex();
+        result.push_back(Pair(&quot;txid&quot;, txId));
+
+        CBitcoinAddress txSenderAdress(txSenderDest);
+        CKeyID keyid;
+        txSenderAdress.GetKeyID(keyid);
+
+        result.push_back(Pair(&quot;sender&quot;, txSenderAdress.ToString()));
+        result.push_back(Pair(&quot;hash160&quot;, HexStr(valtype(keyid.begin(),keyid.end()))));
+
+        std::vector&lt;unsigned char&gt; SHA256TxVout(32);
+        vector&lt;unsigned char&gt; contractAddress(20);
+        vector&lt;unsigned char&gt; txIdAndVout(wtx.GetHash().begin(), wtx.GetHash().end());
+        uint32_t voutNumber=0;
+        BOOST_FOREACH(const CTxOut&amp; txout, wtx.tx-&gt;vout) {
+            if(txout.scriptPubKey.HasOpCreate()){
+                std::vector&lt;unsigned char&gt; voutNumberChrs;
+                if (voutNumberChrs.size() &lt; sizeof(voutNumber))voutNumberChrs.resize(sizeof(voutNumber));
+                std::memcpy(voutNumberChrs.data(), &amp;voutNumber, sizeof(voutNumber));
+                txIdAndVout.insert(txIdAndVout.end(),voutNumberChrs.begin(),voutNumberChrs.end());
+                break;
+            }
+            voutNumber++;
+        }
+        CSHA256().Write(txIdAndVout.data(), txIdAndVout.size()).Finalize(SHA256TxVout.data());
+        CRIPEMD160().Write(SHA256TxVout.data(), SHA256TxVout.size()).Finalize(contractAddress.data());
+        result.push_back(Pair(&quot;address&quot;, HexStr(contractAddress)));
+    }else{
+        string strHex = EncodeHexTx(*wtx.tx, RPCSerializationFlags());
+        result.push_back(Pair(&quot;raw transaction&quot;, strHex));
+    }
+    return result;
+</code></pre>
+<a class="header" href="print.html#callcontract" id="callcontract"><h3>callcontract</h3></a>
+<pre><code>$ ./src/qtum-cli -testnet help callcontract
+callcontract &quot;address&quot; &quot;data&quot; ( address )
+
+Argument:
+1. &quot;address&quot;          (string, required) The account address
+2. &quot;data&quot;             (string, required) The data hex string
+3. address              (string, optional) The sender address hex string
+4. gasLimit             (string, optional) The gas limit for executing the contract
+</code></pre>
+<a class="header" href="print.html#sendtocontract" id="sendtocontract"><h3>sendtocontract</h3></a>
+<pre><code>$ ./src/qtum-cli -testnet help sendtocontract
+sendtocontract &quot;contractaddress&quot; &quot;data&quot; (amount gaslimit gasprice senderaddress broadcast)
+Send funds and data to a contract.
+
+Arguments:
+1. &quot;contractaddress&quot; (string, required) The contract address that will receive the funds and data.
+2. &quot;datahex&quot;  (string, required) data to send.
+3. &quot;amount&quot;      (numeric or string, optional) The amount in QTUM to send. eg 0.1, default: 0
+4. gasLimit  (numeric or string, optional) gasLimit, default: 250000, max: 40000000
+5. gasPrice  (numeric or string, optional) gasPrice Qtum price per gas unit, default: 0.0000004, min:0.0000004
+6. &quot;senderaddress&quot; (string, optional) The quantum address that will be used as sender.
+7. &quot;broadcast&quot; (bool, optional, default=true) Whether to broadcast the transaction or not.
+8. &quot;changeToSender&quot; (bool, optional, default=true) Return the change to the sender.
+
+Result:
+[
+  {
+    &quot;txid&quot; : (string) The transaction id.
+    &quot;sender&quot; : (string) QTUM address of the sender.
+    &quot;hash160&quot; : (string) ripemd-160 hash of the sender.
+  }
+]
+
+Examples:
+&gt; qtum-cli sendtocontract &quot;c6ca2697719d00446d4ea51f6fac8fd1e9310214&quot; &quot;54f6127f&quot;
+&gt; qtum-cli sendtocontract &quot;c6ca2697719d00446d4ea51f6fac8fd1e9310214&quot; &quot;54f6127f&quot; 12.0015 6000000 0.0000004 &quot;QM72Sfpbz1BPpXFHz9m3CdqATR44Jvaydd&quot;
+</code></pre>
+<a class="header" href="print.html#以太的创建合约与调用" id="以太的创建合约与调用"><h2>以太的创建合约与调用</h2></a>
+<a class="header" href="print.html#创建合约" id="创建合约"><h3>创建合约</h3></a>
+<ul>
+<li>https://github.com/ethereum/wiki/wiki/JavaScript-API#web3ethsendtransaction</li>
+</ul>
+<pre><code>// compiled solidity source code using https://chriseth.github.io/cpp-ethereum/
+var code = &quot;603d80600c6000396000f3007c01000000000000000000000000000000000000000000000000000000006000350463c6888fa18114602d57005b6007600435028060005260206000f3&quot;;
+
+web3.eth.sendTransaction({data: code}, function(err, transactionHash) {
+  if (!err)
+    console.log(transactionHash); // &quot;0x7f9fade1c0d57a7af66ab4ead7c2eb7b11a91385&quot;
+});
+</code></pre>
+<ul>
+<li>from: String - The address for the sending account. Uses the web3.eth.defaultAccount property, if not specified.</li>
+<li>to: String - (optional) The destination address of the message, left undefined for a contract-creation transaction.</li>
+<li>value: Number|String|BigNumber - (optional) The value transferred for the transaction in Wei, also the endowment if it's a contract-creation transaction.</li>
+<li>gas: Number|String|BigNumber - (optional, default: To-Be-Determined) The amount of gas to use for the transaction (unused gas is refunded).</li>
+<li>gasPrice: Number|String|BigNumber - (optional, default: To-Be-Determined) The price of gas for this transaction in wei, defaults to the mean network gas price.</li>
+<li><strong>data: String - (optional)</strong> Either a byte string containing the associated data of the message, or in the case of a contract-creation transaction, the initialisation code.</li>
+<li>nonce: Number - (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.</li>
+</ul>
+<p>https://github.com/ethereum/go-ethereum/blob/v1.7.3/internal/ethapi/api.go#L339,L371</p>
+<pre><code class="language-golang">// SendTransaction will create a transaction from the given arguments and
+// tries to sign it with the key associated with args.To. If the given passwd isn't
+// able to decrypt the key it fails.
+func (s *PrivateAccountAPI) SendTransaction(ctx context.Context, args SendTxArgs, passwd string) (common.Hash, error) {
+    // Look up the wallet containing the requested signer
+    account := accounts.Account{Address: args.From}
+
+    wallet, err := s.am.Find(account)
+    if err != nil {
+        return common.Hash{}, err
+    }
+
+    if args.Nonce == nil {
+        // Hold the addresse's mutex around signing to prevent concurrent assignment of
+        // the same nonce to multiple accounts.
+        s.nonceLock.LockAddr(args.From)
+        defer s.nonceLock.UnlockAddr(args.From)
+    }
+
+    // Set some sanity defaults and terminate on failure
+    if err := args.setDefaults(ctx, s.b); err != nil {
+        return common.Hash{}, err
+    }
+    // Assemble the transaction and sign with the wallet
+    tx := args.toTransaction()
+
+    var chainID *big.Int
+    if config := s.b.ChainConfig(); config.IsEIP155(s.b.CurrentBlock().Number()) {
+        chainID = config.ChainId
+    }
+    signed, err := wallet.SignTxWithPassphrase(account, passwd, tx, chainID)
+    if err != nil {
+        return common.Hash{}, err
+    }
+    return submitTransaction(ctx, s.b, signed)
+}
+...
+// submitTransaction is a helper function that submits tx to txPool and logs a message.
+func submitTransaction(ctx context.Context, b Backend, tx *types.Transaction) (common.Hash, error) {
+    if err := b.SendTx(ctx, tx); err != nil {
+        return common.Hash{}, err
+    }
+    if tx.To() == nil { //如果目标地址为空, 则记录该TX为contract创建
+        signer := types.MakeSigner(b.ChainConfig(), b.CurrentBlock().Number())
+        from, err := types.Sender(signer, tx)
+        if err != nil {
+            return common.Hash{}, err
+        }
+        addr := crypto.CreateAddress(from, tx.Nonce()) 
+        log.Info(&quot;Submitted contract creation&quot;, &quot;fullhash&quot;, tx.Hash().Hex(), &quot;contract&quot;, addr.Hex())
+    } else {
+        log.Info(&quot;Submitted transaction&quot;, &quot;fullhash&quot;, tx.Hash().Hex(), &quot;recipient&quot;, tx.To())
+    }
+    return tx.Hash(), nil
+}
+</code></pre>
+<a class="header" href="print.html#合约地址的生成" id="合约地址的生成"><h4>合约地址的生成</h4></a>
+<pre><code class="language-golang">// Creates an ethereum address given the bytes and the nonce
+func CreateAddress(b common.Address, nonce uint64) common.Address {
+    data, _ := rlp.EncodeToBytes([]interface{}{b, nonce})
+    return common.BytesToAddress(Keccak256(data)[12:])
+}
+</code></pre>
+<pre><code class="language-python">def mk_contract_address(sender, nonce):
+    return sha3(rlp.encode([normalize_address(sender), nonce]))[12:]
+</code></pre>
+<a class="header" href="print.html#读取数据非修改状态" id="读取数据非修改状态"><h4>读取数据（非修改状态）</h4></a>
+<p>Call is to be used only when the request does not modify the state of the blockchain (typically only reading fields or calling constant marked functions.</p>
+<ul>
+<li>Creating contract instance: asynchronous call (using sendTransaction). Completion is managed through the callback, called once with the Tx hash and a second time with the contract address.</li>
+<li>Reading contract data: synchronous call to the local node via the call methodology.</li>
+<li>Updating data: asynchronous call (using sendTransaction) with methods that do not return values. Call returns synchronously (or eventually async.) the Tx hash that can then be monitored for completion via the getTransactionReceipt (using the eth.filter('latest') that tells when the next block has been mined)</li>
+<li>Receiving info asynchronously: Use of event in the contract. Monitor the reception via eth.filter( options, callback ).</li>
+<li>Catching up with events after a disconnected period: use eth.filter({fromBlock: xyz, toBlock: eth.currentBlock, ...}).get()</li>
+</ul>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+
+                
+
+            </div>
+
+            
+
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+    <script type="text/javascript">
+        var socket = new WebSocket("ws://localhost:3001");
+        socket.onmessage = function (event) {
+            if (event.data === "reload") {
+                socket.close();
+                location.reload(true); // force reload from server (not from cache)
+            }
+        };
+
+        window.onbeforeunload = function() {
+            socket.close();
+        }
+    </script>
+
+
+        
+
+        
+
+        
+        <script>
+            $(document).ready(function() {
+                window.print();
+            })
+        </script>
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
+</html>

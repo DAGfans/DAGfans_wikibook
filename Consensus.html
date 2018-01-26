@@ -1,0 +1,303 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Consensus algorithm - </title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+        <!-- MathJax -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li><a href="./Intro.html"><strong>1.</strong> Intro</a></li><li><a href="./DagHistory.html"><strong>2.</strong> History</a></li><li><a href="./Wallet.html"><strong>3.</strong> Wallet</a></li><li><ul class="section"><li><a href="./Deterministic_wallet.html"><strong>3.1.</strong> Deterministic Wallet</a></li><li><a href="./Mnemonic.html"><strong>3.2.</strong> Mnemonic</a></li></ul></li><li><a href="./Testnet.html"><strong>4.</strong> Testnet &amp; faucet</a></li><li><ul class="section"><li><a href="./BTC_testnet.html"><strong>4.1.</strong> Bitcoin Testnet</a></li><li><a href="./ETH_testnet.html"><strong>4.2.</strong> Ethereum Testnet</a></li><li><a href="./GByte_testnet.html"><strong>4.3.</strong> Byteball Testnet</a></li></ul></li><li><a href="./Address.html"><strong>5.</strong> Address</a></li><li><ul class="section"><li><a href="./btc_addr.html"><strong>5.1.</strong> Bitcoin Address</a></li></ul></li><li><a href="./Data_Structure.html"><strong>6.</strong> Data Structure</a></li><li><ul class="section"><li><a href="./Transcation.html"><strong>6.1.</strong> Transcation</a></li><li><a href="./btc_tx.html"><strong>6.2.</strong> Bitcoin Transaction</a></li><li><a href="./MerkleTree.html"><strong>6.3.</strong> MerkleTree</a></li><li><a href="./PatriciaTree.html"><strong>6.4.</strong> PatriciaTree</a></li><li><a href="./IAVL_Tree.html"><strong>6.5.</strong> Merkleized IAVL+ Tree</a></li><li><a href="./MerkleDAG.html"><strong>6.6.</strong> MerkleDAG</a></li></ul></li><li><a href="./Data_Storage.html"><strong>7.</strong> Data Storage</a></li><li><ul class="section"><li><a href="./btc_datastore.html"><strong>7.1.</strong> Bitcoin</a></li></ul></li><li><a href="./Consensus.html" class="active"><strong>8.</strong> Consensus algorithm</a></li><li><ul class="section"><li><a href="./Consensus_POS_Ouroboros.html"><strong>8.1.</strong> IOHK/Ouroboros</a></li><li><a href="./DFINITY.html"><strong>8.2.</strong> DFINITY</a></li><li><a href="./Stellar.html"><strong>8.3.</strong> Stellar(SCP)</a></li><li><a href="./Matrix.html"><strong>8.4.</strong> Matrix</a></li><li><a href="./Ripple.html"><strong>8.5.</strong> Ripple</a></li><li><a href="./Casper.html"><strong>8.6.</strong> Casper</a></li><li><a href="./PoA.html"><strong>8.7.</strong> POA(Parity)</a></li><li><a href="./Terndermint.html"><strong>8.8.</strong> Tendermint</a></li><li><a href="./Delegated_Consensus.html"><strong>8.9.</strong> dBFT(NEO/Antshare)/dPOS(BTS/Steem/EOS/Lisk)</a></li><li><a href="./Algorand.html"><strong>8.10.</strong> Algorand</a></li></ul></li><li><a href="./Scalability.html"><strong>9.</strong> Scalability</a></li><li><ul class="section"><li><a href="./Ouroboros_Praos.html"><strong>9.1.</strong> Ouroboros Praos</a></li><li><a href="./EOS.html"><strong>9.2.</strong> EOS</a></li><li><a href="./eth_parallelizability.html"><strong>9.3.</strong> Ethereum Parallelizability</a></li></ul></li><li><a href="./Validation.html"><strong>10.</strong> Validation</a></li><li><ul class="section"><li><a href="./Segwit.html"><strong>10.1.</strong> Segwit</a></li><li><a href="./Multisignature.html"><strong>10.2.</strong> Multisignature</a></li><li><a href="./Tx_Malleability.html"><strong>10.3.</strong> Transaction Malleability</a></li><li><a href="./Double_Spend.html"><strong>10.4.</strong> Double Spend</a></li><li><a href="./Peplay_Protect.html"><strong>10.5.</strong> Replay Protection</a></li><li><a href="./TrueBit.html"><strong>10.6.</strong> Truebit</a></li></ul></li><li><a href="./Money_Denomiation_Token.html"><strong>11.</strong> Money &amp; Token</a></li><li><ul class="section"><li><a href="./TxFee_BTC.html"><strong>11.1.</strong> Bitcoin TxFee</a></li><li><a href="./RBF.html"><strong>11.2.</strong> Bitcoin Replace by fee</a></li><li><a href="./TxFee_ETH.html"><strong>11.3.</strong> Ethereum TxFee</a></li><li><a href="./ERC20.html"><strong>11.4.</strong> ERC20/ERC223/ERC721</a></li></ul></li><li><a href="./Crypto.html"><strong>12.</strong> Crypto Algorithm</a></li><li><ul class="section"><li><a href="./secp256k1.html"><strong>12.1.</strong> secp256k1</a></li><li><a href="./ZK-SNARKs.html"><strong>12.2.</strong> ZKP/ZK-SNARKs</a></li><li><a href="./CoinJoin.html"><strong>12.3.</strong> CoinJoin</a></li><li><a href="./RingSig.html"><strong>12.4.</strong> RingSig</a></li><li><a href="./Crypto_SM.html"><strong>12.5.</strong> SMx</a></li><li><a href="./PQC.html"><strong>12.6.</strong> Post-Quantum Cryptography</a></li></ul></li><li><a href="./Messaging.html"><strong>13.</strong> Messaging</a></li><li><a href="./Node_Discovery.html"><strong>14.</strong> Node discovery</a></li><li><ul class="section"><li><a href="./Gossip_Protocol.html"><strong>14.1.</strong> Gossip Protocol</a></li><li><a href="./DHT_Protocol.html"><strong>14.2.</strong> DHT Protocol</a></li></ul></li><li><a href="./Sync.html"><strong>15.</strong> Synchronization</a></li><li><ul class="section"><li><a href="./btc_sync.html"><strong>15.1.</strong> Bitcoin Header frist</a></li></ul></li><li><a href="./Interconnecting.html"><strong>16.</strong> Interconnect &amp; Cross-chain</a></li><li><ul class="section"><li><a href="./ILP.html"><strong>16.1.</strong> Interledger Protocol (ILP)</a></li><li><a href="./DID.html"><strong>16.2.</strong> Decentralized Identifiers (DIDs)</a></li><li><a href="./0xProtocol.html"><strong>16.3.</strong> 0x Protocol</a></li><li><a href="./Polkadot.html"><strong>16.4.</strong> Polkadot</a></li><li><a href="./Cosmos.html"><strong>16.5.</strong> Cosmos</a></li><li><a href="./OmiseGO.html"><strong>16.6.</strong> OmiseGO</a></li></ul></li><li><a href="./Oracle.html"><strong>17.</strong> Oracle</a></li><li><ul class="section"><li><a href="./Gnosis.html"><strong>17.1.</strong> Gnosis</a></li><li><a href="./Augur.html"><strong>17.2.</strong> Augur</a></li><li><a href="./Amoveo.html"><strong>17.3.</strong> Amoveo</a></li><li><a href="./ZenProtocol.html"><strong>17.4.</strong> Zen Protocal</a></li></ul></li><li><a href="./SmartContract.html"><strong>18.</strong> SmartContract</a></li><li><ul class="section"><li><a href="./Asset_Contract.html"><strong>18.1.</strong> Asset</a></li><li><a href="./Loan_Contract.html"><strong>18.2.</strong> Loan</a></li></ul></li><li><a href="./VM.html"><strong>19.</strong> VM</a></li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="./Consensus.html#共识" id="共识"><h2>共识</h2></a>
+<p>https://en.wikipedia.org/wiki/Consensus_(computer_science)</p>
+<ul>
+<li>对多件事件进行排序，并且得到大家认可。</li>
+</ul>
+<a class="header" href="./Consensus.html#lamport-clock-1978" id="lamport-clock-1978"><h3>Lamport Clock (1978)</h3></a>
+<ul>
+<li>问题
+<ul>
+<li>一致性不是简单的让两个节点最终对一个值的结果一致, 很多时候还需要对这个值的变化历史在不同节点上的观点也要一致</li>
+<li>不能简单的以接受到消息的时间作为事件的顺序判断的依据。</li>
+<li>物理时间的不可依赖，导致事件的先后关系在分布式系统中退化为事件先后顺序的偏序关系(partital order), 问题的核心演变成如何找出因果关系来取消对物理时钟的依赖。（如果一致性继续弱化的情况下，最终一致（弱一致性）连因果关系都不需要）</li>
+</ul>
+</li>
+<li>论文：Time, Clock and Ordering of Events in a Distributed System
+<ul>
+<li>https://lamport.azurewebsites.net/pubs/pubs.html#time-clocks</li>
+</ul>
+</li>
+<li>Lamport Clock
+<ul>
+<li>是针对事件发生历史的逻辑时钟, 它让我们能够把所有的历史事件找到偏序关系, 而且不仅在各自节点的逻辑时间参考系内顺序一致, 全局上的顺序也是一致的。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/1134993/31995139-d625ea56-b948-11e7-9b81-468651250f7f.png" alt="screen shot 2017-10-25 at 6 53 06 pm" /></p>
+<p>P/Q/R是三个节点, 从下往上代表物理时间的流逝, p1, p2, q1, q2, r1, r2 …. 表示事件，波浪线表示事件的发送, 比如p1-&gt;q2表示 P把p1事件发送给了Q, Q接受此消息作为q2事件。</p>
+<p><img src="https://user-images.githubusercontent.com/1134993/31995186-01abe57c-b949-11e7-91c5-f3e3d159e965.png" alt="screen shot 2017-10-25 at 6 54 20 pm" /></p>
+<p><img src="https://user-images.githubusercontent.com/1134993/31995072-998fbe28-b948-11e7-8d43-510a3e766b9a.png" alt="screen shot 2017-10-25 at 6 51 11 pm" /></p>
+<ul>
+<li>两种一致性模型（Seq，linear）
+<ul>
+<li>Sequential Consistency (1979)
+<ul>
+<li>How to Make a Multiprocessor Computer That Correctly Executes Multiprocess Programs</li>
+<li>https://lamport.azurewebsites.net/pubs/pubs.html#new-approach</li>
+<li>https://lamport.azurewebsites.net/pubs/pubs.html#multi</li>
+</ul>
+</li>
+<li>linearizability Consistency (1990, M.P. Herlihy &amp; J.M Wing)
+<ul>
+<li>线性一致性：Seq的前提下，加强进程间的操作排序</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="./Consensus.html#2pc" id="2pc"><h3>2PC</h3></a>
+<ul>
+<li>1978</li>
+<li>Jim Gary</li>
+<li>Tuxedo （XA/Open规范）</li>
+</ul>
+<a class="header" href="./Consensus.html#3pc" id="3pc"><h3>3PC</h3></a>
+<ul>
+<li>1981</li>
+<li>Dale Skeen - Nonblocking Commit Protocols</li>
+<li></li>
+</ul>
+<a class="header" href="./Consensus.html#拜占庭将军问题" id="拜占庭将军问题"><h3>拜占庭将军问题</h3></a>
+<ul>
+<li>1982</li>
+<li>Lamport - The Byzantine Generals Problem</li>
+<li>https://en.wikipedia.org/wiki/Byzantine_Generals_problem</li>
+</ul>
+<a class="header" href="./Consensus.html#flp不可能原理" id="flp不可能原理"><h3>FLP不可能原理</h3></a>
+<ul>
+<li>
+<p>1985</p>
+</li>
+<li>
+<p>FLP是论文作者（Fischer, Lynch and Patterson）名的缩写。</p>
+</li>
+<li>
+<p>No completely asynchronous consensus protocol can tolerate even a single unannounced process death. [ Impossibility of Distributed Consensus with One Faulty Process,Journal of the Association for Computing Machinery, Vol. 32, No. 2, April 1985] <strong>在异步网络环境中只要有一个故障节点, 不存在一个共识算法能解决一致性问题。</strong></p>
+</li>
+<li>
+<p>在允许节点失效的情况下，纯粹异步系统无法确保一致性在有限的时间内完成。</p>
+</li>
+<li>
+<p><strong>同步</strong>：网络中节点间的时钟误差存在上限，消息传递必须在一定时间内完成，否则为失败；同时节点完成处理消息的时间是一定的。</p>
+<ul>
+<li>对于同步系统，可以很容易判断消息是否丢失</li>
+</ul>
+</li>
+<li>
+<p><strong>异步</strong>：网络中节点时钟差异可以很大，消息传输时间可以任意长，节点处理消息的时间也可以任意长。</p>
+<ul>
+<li>那么消息无法响应无法知道是传输故障还是节点故障。</li>
+</ul>
+</li>
+<li>
+<p>工程上通过付出代价的方式来达到共识。</p>
+</li>
+<li>
+<p>http://the-paper-trail.org/blog/a-brief-tour-of-flp-impossibility/ (A Brief Tour of FLP Impossibility)</p>
+</li>
+</ul>
+<a class="header" href="./Consensus.html#cap原理" id="cap原理"><h3>CAP原理</h3></a>
+<ul>
+<li>2000</li>
+<li>一致性consistency、可用性availability、分区容忍性partition <strong>无法同时保证</strong></li>
+<li><strong>一致性</strong> ：这里之强一致性，任何操作都是原子的，发生在后面的事件能够看到前面事件发生所导致的结果。（换句话，即保证结果一致，也保证过程／顺序一致）
+** 弱化一致性 ： Gossip，CouchDB，Cassandra</li>
+<li><strong>可用性</strong> ：在有限时间内，任何非失败节点都能应答请求。
+** 弱化可用性 ：MongoDB、Redis、MapReduce。Paxos、Raft。</li>
+<li><strong>分区容忍</strong> ： 允许网络分区（脑裂），即节点直接通信无法保障。
+** 弱化分区容忍 ：2PC，Zookeeper</li>
+</ul>
+<a class="header" href="./Consensus.html#paxos" id="paxos"><h3>Paxos</h3></a>
+<ul>
+<li>1990 ～ 2001</li>
+<li>Paxos Made Simple (2001)</li>
+</ul>
+<a class="header" href="./Consensus.html#zookeeper" id="zookeeper"><h3>Zookeeper</h3></a>
+<a class="header" href="./Consensus.html#raft" id="raft"><h3>Raft</h3></a>
+<a class="header" href="./Consensus.html#pbft" id="pbft"><h3>PBFT</h3></a>
+<a class="header" href="./Consensus.html#pow-bitcoin" id="pow-bitcoin"><h3>POW (bitcoin)</h3></a>
+<ul>
+<li>The Bitcoin Backbone Protocol: Analysis and Applications
+<ul>
+<li>https://eprint.iacr.org/2014/765.pdf</li>
+<li>http://crypto.2014.rump.cr.yp.to/59182e301d011c3b5b6146b8cdf91815.pdf</li>
+</ul>
+</li>
+<li>The Bitcoin Backbone Protocol with Chains of Variable Difficulty
+<ul>
+<li>https://eprint.iacr.org/2016/1048.pdf</li>
+</ul>
+</li>
+<li>Bitcoin as a Transaction Ledger: A Composable Treatment
+<ul>
+<li>https://eprint.iacr.org/2017/149.pdf</li>
+</ul>
+</li>
+<li>Analysis of the Blockchain Protocol in Asynchronous Networks
+<ul>
+<li>https://eprint.iacr.org/2016/454.pdf</li>
+</ul>
+</li>
+</ul>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a rel="prev" href="./btc_datastore.html" class="mobile-nav-chapters previous" title="Previous chapter">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="./Consensus_POS_Ouroboros.html" class="mobile-nav-chapters next" title="Next chapter">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+
+            </div>
+
+            
+                <a href="./btc_datastore.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+                <a href="./Consensus_POS_Ouroboros.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+    <script type="text/javascript">
+        var socket = new WebSocket("ws://localhost:3001");
+        socket.onmessage = function (event) {
+            if (event.data === "reload") {
+                socket.close();
+                location.reload(true); // force reload from server (not from cache)
+            }
+        };
+
+        window.onbeforeunload = function() {
+            socket.close();
+        }
+    </script>
+
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>IOHK/Ouroboros - </title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+        <!-- MathJax -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li><a href="./Intro.html"><strong>1.</strong> Intro</a></li><li><a href="./DagHistory.html"><strong>2.</strong> History</a></li><li><a href="./Wallet.html"><strong>3.</strong> Wallet</a></li><li><ul class="section"><li><a href="./Deterministic_wallet.html"><strong>3.1.</strong> Deterministic Wallet</a></li><li><a href="./Mnemonic.html"><strong>3.2.</strong> Mnemonic</a></li></ul></li><li><a href="./Testnet.html"><strong>4.</strong> Testnet &amp; faucet</a></li><li><ul class="section"><li><a href="./BTC_testnet.html"><strong>4.1.</strong> Bitcoin Testnet</a></li><li><a href="./ETH_testnet.html"><strong>4.2.</strong> Ethereum Testnet</a></li><li><a href="./GByte_testnet.html"><strong>4.3.</strong> Byteball Testnet</a></li></ul></li><li><a href="./Address.html"><strong>5.</strong> Address</a></li><li><ul class="section"><li><a href="./btc_addr.html"><strong>5.1.</strong> Bitcoin Address</a></li></ul></li><li><a href="./Data_Structure.html"><strong>6.</strong> Data Structure</a></li><li><ul class="section"><li><a href="./Transcation.html"><strong>6.1.</strong> Transcation</a></li><li><a href="./btc_tx.html"><strong>6.2.</strong> Bitcoin Transaction</a></li><li><a href="./MerkleTree.html"><strong>6.3.</strong> MerkleTree</a></li><li><a href="./PatriciaTree.html"><strong>6.4.</strong> PatriciaTree</a></li><li><a href="./IAVL_Tree.html"><strong>6.5.</strong> Merkleized IAVL+ Tree</a></li><li><a href="./MerkleDAG.html"><strong>6.6.</strong> MerkleDAG</a></li></ul></li><li><a href="./Data_Storage.html"><strong>7.</strong> Data Storage</a></li><li><ul class="section"><li><a href="./btc_datastore.html"><strong>7.1.</strong> Bitcoin</a></li></ul></li><li><a href="./Consensus.html"><strong>8.</strong> Consensus algorithm</a></li><li><ul class="section"><li><a href="./Consensus_POS_Ouroboros.html" class="active"><strong>8.1.</strong> IOHK/Ouroboros</a></li><li><a href="./DFINITY.html"><strong>8.2.</strong> DFINITY</a></li><li><a href="./Stellar.html"><strong>8.3.</strong> Stellar(SCP)</a></li><li><a href="./Matrix.html"><strong>8.4.</strong> Matrix</a></li><li><a href="./Ripple.html"><strong>8.5.</strong> Ripple</a></li><li><a href="./Casper.html"><strong>8.6.</strong> Casper</a></li><li><a href="./PoA.html"><strong>8.7.</strong> POA(Parity)</a></li><li><a href="./Terndermint.html"><strong>8.8.</strong> Tendermint</a></li><li><a href="./Delegated_Consensus.html"><strong>8.9.</strong> dBFT(NEO/Antshare)/dPOS(BTS/Steem/EOS/Lisk)</a></li><li><a href="./Algorand.html"><strong>8.10.</strong> Algorand</a></li></ul></li><li><a href="./Scalability.html"><strong>9.</strong> Scalability</a></li><li><ul class="section"><li><a href="./Ouroboros_Praos.html"><strong>9.1.</strong> Ouroboros Praos</a></li><li><a href="./EOS.html"><strong>9.2.</strong> EOS</a></li><li><a href="./eth_parallelizability.html"><strong>9.3.</strong> Ethereum Parallelizability</a></li></ul></li><li><a href="./Validation.html"><strong>10.</strong> Validation</a></li><li><ul class="section"><li><a href="./Segwit.html"><strong>10.1.</strong> Segwit</a></li><li><a href="./Multisignature.html"><strong>10.2.</strong> Multisignature</a></li><li><a href="./Tx_Malleability.html"><strong>10.3.</strong> Transaction Malleability</a></li><li><a href="./Double_Spend.html"><strong>10.4.</strong> Double Spend</a></li><li><a href="./Peplay_Protect.html"><strong>10.5.</strong> Replay Protection</a></li><li><a href="./TrueBit.html"><strong>10.6.</strong> Truebit</a></li></ul></li><li><a href="./Money_Denomiation_Token.html"><strong>11.</strong> Money &amp; Token</a></li><li><ul class="section"><li><a href="./TxFee_BTC.html"><strong>11.1.</strong> Bitcoin TxFee</a></li><li><a href="./RBF.html"><strong>11.2.</strong> Bitcoin Replace by fee</a></li><li><a href="./TxFee_ETH.html"><strong>11.3.</strong> Ethereum TxFee</a></li><li><a href="./ERC20.html"><strong>11.4.</strong> ERC20/ERC223/ERC721</a></li></ul></li><li><a href="./Crypto.html"><strong>12.</strong> Crypto Algorithm</a></li><li><ul class="section"><li><a href="./secp256k1.html"><strong>12.1.</strong> secp256k1</a></li><li><a href="./ZK-SNARKs.html"><strong>12.2.</strong> ZKP/ZK-SNARKs</a></li><li><a href="./CoinJoin.html"><strong>12.3.</strong> CoinJoin</a></li><li><a href="./RingSig.html"><strong>12.4.</strong> RingSig</a></li><li><a href="./Crypto_SM.html"><strong>12.5.</strong> SMx</a></li><li><a href="./PQC.html"><strong>12.6.</strong> Post-Quantum Cryptography</a></li></ul></li><li><a href="./Messaging.html"><strong>13.</strong> Messaging</a></li><li><a href="./Node_Discovery.html"><strong>14.</strong> Node discovery</a></li><li><ul class="section"><li><a href="./Gossip_Protocol.html"><strong>14.1.</strong> Gossip Protocol</a></li><li><a href="./DHT_Protocol.html"><strong>14.2.</strong> DHT Protocol</a></li></ul></li><li><a href="./Sync.html"><strong>15.</strong> Synchronization</a></li><li><ul class="section"><li><a href="./btc_sync.html"><strong>15.1.</strong> Bitcoin Header frist</a></li></ul></li><li><a href="./Interconnecting.html"><strong>16.</strong> Interconnect &amp; Cross-chain</a></li><li><ul class="section"><li><a href="./ILP.html"><strong>16.1.</strong> Interledger Protocol (ILP)</a></li><li><a href="./DID.html"><strong>16.2.</strong> Decentralized Identifiers (DIDs)</a></li><li><a href="./0xProtocol.html"><strong>16.3.</strong> 0x Protocol</a></li><li><a href="./Polkadot.html"><strong>16.4.</strong> Polkadot</a></li><li><a href="./Cosmos.html"><strong>16.5.</strong> Cosmos</a></li><li><a href="./OmiseGO.html"><strong>16.6.</strong> OmiseGO</a></li></ul></li><li><a href="./Oracle.html"><strong>17.</strong> Oracle</a></li><li><ul class="section"><li><a href="./Gnosis.html"><strong>17.1.</strong> Gnosis</a></li><li><a href="./Augur.html"><strong>17.2.</strong> Augur</a></li><li><a href="./Amoveo.html"><strong>17.3.</strong> Amoveo</a></li><li><a href="./ZenProtocol.html"><strong>17.4.</strong> Zen Protocal</a></li></ul></li><li><a href="./SmartContract.html"><strong>18.</strong> SmartContract</a></li><li><ul class="section"><li><a href="./Asset_Contract.html"><strong>18.1.</strong> Asset</a></li><li><a href="./Loan_Contract.html"><strong>18.2.</strong> Loan</a></li></ul></li><li><a href="./VM.html"><strong>19.</strong> VM</a></li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="./Consensus_POS_Ouroboros.html#table-of-contents" id="table-of-contents"><h1>Table of Contents</h1></a>
+<ul>
+<li><a href="./Consensus_POS_Ouroboros.html#iohkada">IOHK/ada</a>
+<ul>
+<li><a href="./Consensus_POS_Ouroboros.html#%E7%99%BD%E7%9A%AE%E4%B9%A6%E7%A0%94%E7%A9%B6">白皮书研究</a>
+<ul>
+<li><a href="./Consensus_POS_Ouroboros.html#%E8%A7%A3%E5%86%B3pos%E7%9A%84%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98--the-leader-election-process">解决PoS的核心问题 : the <strong>leader election</strong> process.</a></li>
+<li><a href="./Consensus_POS_Ouroboros.html#%E6%8A%97%E6%94%BB%E5%87%BB%E6%80%A7%E7%9A%84%E8%80%83%E8%99%91">抗攻击性的考虑</a></li>
+<li><a href="./Consensus_POS_Ouroboros.html#%E6%80%A7%E8%83%BD">性能</a></li>
+</ul>
+</li>
+<li><a href="./Consensus_POS_Ouroboros.html#%E5%85%B6%E4%BB%96%E7%9A%84%E4%B8%80%E4%BA%9Bpos%E5%8D%8F%E8%AE%AE">其他的一些POS协议</a>
+<ul>
+<li><a href="./Consensus_POS_Ouroboros.html#sleepy-consensus">Sleepy consensus</a></li>
+<li><a href="./Consensus_POS_Ouroboros.html#snow-white">Snow White</a></li>
+<li><a href="./Consensus_POS_Ouroboros.html#algorand">Algorand</a></li>
+<li><a href="./Consensus_POS_Ouroboros.html#fruitchain">Fruitchain</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="./Consensus_POS_Ouroboros.html#cardano-sl">Cardano SL</a></li>
+<li><a href="./Consensus_POS_Ouroboros.html#ouroboros-pos%E7%AE%97%E6%B3%95">Ouroboros POS算法</a>
+<ul>
+<li><a href="./Consensus_POS_Ouroboros.html#slot-leader-%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95">Slot-leader 选择算法</a></li>
+<li><a href="./Consensus_POS_Ouroboros.html#%E4%BB%A3%E7%A0%81">代码</a>
+<ul>
+<li><a href="./Consensus_POS_Ouroboros.html#fts-follow-the-satoshi">FTS (Follow the Satoshi)</a></li>
+<li><a href="./Consensus_POS_Ouroboros.html#blockchain">Blockchain</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="./Consensus_POS_Ouroboros.html#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3">参考文档</a>
+<ul>
+<li><a href="./Consensus_POS_Ouroboros.html#video">Video</a></li>
+<li><a href="./Consensus_POS_Ouroboros.html#%E9%97%AE%E9%A2%98">问题</a></li>
+</ul>
+</li>
+</ul>
+<a class="header" href="./Consensus_POS_Ouroboros.html#iohkada" id="iohkada"><h2>IOHK/ada</h2></a>
+<ul>
+<li>Ouroboros: A Provably Secure Proof-of-Stake Blockchain Protocol
+<ul>
+<li>https://eprint.iacr.org/2016/889.pdf</li>
+</ul>
+</li>
+<li>Ouroboros Praos: An adaptively-secure, semi-synchronous proof-of-stake blockchain
+<ul>
+<li>https://eprint.iacr.org/2017/573.pdf</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="./Consensus_POS_Ouroboros.html#白皮书研究" id="白皮书研究"><h3>白皮书研究</h3></a>
+<a class="header" href="./Consensus_POS_Ouroboros.html#解决pos的核心问题--the-leader-election-process" id="解决pos的核心问题--the-leader-election-process"><h4>解决PoS的核心问题 : the <strong>leader election</strong> process.</h4></a>
+<ul>
+<li>问题：entropy  -&gt; randomized election among stakeholders  &lt;- an adversary controlling a set of stakeholders, “grinding” vulnerability, use computational resources to bias the leader election.</li>
+<li>方法：
+<ul>
+<li>第一：模型
+<ul>
+<li>persistence 和 liveness</li>
+<li>P是机制保证Tx变成stable，就会全网finality （常见的思路是more than k blocks deep）</li>
+<li>L是机制保证合法Tx在某个时间段后一定能stable（也就是说合法交易一定能活下去）</li>
+</ul>
+</li>
+<li>第二：选主协议
+<ul>
+<li>a coin-flipping protocol -&gt;randomness -&gt; leader election</li>
+<li>a snapshot of the current set of stakeholders is taken in regular intervals called <strong>epochs</strong></li>
+<li>a secure multiparty computation takes place utilizing the blockchain itself as the <strong>broadcast</strong> channel</li>
+<li>in each epoch a set of randomly selected stakeholders form <strong>a committee</strong> which is then responsible for executing the coin-flipping protocol</li>
+<li>The outcome of the protocol determines the set of next stakeholders to execute the protocol in the next epoch as well as the outcomes of all leader elections for the epoch.</li>
+</ul>
+</li>
+<li>第三：一组规则
+<ul>
+<li>protect persistence and liveness.</li>
+<li>(1) any honest stakeholder is able to communicate with any other stakeholder,</li>
+<li>(2) a number of stakeholders drawn from the honest majority is available as needed to participate in each epoch,</li>
+<li>(3) the stakeholders do not remain offline for long periods of time</li>
+<li>(4) &quot;forkable strings” (???)</li>
+</ul>
+</li>
+<li>第四：经济激励
+<ul>
+<li>基于博弈论／纳什均衡设计对抗 block withholding 和 selfish-mining</li>
+<li>positive payoff  --&gt; cannot be stifled by a coalition of parties --&gt; an equilibrium when all players are rational. (问题是玩家理性吗？）</li>
+</ul>
+</li>
+<li>第五：代理机制
+<ul>
+<li>stake delegation mechanism -&gt; delegate “voting rights”</li>
+<li>可以revoke delegation</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="./Consensus_POS_Ouroboros.html#抗攻击性的考虑" id="抗攻击性的考虑"><h4>抗攻击性的考虑</h4></a>
+<ul>
+<li>double spending attacks</li>
+<li>transaction denial attacks</li>
+<li>51% attacks</li>
+<li>nothing-at-stake</li>
+<li>desynchronization attacks</li>
+</ul>
+<a class="header" href="./Consensus_POS_Ouroboros.html#性能" id="性能"><h4>性能</h4></a>
+<ul>
+<li>transaction confirmation time is from 10 to 16 times faster than that of bitcoin</li>
+<li>analysis of double-spending attacks relies on our combinatorial analysis of <strong>forkable and covertly forkable strings</strong> and applies to a much broader class of adversarial behavior than Nakamoto’s more simplified analysis. (???)</li>
+<li>prototype implementation and report on <strong>benchmark experiments run in the Amazon cloud</strong> that showcase the power of our proof of stake blockchain protocol in terms of performance.</li>
+</ul>
+<a class="header" href="./Consensus_POS_Ouroboros.html#其他的一些pos协议" id="其他的一些pos协议"><h3>其他的一些POS协议</h3></a>
+<a class="header" href="./Consensus_POS_Ouroboros.html#sleepy-consensus" id="sleepy-consensus"><h4>Sleepy consensus</h4></a>
+<ul>
+<li>https://eprint.iacr.org/2016/918.pdf
+<ul>
+<li>considers a fixed stakeholder distribution (i.e., stake does not evolve over time) and targets a “mixed” corruption setting, where the adversary is allowed to be adaptive as well as perform fail-stop and recover corruptions in addition to Byzantine faults.</li>
+<li>It is actually straightforward to extend our analysis in this mixed corruption setting, resulting security can be argued only in the “corruptions with delay” setting, and thus is not fully adaptive.</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="./Consensus_POS_Ouroboros.html#snow-white" id="snow-white"><h4>Snow White</h4></a>
+<ul>
+<li>https://eprint.iacr.org/2016/919.pdf
+<ul>
+<li>addresses an evolving stakeholder distribution and uses a corruption delay mechanism similar to ours for arguing security.</li>
+<li>susceptible to a “grinding” type of attack that can bias high probability events in favor of the adversary. While this does not hurt security asymptotically, it prevents a concrete parameterisation that does not take into account adversarial computing power.</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="./Consensus_POS_Ouroboros.html#algorand" id="algorand"><h4>Algorand</h4></a>
+<ul>
+<li>https://arxiv.org/pdf/1607.01341.pdf
+<ul>
+<li>distributed ledger following a Byzantine agreement per block approach that can withstand adaptive corruptions.</li>
+<li>Given that agreement needs to be reached for each block, such protocols will produce blocks at a rate substantially slower than a PoS blockchain (where the slow down matches the expected length of the execution of the Byzantine agreement protocol) but they are free of forks.</li>
+<li>In this respect, despite the existence of forks, blockchain protocols exhibit the flexibility of permitting the clients to set the level of risk that they are willing to undertake, allowing low risk profile clients to enjoy faster processing times in the optimistic sense.</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="./Consensus_POS_Ouroboros.html#fruitchain" id="fruitchain"><h4>Fruitchain</h4></a>
+<ul>
+<li>https://eprint.iacr.org/2016/916.pdf
+<ul>
+<li>reward mechanism and an approximate Nash equilibrium proof for a PoW-based blockchain.</li>
+<li>We use a similar reward mechanism at the blockchain level, nevertheless our underlying mechanics are different since we have to operate in a PoS setting.</li>
+<li>The core of the idea is to provide a PoS analogue of “endorsing” inputs in a fair proportion using the same logic as the PoW-based byzantine agreement protocol for honest majority</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="./Consensus_POS_Ouroboros.html#cardano-sl" id="cardano-sl"><h2>Cardano SL</h2></a>
+<ul>
+<li>The core idea of proof of stake is that instead of wasting electricity on cracking computationally heavy problems, <strong>a node is selected to mint a new block, with a probability proportional to the amount of coins this node has</strong>. If a node has positive (&gt; 0) stake, it is called a stakeholder. If a node eventually becomes chosen to mint a block, it is called a <strong><em>slot leader</em></strong>.</li>
+<li>Cardano SL is called <strong>“Layer”</strong> for a reason. It is the first component of the Cardano Platform. Eventually, it will be expanded with a Control Layer, serving as a trusted computation framework to evaluate a special kind of proofs to ensure that a certain computation was carried out correctly. In <strong>gaming and gambling</strong>, such systems are used for <strong>verifying honesty of random number generation and game outcomes</strong>. Accompanied with side chains, it will make possible to accomplish such tasks as <strong>provably fair distribution of winnings in games</strong>. But the application of Control Layer lies well beyond gaming and gambling. Identity management, credit system and more will be a part of Cardano Platform. We are also aiming to evolve Daedalus, the Cardano SL wallet application, into a universal cryptocurrency wallet featuring automated cryptocurrency trading and cryptocurrency-to-fiat transactions.</li>
+</ul>
+<a class="header" href="./Consensus_POS_Ouroboros.html#ouroboros-pos算法" id="ouroboros-pos算法"><h2>Ouroboros POS算法</h2></a>
+<ul>
+<li><strong>proof</strong> : having evidence that blocks of transactions are legitimate.</li>
+<li><strong>Stake</strong> : the relative value held by addresses on the node.  “relative value” we mean “all value held by wallets on a particular node divided by total value in the system”.</li>
+<li><strong>Slot</strong> : A small period of time that is significantly larger than the expected difference in clocks on different nodes.</li>
+<li><strong>slot leaders</strong>: generate blocks for the blockchain. Anyone can become a slot leader if the coin selection algorithm would <strong>select a coin they own</strong>. Nothing except for the <strong>network state</strong> and network participants <strong>being online</strong> matters for the sake of proof of stake.</li>
+<li><strong>Follow the Satoshi (FTS)</strong> is an <strong>algorithm</strong>,  that verifiably picks a coin, providing <strong>randomness</strong>. When your coin gets selected, you become a slot leader and can listen to transactions announced by others, make a block of those transactions, sign it with your secret key and publish it to the network. （随机选择算法）</li>
+<li><strong>Multi Party Computation approach</strong>: select nodes provide the so-called “commitments”, and then those get “revealed”, <strong>producing a random value</strong> generated independently by participants of the network. (提供算力）</li>
+</ul>
+<a class="header" href="./Consensus_POS_Ouroboros.html#slot-leader-选择算法" id="slot-leader-选择算法"><h3>Slot-leader 选择算法</h3></a>
+<ul>
+<li>Leaders for each slot of the current epoch are computed by FTS in the beginning of the current epoch.</li>
+<li>So genesis block contains a list of selected slot leaders.</li>
+<li>The number of selected slot-leaders corresponds to a number of slots in epoch, and this number depends on fundamental security parameter k defined in configuration file.</li>
+<li>Theoretical aspects of the slot leader selection process is described in paper, page 11.</li>
+<li>The node sorts all unspent outputs (utxo) in a deterministic way (lexicographically), so result is an ordered sequence of pairs (StakeholderId, Coin), where StakeholderId is an id of stakeholder (its public key hash) and Coin is an amount of coins this stakeholder has. It’s assumed that utxo isn’t empty.</li>
+<li>Then the node chooses several random is between 1 and amount of Lovelaces in the system. To find owner of i-th coin node finds the lowest x such that sum of all coins in this list up to ‘i’-th is not less than ‘i’ (and then ‘x’-th address is the owner of i-th coin).</li>
+<li>The result is a non-empty sequence of StakeholderId, ids of selected stakeholders. This sequense of SlotLeaders is storing in the node’s runtime context.</li>
+<li>With P2SH addresses, node doesn’t know who is going to end up with funds sent to them. Therefore, P2SH addresses can contain destination address which specifies which addresses should count as “owning” funds for the purposes of FTS.</li>
+</ul>
+<a class="header" href="./Consensus_POS_Ouroboros.html#代码" id="代码"><h3>代码</h3></a>
+<ul>
+<li>https://github.com/input-output-hk/cardano-sl</li>
+<li>版本历史</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/1134993/31715016-d373d312-b3c7-11e7-80c6-f535e32f6010.png" alt="screen shot 2017-10-18 at 3 32 29 pm" /></p>
+<a class="header" href="./Consensus_POS_Ouroboros.html#fts-follow-the-satoshi" id="fts-follow-the-satoshi"><h4>FTS (Follow the Satoshi)</h4></a>
+<ul>
+<li>https://github.com/input-output-hk/cardano-sl/blob/master/lrc/Pos/Lrc/Fts.hs</li>
+</ul>
+<a class="header" href="./Consensus_POS_Ouroboros.html#blockchain" id="blockchain"><h4>Blockchain</h4></a>
+<ul>
+<li>https://github.com/input-output-hk/cardano-sl/blob/master/lib/src/Pos/Block/Core/Genesis/Chain.hs</li>
+<li>https://github.com/input-output-hk/cardano-sl/tree/master/lib/src/Pos/Block/Logic</li>
+</ul>
+<a class="header" href="./Consensus_POS_Ouroboros.html#参考文档" id="参考文档"><h2>参考文档</h2></a>
+<ul>
+<li>https://cardanodocs.com/introduction/#what-makes-cardano-sl-special</li>
+<li>https://cardanodocs.com/cardano/proof-of-stake/</li>
+<li>https://cardanodocs.com/technical/leader-selection/</li>
+<li>https://cardanodocs.com/cardano/explorer/</li>
+<li>https://cardanoexplorer.com/</li>
+<li>https://cardanodocs.com/glossary/</li>
+<li>https://cardanodocs.com/technical/blocks/</li>
+</ul>
+<a class="header" href="./Consensus_POS_Ouroboros.html#video" id="video"><h3>Video</h3></a>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=JwxVySVF-U4">Ouroboros presentation | IACR Crypto-2017 </a></li>
+<li><a href="https://www.youtube.com/watch?v=hMgxZOsTlQc">Bernardo David, IOHK Research, Proof-of-Stake Protocol</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLnPTB0CuBOBw9H7dynFu9U25vqFWRw1UX">Ouroboros: A Provably Secure Proof-of-Stake Blockchain Protocol</a></li>
+</ul>
+<a class="header" href="./Consensus_POS_Ouroboros.html#问题" id="问题"><h3>问题</h3></a>
+<ul>
+<li>Proof of stake with rigorous security guarantees. 严格安全保证在哪里？</li>
+<li>Proof of Stake protocols and we prove that, given this mechanism, honest behavior
+is an approximate Nash equilibrium  如果是基于博弈论和纳什均衡的话，那么以太的casper也是这样。区别是什么？</li>
+</ul>
+<a class="header" href="./Consensus_POS_Ouroboros.html#bw怼cardano事件" id="bw怼cardano事件"><h3>BW怼cardano事件</h3></a>
+<ul>
+<li>https://steemit.com/cardamon/@dan/peer-review-of-cardano-s-ouroboros</li>
+<li>BW认为ada抄袭（copy）了他的工作，但是没有提他（ Ouroboros is a copy of Delegated Proof of Stake (DPoS) with a few counter-productive modifications. In fact their paper refers to the term “πDPoS” 17 times without mentioning or recognizing any of my prior work.）</li>
+<li>结果上，BW认为ada的性能和效率完败
+<ul>
+<li>出块 EOS: 0.5 seconds  vs. Ouroboros: 20 seconds</li>
+<li>稳定 EOS: &lt;= 2 seconds vs. Ouroboros: &gt; 5 hours</li>
+</ul>
+</li>
+<li>ada的安全在工程上不可行：400公斤的防弹衣没法穿。（为啥BW没说明）</li>
+<li>对dPOS的分析
+<ul>
+<li>选人 （Selecting a set of block producers）</li>
+<li>排队 （Scheduling the producers into time slots）</li>
+</ul>
+</li>
+<li>选人
+<ul>
+<li>时间轮： BTS 1h vs Ouroboros：5 days</li>
+<li>参与要求：Steem 没有下限 vs. Ouroboros at least 1% stake</li>
+</ul>
+</li>
+<li>排队
+<ul>
+<li>随机性：
+<ul>
+<li>Steem 从确定一组里面随机抽（uses deterministic scheduling with pseudorandom shuffling）</li>
+<li>Ouroboros 随机性由随机选定的权益人生成（sampling from a source of provable randomness created by a committee of randomly selected stakeholders）</li>
+</ul>
+</li>
+<li>安全性：
+<ul>
+<li>Steem / BitShares / EOS 靠投票（人为）select a set of unlikely to collude entities by approval voting then schedule them in a pseudorandom order。 同时EOS要取消shuffle （ EOS will be removing the random shuffle all together.）</li>
+<li>Ouroboros 随机选择导致时间和延时无法预期 Ouroboros the length of time until 2/3+ of the stake is “randomly selected” is not known. unpredictable latency like bitcoin</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>分布式安全（Distribution Security Issues）
+<ul>
+<li>Steem 14 people confirm a block each round.</li>
+<li>只有投票才能对抗基于stake权重的中心化 stake-weighted voting creates a very high centralization that can only be countered with approval voting</li>
+<li>Corruption takes place at the individual level, not the stake level. it is wrong to assume that large stake holders will behave like a group of smaller stakeholders of similar size</li>
+</ul>
+</li>
+</ul>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a rel="prev" href="./Consensus.html" class="mobile-nav-chapters previous" title="Previous chapter">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="./DFINITY.html" class="mobile-nav-chapters next" title="Next chapter">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+
+            </div>
+
+            
+                <a href="./Consensus.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+                <a href="./DFINITY.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+    <script type="text/javascript">
+        var socket = new WebSocket("ws://localhost:3001");
+        socket.onmessage = function (event) {
+            if (event.data === "reload") {
+                socket.close();
+                location.reload(true); // force reload from server (not from cache)
+            }
+        };
+
+        window.onbeforeunload = function() {
+            socket.close();
+        }
+    </script>
+
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
+</html>

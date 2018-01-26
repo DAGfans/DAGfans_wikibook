@@ -1,0 +1,198 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Interledger Protocol (ILP) - </title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+        <!-- MathJax -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li><a href="./Intro.html"><strong>1.</strong> Intro</a></li><li><a href="./DagHistory.html"><strong>2.</strong> History</a></li><li><a href="./Wallet.html"><strong>3.</strong> Wallet</a></li><li><ul class="section"><li><a href="./Deterministic_wallet.html"><strong>3.1.</strong> Deterministic Wallet</a></li><li><a href="./Mnemonic.html"><strong>3.2.</strong> Mnemonic</a></li></ul></li><li><a href="./Testnet.html"><strong>4.</strong> Testnet &amp; faucet</a></li><li><ul class="section"><li><a href="./BTC_testnet.html"><strong>4.1.</strong> Bitcoin Testnet</a></li><li><a href="./ETH_testnet.html"><strong>4.2.</strong> Ethereum Testnet</a></li><li><a href="./GByte_testnet.html"><strong>4.3.</strong> Byteball Testnet</a></li></ul></li><li><a href="./Address.html"><strong>5.</strong> Address</a></li><li><ul class="section"><li><a href="./btc_addr.html"><strong>5.1.</strong> Bitcoin Address</a></li></ul></li><li><a href="./Data_Structure.html"><strong>6.</strong> Data Structure</a></li><li><ul class="section"><li><a href="./Transcation.html"><strong>6.1.</strong> Transcation</a></li><li><a href="./btc_tx.html"><strong>6.2.</strong> Bitcoin Transaction</a></li><li><a href="./MerkleTree.html"><strong>6.3.</strong> MerkleTree</a></li><li><a href="./PatriciaTree.html"><strong>6.4.</strong> PatriciaTree</a></li><li><a href="./IAVL_Tree.html"><strong>6.5.</strong> Merkleized IAVL+ Tree</a></li><li><a href="./MerkleDAG.html"><strong>6.6.</strong> MerkleDAG</a></li></ul></li><li><a href="./Data_Storage.html"><strong>7.</strong> Data Storage</a></li><li><ul class="section"><li><a href="./btc_datastore.html"><strong>7.1.</strong> Bitcoin</a></li></ul></li><li><a href="./Consensus.html"><strong>8.</strong> Consensus algorithm</a></li><li><ul class="section"><li><a href="./Consensus_POS_Ouroboros.html"><strong>8.1.</strong> IOHK/Ouroboros</a></li><li><a href="./DFINITY.html"><strong>8.2.</strong> DFINITY</a></li><li><a href="./Stellar.html"><strong>8.3.</strong> Stellar(SCP)</a></li><li><a href="./Matrix.html"><strong>8.4.</strong> Matrix</a></li><li><a href="./Ripple.html"><strong>8.5.</strong> Ripple</a></li><li><a href="./Casper.html"><strong>8.6.</strong> Casper</a></li><li><a href="./PoA.html"><strong>8.7.</strong> POA(Parity)</a></li><li><a href="./Terndermint.html"><strong>8.8.</strong> Tendermint</a></li><li><a href="./Delegated_Consensus.html"><strong>8.9.</strong> dBFT(NEO/Antshare)/dPOS(BTS/Steem/EOS/Lisk)</a></li><li><a href="./Algorand.html"><strong>8.10.</strong> Algorand</a></li></ul></li><li><a href="./Scalability.html"><strong>9.</strong> Scalability</a></li><li><ul class="section"><li><a href="./Ouroboros_Praos.html"><strong>9.1.</strong> Ouroboros Praos</a></li><li><a href="./EOS.html"><strong>9.2.</strong> EOS</a></li><li><a href="./eth_parallelizability.html"><strong>9.3.</strong> Ethereum Parallelizability</a></li></ul></li><li><a href="./Validation.html"><strong>10.</strong> Validation</a></li><li><ul class="section"><li><a href="./Segwit.html"><strong>10.1.</strong> Segwit</a></li><li><a href="./Multisignature.html"><strong>10.2.</strong> Multisignature</a></li><li><a href="./Tx_Malleability.html"><strong>10.3.</strong> Transaction Malleability</a></li><li><a href="./Double_Spend.html"><strong>10.4.</strong> Double Spend</a></li><li><a href="./Peplay_Protect.html"><strong>10.5.</strong> Replay Protection</a></li><li><a href="./TrueBit.html"><strong>10.6.</strong> Truebit</a></li></ul></li><li><a href="./Money_Denomiation_Token.html"><strong>11.</strong> Money &amp; Token</a></li><li><ul class="section"><li><a href="./TxFee_BTC.html"><strong>11.1.</strong> Bitcoin TxFee</a></li><li><a href="./RBF.html"><strong>11.2.</strong> Bitcoin Replace by fee</a></li><li><a href="./TxFee_ETH.html"><strong>11.3.</strong> Ethereum TxFee</a></li><li><a href="./ERC20.html"><strong>11.4.</strong> ERC20/ERC223/ERC721</a></li></ul></li><li><a href="./Crypto.html"><strong>12.</strong> Crypto Algorithm</a></li><li><ul class="section"><li><a href="./secp256k1.html"><strong>12.1.</strong> secp256k1</a></li><li><a href="./ZK-SNARKs.html"><strong>12.2.</strong> ZKP/ZK-SNARKs</a></li><li><a href="./CoinJoin.html"><strong>12.3.</strong> CoinJoin</a></li><li><a href="./RingSig.html"><strong>12.4.</strong> RingSig</a></li><li><a href="./Crypto_SM.html"><strong>12.5.</strong> SMx</a></li><li><a href="./PQC.html"><strong>12.6.</strong> Post-Quantum Cryptography</a></li></ul></li><li><a href="./Messaging.html"><strong>13.</strong> Messaging</a></li><li><a href="./Node_Discovery.html"><strong>14.</strong> Node discovery</a></li><li><ul class="section"><li><a href="./Gossip_Protocol.html"><strong>14.1.</strong> Gossip Protocol</a></li><li><a href="./DHT_Protocol.html"><strong>14.2.</strong> DHT Protocol</a></li></ul></li><li><a href="./Sync.html"><strong>15.</strong> Synchronization</a></li><li><ul class="section"><li><a href="./btc_sync.html"><strong>15.1.</strong> Bitcoin Header frist</a></li></ul></li><li><a href="./Interconnecting.html"><strong>16.</strong> Interconnect &amp; Cross-chain</a></li><li><ul class="section"><li><a href="./ILP.html" class="active"><strong>16.1.</strong> Interledger Protocol (ILP)</a></li><li><a href="./DID.html"><strong>16.2.</strong> Decentralized Identifiers (DIDs)</a></li><li><a href="./0xProtocol.html"><strong>16.3.</strong> 0x Protocol</a></li><li><a href="./Polkadot.html"><strong>16.4.</strong> Polkadot</a></li><li><a href="./Cosmos.html"><strong>16.5.</strong> Cosmos</a></li><li><a href="./OmiseGO.html"><strong>16.6.</strong> OmiseGO</a></li></ul></li><li><a href="./Oracle.html"><strong>17.</strong> Oracle</a></li><li><ul class="section"><li><a href="./Gnosis.html"><strong>17.1.</strong> Gnosis</a></li><li><a href="./Augur.html"><strong>17.2.</strong> Augur</a></li><li><a href="./Amoveo.html"><strong>17.3.</strong> Amoveo</a></li><li><a href="./ZenProtocol.html"><strong>17.4.</strong> Zen Protocal</a></li></ul></li><li><a href="./SmartContract.html"><strong>18.</strong> SmartContract</a></li><li><ul class="section"><li><a href="./Asset_Contract.html"><strong>18.1.</strong> Asset</a></li><li><a href="./Loan_Contract.html"><strong>18.2.</strong> Loan</a></li></ul></li><li><a href="./VM.html"><strong>19.</strong> VM</a></li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="./ILP.html#interledger-protocol-ilp" id="interledger-protocol-ilp"><h2>Interledger Protocol (ILP)</h2></a>
+<a class="header" href="./ILP.html#intro" id="intro"><h3>Intro</h3></a>
+<p>decentralized payment protocol
+<img src="https://user-images.githubusercontent.com/1134993/32131647-2ef08466-bb79-11e7-8588-8c57d48e520f.png" alt="screen shot 2017-10-28 at 1 44 12 pm" /></p>
+<a class="header" href="./ILP.html#crypto-conditions" id="crypto-conditions"><h3>Crypto-Conditions</h3></a>
+<p>The crypto-conditions specification defines a set of encoding formats and data structures for <em>conditions</em> and <em>fulfillments</em>.  A condition uniquely identifies a logical &quot;boolean circuit&quot; constructed from one or more logic gates, evaluated by either validating a cryptographic signature or verifying the preimage of a hash digest.  A <strong>fulfillment</strong> is a data structure encoding one or more cryptographic signatures and hash digest preimages that define the structure of the circuit and  provide inputs to the logic gates allowing for the result of the circuit to be evaluated.</p>
+<p><img src="https://user-images.githubusercontent.com/1134993/32212404-9bd15624-bde4-11e7-8945-32bc7543b6be.png" alt="screen shot 2017-10-31 at 3 38 09 pm" /></p>
+<p><img src="https://user-images.githubusercontent.com/1134993/32211884-a27e1fcc-bde2-11e7-9cc3-41785ed48855.png" alt="screen shot 2017-10-31 at 3 23 15 pm" /></p>
+<ul>
+<li>https://tools.ietf.org/html/draft-thomas-crypto-conditions-02</li>
+<li>https://docs.bigchaindb.com/projects/server/en/latest/data-models/inputs-outputs.html</li>
+<li>https://github.com/go-interledger/cryptoconditions</li>
+<li>https://github.com/bigchaindb/cryptoconditions</li>
+<li>https://github.com/rfcs/crypto-conditions/</li>
+</ul>
+<a class="header" href="./ILP.html#comments" id="comments"><h3>Comments</h3></a>
+<p>https://github.com/wanchain/crypto/blob/master/%E8%B7%A8%E9%93%BE%E6%8A%80%E6%9C%AF%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A.pdf</p>
+<blockquote>
+<p>Interledger 是 Ripple 于 2015 年ᨀ出的跨链交易协议，简称 ILP。它的目标是作为所有账本的仲裁器，无论是分布式账本还是中心化账本，目前代码开发已经基本完全。Interledger了两种交易的方式，atomic mode 和 universal mode。在 atomic  mode 下，节点先选定公证人（notaries），然后发送者将资金发送到可信第三方的账户（escrow），然后 connector 将资金发入接收者所在链的可信第三方账户，之后公证人获取到接收者的 commit 后，通过 PBFT 达成共识，通知两条链上的可信第三方，由两条链上的可信第三方再将资金分别转到connector 和接收者的账户；如果节点无法选定公证人，则进入 universal   mode，在这一模式下，不再由公证人决定交易进行状态，而是假设参与者均为理性的，由利益驱使整个交易的完成。Interledger 的设计上有如下的问题：</p>
+<ul>
+<li>需要选取公证人，且公证人无 membership change，无 weighting</li>
+<li>资金的接收者必须在线才能完成交易</li>
+<li>需要可信第三方 escrow</li>
+<li>无跨链交易历史明细纪录</li>
+</ul>
+</blockquote>
+<a class="header" href="./ILP.html#references" id="references"><h3>References</h3></a>
+<ul>
+<li>https://interledger.org/rfcs/0003-interledger-protocol/</li>
+<li>https://www.youtube.com/watch?v=Dyi3RB50dDQ</li>
+<li>https://www.youtube.com/watch?v=UdCxrqP6w3I</li>
+</ul>
+<a class="header" href="./ILP.html#video" id="video"><h4>Video</h4></a>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=6sg62TAng1U">Evan Schwartz &amp; Stefan Thomas @ ILP Workshop July 2016</a></li>
+</ul>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a rel="prev" href="./Interconnecting.html" class="mobile-nav-chapters previous" title="Previous chapter">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="./DID.html" class="mobile-nav-chapters next" title="Next chapter">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+
+            </div>
+
+            
+                <a href="./Interconnecting.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+                <a href="./DID.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+    <script type="text/javascript">
+        var socket = new WebSocket("ws://localhost:3001");
+        socket.onmessage = function (event) {
+            if (event.data === "reload") {
+                socket.close();
+                location.reload(true); // force reload from server (not from cache)
+            }
+        };
+
+        window.onbeforeunload = function() {
+            socket.close();
+        }
+    </script>
+
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
+</html>

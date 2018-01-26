@@ -1,0 +1,386 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>VM - </title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+        <!-- MathJax -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li><a href="./Intro.html"><strong>1.</strong> Intro</a></li><li><a href="./DagHistory.html"><strong>2.</strong> History</a></li><li><a href="./Wallet.html"><strong>3.</strong> Wallet</a></li><li><ul class="section"><li><a href="./Deterministic_wallet.html"><strong>3.1.</strong> Deterministic Wallet</a></li><li><a href="./Mnemonic.html"><strong>3.2.</strong> Mnemonic</a></li></ul></li><li><a href="./Testnet.html"><strong>4.</strong> Testnet &amp; faucet</a></li><li><ul class="section"><li><a href="./BTC_testnet.html"><strong>4.1.</strong> Bitcoin Testnet</a></li><li><a href="./ETH_testnet.html"><strong>4.2.</strong> Ethereum Testnet</a></li><li><a href="./GByte_testnet.html"><strong>4.3.</strong> Byteball Testnet</a></li></ul></li><li><a href="./Address.html"><strong>5.</strong> Address</a></li><li><ul class="section"><li><a href="./btc_addr.html"><strong>5.1.</strong> Bitcoin Address</a></li></ul></li><li><a href="./Data_Structure.html"><strong>6.</strong> Data Structure</a></li><li><ul class="section"><li><a href="./Transcation.html"><strong>6.1.</strong> Transcation</a></li><li><a href="./btc_tx.html"><strong>6.2.</strong> Bitcoin Transaction</a></li><li><a href="./MerkleTree.html"><strong>6.3.</strong> MerkleTree</a></li><li><a href="./PatriciaTree.html"><strong>6.4.</strong> PatriciaTree</a></li><li><a href="./IAVL_Tree.html"><strong>6.5.</strong> Merkleized IAVL+ Tree</a></li><li><a href="./MerkleDAG.html"><strong>6.6.</strong> MerkleDAG</a></li></ul></li><li><a href="./Data_Storage.html"><strong>7.</strong> Data Storage</a></li><li><ul class="section"><li><a href="./btc_datastore.html"><strong>7.1.</strong> Bitcoin</a></li></ul></li><li><a href="./Consensus.html"><strong>8.</strong> Consensus algorithm</a></li><li><ul class="section"><li><a href="./Consensus_POS_Ouroboros.html"><strong>8.1.</strong> IOHK/Ouroboros</a></li><li><a href="./DFINITY.html"><strong>8.2.</strong> DFINITY</a></li><li><a href="./Stellar.html"><strong>8.3.</strong> Stellar(SCP)</a></li><li><a href="./Matrix.html"><strong>8.4.</strong> Matrix</a></li><li><a href="./Ripple.html"><strong>8.5.</strong> Ripple</a></li><li><a href="./Casper.html"><strong>8.6.</strong> Casper</a></li><li><a href="./PoA.html"><strong>8.7.</strong> POA(Parity)</a></li><li><a href="./Terndermint.html"><strong>8.8.</strong> Tendermint</a></li><li><a href="./Delegated_Consensus.html"><strong>8.9.</strong> dBFT(NEO/Antshare)/dPOS(BTS/Steem/EOS/Lisk)</a></li><li><a href="./Algorand.html"><strong>8.10.</strong> Algorand</a></li></ul></li><li><a href="./Scalability.html"><strong>9.</strong> Scalability</a></li><li><ul class="section"><li><a href="./Ouroboros_Praos.html"><strong>9.1.</strong> Ouroboros Praos</a></li><li><a href="./EOS.html"><strong>9.2.</strong> EOS</a></li><li><a href="./eth_parallelizability.html"><strong>9.3.</strong> Ethereum Parallelizability</a></li></ul></li><li><a href="./Validation.html"><strong>10.</strong> Validation</a></li><li><ul class="section"><li><a href="./Segwit.html"><strong>10.1.</strong> Segwit</a></li><li><a href="./Multisignature.html"><strong>10.2.</strong> Multisignature</a></li><li><a href="./Tx_Malleability.html"><strong>10.3.</strong> Transaction Malleability</a></li><li><a href="./Double_Spend.html"><strong>10.4.</strong> Double Spend</a></li><li><a href="./Peplay_Protect.html"><strong>10.5.</strong> Replay Protection</a></li><li><a href="./TrueBit.html"><strong>10.6.</strong> Truebit</a></li></ul></li><li><a href="./Money_Denomiation_Token.html"><strong>11.</strong> Money &amp; Token</a></li><li><ul class="section"><li><a href="./TxFee_BTC.html"><strong>11.1.</strong> Bitcoin TxFee</a></li><li><a href="./RBF.html"><strong>11.2.</strong> Bitcoin Replace by fee</a></li><li><a href="./TxFee_ETH.html"><strong>11.3.</strong> Ethereum TxFee</a></li><li><a href="./ERC20.html"><strong>11.4.</strong> ERC20/ERC223/ERC721</a></li></ul></li><li><a href="./Crypto.html"><strong>12.</strong> Crypto Algorithm</a></li><li><ul class="section"><li><a href="./secp256k1.html"><strong>12.1.</strong> secp256k1</a></li><li><a href="./ZK-SNARKs.html"><strong>12.2.</strong> ZKP/ZK-SNARKs</a></li><li><a href="./CoinJoin.html"><strong>12.3.</strong> CoinJoin</a></li><li><a href="./RingSig.html"><strong>12.4.</strong> RingSig</a></li><li><a href="./Crypto_SM.html"><strong>12.5.</strong> SMx</a></li><li><a href="./PQC.html"><strong>12.6.</strong> Post-Quantum Cryptography</a></li></ul></li><li><a href="./Messaging.html"><strong>13.</strong> Messaging</a></li><li><a href="./Node_Discovery.html"><strong>14.</strong> Node discovery</a></li><li><ul class="section"><li><a href="./Gossip_Protocol.html"><strong>14.1.</strong> Gossip Protocol</a></li><li><a href="./DHT_Protocol.html"><strong>14.2.</strong> DHT Protocol</a></li></ul></li><li><a href="./Sync.html"><strong>15.</strong> Synchronization</a></li><li><ul class="section"><li><a href="./btc_sync.html"><strong>15.1.</strong> Bitcoin Header frist</a></li></ul></li><li><a href="./Interconnecting.html"><strong>16.</strong> Interconnect &amp; Cross-chain</a></li><li><ul class="section"><li><a href="./ILP.html"><strong>16.1.</strong> Interledger Protocol (ILP)</a></li><li><a href="./DID.html"><strong>16.2.</strong> Decentralized Identifiers (DIDs)</a></li><li><a href="./0xProtocol.html"><strong>16.3.</strong> 0x Protocol</a></li><li><a href="./Polkadot.html"><strong>16.4.</strong> Polkadot</a></li><li><a href="./Cosmos.html"><strong>16.5.</strong> Cosmos</a></li><li><a href="./OmiseGO.html"><strong>16.6.</strong> OmiseGO</a></li></ul></li><li><a href="./Oracle.html"><strong>17.</strong> Oracle</a></li><li><ul class="section"><li><a href="./Gnosis.html"><strong>17.1.</strong> Gnosis</a></li><li><a href="./Augur.html"><strong>17.2.</strong> Augur</a></li><li><a href="./Amoveo.html"><strong>17.3.</strong> Amoveo</a></li><li><a href="./ZenProtocol.html"><strong>17.4.</strong> Zen Protocal</a></li></ul></li><li><a href="./SmartContract.html"><strong>18.</strong> SmartContract</a></li><li><ul class="section"><li><a href="./Asset_Contract.html"><strong>18.1.</strong> Asset</a></li><li><a href="./Loan_Contract.html"><strong>18.2.</strong> Loan</a></li></ul></li><li><a href="./VM.html" class="active"><strong>19.</strong> VM</a></li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="./VM.html#参考文档" id="参考文档"><h3>参考文档</h3></a>
+<ul>
+<li>https://forum.qtum.org/topic/193/qtum%E6%98%9F%E7%81%AB%E7%BD%91%E7%BB%9C-sparknet-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E5%8F%8A%E8%AF%B4%E6%98%8E</li>
+<li>https://github.com/qtumproject/qtum/blob/testnet-1/doc/sparknet-guide.md</li>
+<li>https://github.com/qtumproject/qtum/wiki/Qtum-Blockchain-Instruction</li>
+<li>https://bodhiproject.github.io/wiki/deployment/</li>
+<li>https://github.com/hayeah/qtum-dapp-counter#developing-the-dapp-ui</li>
+</ul>
+<a class="header" href="./VM.html#evm对比-qtum-vs-ethereum" id="evm对比-qtum-vs-ethereum"><h2>EVM对比 Qtum vs. Ethereum</h2></a>
+<ul>
+<li>Qtum的EVM来自Cpp Ethereum代码</li>
+<li>Qtum基于UTXO模型，加入了账户抽象层（Account Abstraction Layer），用于将UTXO模型转换成可供EVM执行的账户模型。</li>
+<li>Qtum对Bitcoin的Opcode进行扩展，添加了3个新的Opcode
+<ul>
+<li>OP_CREATE – 用于执行EVM智能合约的创建，把通过交易传输的字节代码存放到合约RLP数据库，并生成一个合约账户</li>
+<li>OP_CALL – 用于传递调用智能合约所需要的相关数据（即EVM中的CALLERDATA）和地址信息，并执行合约中的代码内容。该操作符还可为智能合约发送资金。</li>
+<li>OP_SPEND – 将当前合约的ID哈希值作为输入的交易HASH，或发送到合约的UTXO的交易HASH，然后使用OP_SPEND作为花费指令构建交易脚本。</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="./VM.html#qtum-contract命令包括" id="qtum-contract命令包括"><h2>Qtum Contract命令包括：</h2></a>
+<ul>
+<li>createcontract</li>
+<li>callcontract （&quot;query&quot; mode, 所有的计算都是在链下(本地，local blockchain）进行，不需要消耗gas）</li>
+<li>sendtocontract （“commit” mode, 所有的计算都是在链上进行的，并且所有的状态改变都会同步到链上。这个命令可以向合约发送代币，会消耗gas)</li>
+<li>listcontracts</li>
+</ul>
+<a class="header" href="./VM.html#createcontract" id="createcontract"><h3>createcontract</h3></a>
+<pre><code>$ ./src/qtum-cli -testnet help createcontract
+createcontract &quot;bytecode&quot; (gaslimit gasprice &quot;senderaddress&quot; broadcast)
+Create a contract with bytcode.
+
+Arguments:
+1. &quot;bytecode&quot;  (string, required) contract bytcode.
+2. gasLimit  (numeric or string, optional) gasLimit, default: 2500000, max: 40000000
+3. gasPrice  (numeric or string, optional) gasPrice QTUM price per gas unit, default: 0.0000004, min:0.0000004
+4. &quot;senderaddress&quot; (string, optional) The quantum address that will be used to create the contract.
+5. &quot;broadcast&quot; (bool, optional, default=true) Whether to broadcast the transaction or not.
+6. &quot;changeToSender&quot; (bool, optional, default=true) Return the change to the sender.
+
+Result:
+[
+  {
+    &quot;txid&quot; : (string) The transaction id.
+    &quot;sender&quot; : (string) QTUM address of the sender.
+    &quot;hash160&quot; : (string) ripemd-160 hash of the sender.
+    &quot;address&quot; : (string) expected contract address.
+  }
+]
+
+Examples:
+&gt; qtum-cli createcontract &quot;60606040525b33600060006101000a81548173ffffffffffffffffffffffffffffffffffffffff02191690836c010000000000000000000000009081020402179055506103786001600050819055505b600c80605b6000396
+000f360606040526008565b600256&quot;
+&gt; qtum-cli createcontract &quot;60606040525b33600060006101000a81548173ffffffffffffffffffffffffffffffffffffffff02191690836c010000000000000000000000009081020402179055506103786001600050819055505b600c80605b6000396
+000f360606040526008565b600256&quot; 6000000 0.0000004 &quot;QM72Sfpbz1BPpXFHz9m3CdqATR44Jvaydd&quot; true
+</code></pre>
+<a class="header" href="./VM.html#实现" id="实现"><h4>实现</h4></a>
+<p>https://github.com/qtumproject/qtum/blob/master/src/wallet/rpcwallet.cpp</p>
+<pre><code class="language-cpp">    if(fBroadcast){
+        CValidationState state;
+        if (!pwalletMain-&gt;CommitTransaction(wtx, reservekey, g_connman.get(), state))
+            throw JSONRPCError(RPC_WALLET_ERROR, &quot;Error: The transaction was rejected! This might happen if some of the coins in your wallet were already spent, such as if you used a copy of the wallet and coins were spent in the copy but not marked as spent here.&quot;);
+
+        std::string txId=wtx.GetHash().GetHex();
+        result.push_back(Pair(&quot;txid&quot;, txId));
+
+        CBitcoinAddress txSenderAdress(txSenderDest);
+        CKeyID keyid;
+        txSenderAdress.GetKeyID(keyid);
+
+        result.push_back(Pair(&quot;sender&quot;, txSenderAdress.ToString()));
+        result.push_back(Pair(&quot;hash160&quot;, HexStr(valtype(keyid.begin(),keyid.end()))));
+
+        std::vector&lt;unsigned char&gt; SHA256TxVout(32);
+        vector&lt;unsigned char&gt; contractAddress(20);
+        vector&lt;unsigned char&gt; txIdAndVout(wtx.GetHash().begin(), wtx.GetHash().end());
+        uint32_t voutNumber=0;
+        BOOST_FOREACH(const CTxOut&amp; txout, wtx.tx-&gt;vout) {
+            if(txout.scriptPubKey.HasOpCreate()){
+                std::vector&lt;unsigned char&gt; voutNumberChrs;
+                if (voutNumberChrs.size() &lt; sizeof(voutNumber))voutNumberChrs.resize(sizeof(voutNumber));
+                std::memcpy(voutNumberChrs.data(), &amp;voutNumber, sizeof(voutNumber));
+                txIdAndVout.insert(txIdAndVout.end(),voutNumberChrs.begin(),voutNumberChrs.end());
+                break;
+            }
+            voutNumber++;
+        }
+        CSHA256().Write(txIdAndVout.data(), txIdAndVout.size()).Finalize(SHA256TxVout.data());
+        CRIPEMD160().Write(SHA256TxVout.data(), SHA256TxVout.size()).Finalize(contractAddress.data());
+        result.push_back(Pair(&quot;address&quot;, HexStr(contractAddress)));
+    }else{
+        string strHex = EncodeHexTx(*wtx.tx, RPCSerializationFlags());
+        result.push_back(Pair(&quot;raw transaction&quot;, strHex));
+    }
+    return result;
+</code></pre>
+<a class="header" href="./VM.html#callcontract" id="callcontract"><h3>callcontract</h3></a>
+<pre><code>$ ./src/qtum-cli -testnet help callcontract
+callcontract &quot;address&quot; &quot;data&quot; ( address )
+
+Argument:
+1. &quot;address&quot;          (string, required) The account address
+2. &quot;data&quot;             (string, required) The data hex string
+3. address              (string, optional) The sender address hex string
+4. gasLimit             (string, optional) The gas limit for executing the contract
+</code></pre>
+<a class="header" href="./VM.html#sendtocontract" id="sendtocontract"><h3>sendtocontract</h3></a>
+<pre><code>$ ./src/qtum-cli -testnet help sendtocontract
+sendtocontract &quot;contractaddress&quot; &quot;data&quot; (amount gaslimit gasprice senderaddress broadcast)
+Send funds and data to a contract.
+
+Arguments:
+1. &quot;contractaddress&quot; (string, required) The contract address that will receive the funds and data.
+2. &quot;datahex&quot;  (string, required) data to send.
+3. &quot;amount&quot;      (numeric or string, optional) The amount in QTUM to send. eg 0.1, default: 0
+4. gasLimit  (numeric or string, optional) gasLimit, default: 250000, max: 40000000
+5. gasPrice  (numeric or string, optional) gasPrice Qtum price per gas unit, default: 0.0000004, min:0.0000004
+6. &quot;senderaddress&quot; (string, optional) The quantum address that will be used as sender.
+7. &quot;broadcast&quot; (bool, optional, default=true) Whether to broadcast the transaction or not.
+8. &quot;changeToSender&quot; (bool, optional, default=true) Return the change to the sender.
+
+Result:
+[
+  {
+    &quot;txid&quot; : (string) The transaction id.
+    &quot;sender&quot; : (string) QTUM address of the sender.
+    &quot;hash160&quot; : (string) ripemd-160 hash of the sender.
+  }
+]
+
+Examples:
+&gt; qtum-cli sendtocontract &quot;c6ca2697719d00446d4ea51f6fac8fd1e9310214&quot; &quot;54f6127f&quot;
+&gt; qtum-cli sendtocontract &quot;c6ca2697719d00446d4ea51f6fac8fd1e9310214&quot; &quot;54f6127f&quot; 12.0015 6000000 0.0000004 &quot;QM72Sfpbz1BPpXFHz9m3CdqATR44Jvaydd&quot;
+</code></pre>
+<a class="header" href="./VM.html#以太的创建合约与调用" id="以太的创建合约与调用"><h2>以太的创建合约与调用</h2></a>
+<a class="header" href="./VM.html#创建合约" id="创建合约"><h3>创建合约</h3></a>
+<ul>
+<li>https://github.com/ethereum/wiki/wiki/JavaScript-API#web3ethsendtransaction</li>
+</ul>
+<pre><code>// compiled solidity source code using https://chriseth.github.io/cpp-ethereum/
+var code = &quot;603d80600c6000396000f3007c01000000000000000000000000000000000000000000000000000000006000350463c6888fa18114602d57005b6007600435028060005260206000f3&quot;;
+
+web3.eth.sendTransaction({data: code}, function(err, transactionHash) {
+  if (!err)
+    console.log(transactionHash); // &quot;0x7f9fade1c0d57a7af66ab4ead7c2eb7b11a91385&quot;
+});
+</code></pre>
+<ul>
+<li>from: String - The address for the sending account. Uses the web3.eth.defaultAccount property, if not specified.</li>
+<li>to: String - (optional) The destination address of the message, left undefined for a contract-creation transaction.</li>
+<li>value: Number|String|BigNumber - (optional) The value transferred for the transaction in Wei, also the endowment if it's a contract-creation transaction.</li>
+<li>gas: Number|String|BigNumber - (optional, default: To-Be-Determined) The amount of gas to use for the transaction (unused gas is refunded).</li>
+<li>gasPrice: Number|String|BigNumber - (optional, default: To-Be-Determined) The price of gas for this transaction in wei, defaults to the mean network gas price.</li>
+<li><strong>data: String - (optional)</strong> Either a byte string containing the associated data of the message, or in the case of a contract-creation transaction, the initialisation code.</li>
+<li>nonce: Number - (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.</li>
+</ul>
+<p>https://github.com/ethereum/go-ethereum/blob/v1.7.3/internal/ethapi/api.go#L339,L371</p>
+<pre><code class="language-golang">// SendTransaction will create a transaction from the given arguments and
+// tries to sign it with the key associated with args.To. If the given passwd isn't
+// able to decrypt the key it fails.
+func (s *PrivateAccountAPI) SendTransaction(ctx context.Context, args SendTxArgs, passwd string) (common.Hash, error) {
+    // Look up the wallet containing the requested signer
+    account := accounts.Account{Address: args.From}
+
+    wallet, err := s.am.Find(account)
+    if err != nil {
+        return common.Hash{}, err
+    }
+
+    if args.Nonce == nil {
+        // Hold the addresse's mutex around signing to prevent concurrent assignment of
+        // the same nonce to multiple accounts.
+        s.nonceLock.LockAddr(args.From)
+        defer s.nonceLock.UnlockAddr(args.From)
+    }
+
+    // Set some sanity defaults and terminate on failure
+    if err := args.setDefaults(ctx, s.b); err != nil {
+        return common.Hash{}, err
+    }
+    // Assemble the transaction and sign with the wallet
+    tx := args.toTransaction()
+
+    var chainID *big.Int
+    if config := s.b.ChainConfig(); config.IsEIP155(s.b.CurrentBlock().Number()) {
+        chainID = config.ChainId
+    }
+    signed, err := wallet.SignTxWithPassphrase(account, passwd, tx, chainID)
+    if err != nil {
+        return common.Hash{}, err
+    }
+    return submitTransaction(ctx, s.b, signed)
+}
+...
+// submitTransaction is a helper function that submits tx to txPool and logs a message.
+func submitTransaction(ctx context.Context, b Backend, tx *types.Transaction) (common.Hash, error) {
+    if err := b.SendTx(ctx, tx); err != nil {
+        return common.Hash{}, err
+    }
+    if tx.To() == nil { //如果目标地址为空, 则记录该TX为contract创建
+        signer := types.MakeSigner(b.ChainConfig(), b.CurrentBlock().Number())
+        from, err := types.Sender(signer, tx)
+        if err != nil {
+            return common.Hash{}, err
+        }
+        addr := crypto.CreateAddress(from, tx.Nonce()) 
+        log.Info(&quot;Submitted contract creation&quot;, &quot;fullhash&quot;, tx.Hash().Hex(), &quot;contract&quot;, addr.Hex())
+    } else {
+        log.Info(&quot;Submitted transaction&quot;, &quot;fullhash&quot;, tx.Hash().Hex(), &quot;recipient&quot;, tx.To())
+    }
+    return tx.Hash(), nil
+}
+</code></pre>
+<a class="header" href="./VM.html#合约地址的生成" id="合约地址的生成"><h4>合约地址的生成</h4></a>
+<pre><code class="language-golang">// Creates an ethereum address given the bytes and the nonce
+func CreateAddress(b common.Address, nonce uint64) common.Address {
+    data, _ := rlp.EncodeToBytes([]interface{}{b, nonce})
+    return common.BytesToAddress(Keccak256(data)[12:])
+}
+</code></pre>
+<pre><code class="language-python">def mk_contract_address(sender, nonce):
+    return sha3(rlp.encode([normalize_address(sender), nonce]))[12:]
+</code></pre>
+<a class="header" href="./VM.html#读取数据非修改状态" id="读取数据非修改状态"><h4>读取数据（非修改状态）</h4></a>
+<p>Call is to be used only when the request does not modify the state of the blockchain (typically only reading fields or calling constant marked functions.</p>
+<ul>
+<li>Creating contract instance: asynchronous call (using sendTransaction). Completion is managed through the callback, called once with the Tx hash and a second time with the contract address.</li>
+<li>Reading contract data: synchronous call to the local node via the call methodology.</li>
+<li>Updating data: asynchronous call (using sendTransaction) with methods that do not return values. Call returns synchronously (or eventually async.) the Tx hash that can then be monitored for completion via the getTransactionReceipt (using the eth.filter('latest') that tells when the next block has been mined)</li>
+<li>Receiving info asynchronously: Use of event in the contract. Monitor the reception via eth.filter( options, callback ).</li>
+<li>Catching up with events after a disconnected period: use eth.filter({fromBlock: xyz, toBlock: eth.currentBlock, ...}).get()</li>
+</ul>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a rel="prev" href="./Loan_Contract.html" class="mobile-nav-chapters previous" title="Previous chapter">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+
+            </div>
+
+            
+                <a href="./Loan_Contract.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+    <script type="text/javascript">
+        var socket = new WebSocket("ws://localhost:3001");
+        socket.onmessage = function (event) {
+            if (event.data === "reload") {
+                socket.close();
+                location.reload(true); // force reload from server (not from cache)
+            }
+        };
+
+        window.onbeforeunload = function() {
+            socket.close();
+        }
+    </script>
+
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
+</html>
